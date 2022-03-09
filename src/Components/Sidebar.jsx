@@ -12,7 +12,7 @@ const Sidebar = () => {
             <div className='logo'><h1>Logo</h1></div>
             {SidebarData.map((item, index) =>
                 <Link to={item.link} key={index}>
-                    <div className='sidebarList'>
+                    <div className='Row'>
                         <div className='name'>{item.name}</div><div className='icon'>{item.icon}</div>
                     </div>
                 </Link>
