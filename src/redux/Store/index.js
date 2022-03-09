@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import mainReducer from "../reducer";
 
 export const initialState = {
-    customers: [],
+    customers: { customers: [] },
 };
 
 export let configStore = createStore(
