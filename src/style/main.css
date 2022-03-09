@@ -1,0 +1,15 @@
+.main {
+    background-color: darkorange;
+    height: 100vh;
+    width: auto;
+    margin: 0;
+    padding: 2%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.card-main {
+    border: 1px solid red;
+    width: 25%;
+    margin: 1%;
+}
