@@ -1,13 +1,23 @@
 import "./App.css";
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../src/Components/Sidebar'
 import HomePage from './pages/HomePage'
 import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers"
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { getCustomersAction } from '../src/redux/action'
+import { useSelector, useDispatch } from 'react-redux'
+
+
+
 
 function App() {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => { dispatch(getCustomersAction()) }, [])
+
+
     return (
         <div className="App">
             <BrowserRouter>
