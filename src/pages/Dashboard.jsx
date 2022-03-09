@@ -4,7 +4,7 @@ import SidebarData from '../utility/datamenu'
 const Dashboard = () => {
     return (
         <div>
-            <h3>Dashboard</h3>
+            <h3>Dashboard fffpomfpwmvpvmspdmpmvpsmsvmsmpmp</h3>
         </div>
     )
 }

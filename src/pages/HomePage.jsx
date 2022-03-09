@@ -1,10 +1,10 @@
 import React from 'react'
 import Dashboard from './Dashboard'
 
-const MainPage = () => {
+const HomePage = () => {
     return (
         <div><Dashboard /></div>
     )
 }
 
-export default MainPage
+export default HomePage

@@ -13,7 +13,7 @@ const Sidebar = () => {
             {SidebarData.map((item, index) =>
                 <Link to={item.link} key={index}>
                     <div className='sidebarList'>
-                        <div className='name'>{item.name}</div><div classname='icon'>{item.icon}</div>
+                        <div className='name'>{item.name}</div><div className='icon'>{item.icon}</div>
                     </div>
                 </Link>
             )}
