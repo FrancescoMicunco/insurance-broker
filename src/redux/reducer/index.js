@@ -1,9 +1,15 @@
 import { initialState } from "../Store";
+import { GET_CUSTOMERS } from "../action";
 
 const mainReducer = (state = initialState.customers, action) => {
     const { type, payload } = action;
+
     switch (type) {
-        default: return state;
+        case GET_CUSTOMERS:
+            return {...state, customers: payload };
+
+        default:
+            return state;
     }
 };
 
