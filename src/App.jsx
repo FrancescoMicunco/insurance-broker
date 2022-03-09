@@ -14,7 +14,7 @@ function App() {
                 <Sidebar />
                 <Routes>
                     <Route exact path='/' element={<HomePage />} />
-                    <Route path='/' element={<Dashboard />} />
+                    <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/customers' element={<Customers />} />
 
                 </Routes>
