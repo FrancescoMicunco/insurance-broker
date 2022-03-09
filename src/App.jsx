@@ -11,15 +11,19 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                <Sidebar />
-                <Routes>
-                    <Route exact path='/' element={<HomePage />} />
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/customers' element={<Customers />} />
+                <div style={{ display: 'flex' }}>
+                    <div>
+                        <Sidebar /></div>
+                    <div>
+                        <Routes>
+                            <Route exact path='/' element={<HomePage />} />
+                            <Route exact path='/dashboard' element={<Dashboard />} />
+                            <Route exact path='/customer' element={<Customers />} />
 
-                </Routes>
-            </BrowserRouter>
-        </div>)
+                        </Routes></div>
+                </div>
+            </BrowserRouter >
+        </div >)
 
 }
 
