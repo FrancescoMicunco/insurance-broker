@@ -1,10 +1,10 @@
 import React from 'react'
-import SidebarData from '../utility/datamenu'
+
 
 const Dashboard = () => {
     return (
         <div>
-            <h3>Dashboard fffpomfpwmvpvmspdmpmvpsmsvmsmpmp</h3>
+            <h1>DASHBOARD</h1>
         </div>
     )
 }

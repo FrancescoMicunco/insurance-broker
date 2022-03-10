@@ -10,12 +10,8 @@ const SingleCustomer = ({ customer }) => {
         {
             customer.privacy.first_field ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
-
         }
         <td><i className="bi bi-person-x"> </i></td>
-
-
-
     </>
     )
 }

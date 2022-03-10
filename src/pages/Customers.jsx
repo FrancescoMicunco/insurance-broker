@@ -68,7 +68,7 @@ const Customers = () => {
     return (
         <div style={{ color: 'gray' }} >
 
-            <Table responsive>
+            <Table responsive striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>#</th>
