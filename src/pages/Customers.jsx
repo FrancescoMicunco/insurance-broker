@@ -1,7 +1,7 @@
 import React from 'react'
-import SingleCustomer from '../Components/SingleCustomer'
+import SingleCustomer from '../Components/itemCustomer'
 import { useSelector } from 'react-redux'
-import { Table } from 'react-bootstrap'
+import { Table, Form, Button, FormControl } from 'react-bootstrap'
 
 
 
@@ -66,31 +66,44 @@ const Customers = () => {
     console.log('props from state Customers', customers)
     console.log('those are the users', users)
     return (
-        <div style={{ color: 'gray' }} >
+        <div >
+            <>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <i class="bi bi-arrow-left">
 
-            <Table responsive striped bordered hover variant="dark">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>LastName</th>
-                        <th>Seller</th>
-                        <th>Premium</th>
-                        <th>Privacy</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(u =>
+                    </i><i class="bi bi-arrow-right"></i>
+                    <Form inline style={{ width: '50%', display: 'flex', }}>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
 
+
+
+                </div>
+                <Table responsive striped bordered hover variant="dark">
+                    <thead>
                         <tr>
-                            <SingleCustomer customer={u} />
+                            <th>#</th>
+                            <th>LastName <i class="bi bi-arrow-down-up"></i>
+                            </th>
+                            <th>Seller <i class="bi bi-arrow-down-up"></i></th>
+                            <th>Premium <i class="bi bi-arrow-down-up"></i></th>
+                            <th>Privacy <i class="bi bi-arrow-down-up"></i></th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        {users.map(u =>
 
-                    )}
-                </tbody>
+                            <tr>
+                                <SingleCustomer customer={u} />
+                            </tr>
 
-            </Table>
+                        )}
+                    </tbody>
 
+                </Table>
+            </>
         </div >
     )
 }
