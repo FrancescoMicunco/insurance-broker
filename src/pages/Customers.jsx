@@ -1,10 +1,17 @@
 import React from 'react'
+import { useState } from 'react'
 import SingleCustomer from '../Components/itemCustomer'
 import { useSelector } from 'react-redux'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { Table, Form, Button, FormControl } from 'react-bootstrap'
+import { Table, Button, } from 'react-bootstrap'
+import { goForward, goBack } from '../utility/functions'
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
 
 
 
@@ -63,10 +70,13 @@ const users = [{
 },
 ];
 
+
+
+
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.50),
     '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
@@ -109,55 +119,79 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Customers = () => {
 
+    const [search, setSearch] = useState('')
     const updateCustomer = () => {
         alert("Stai modificando il cliente")
     }
+    const handleSearch = (input) => {
+        alert("this is your keyword", input);
+        setSearch(input)
 
+    }
     const customers = useSelector((state) => state.customers)
-    console.log('props from state Customers', customers)
-    console.log('those are the users', users)
+
     return (
-<div>
-        <div style={{ color: 'gray' }} >
-            <Search>
-                <SearchIconWrapper>
-                    <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </Search>
-                    <div>
-                        <i class="bi bi-arrow-left"></i>
-                        <i class="bi bi-arrow-right"></i>
-                    </div>
-           </div>
+        <div>
+            <div style={{ color: 'gray' }} >
+                <div className='d-flex'>
+
+                    <FormControl component="fieldset">
+                        <FormGroup aria-label="position" row>
+                            <FormControlLabel
+                                value="list"
+                                control={<Switch color="primary" />}
+                                label="list"
+                                labelPlacement="start"
+                            />
+                        </FormGroup>
+                    </FormControl>
+
+                    <Search >
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                            onChange={(e) => { setSearch(e.target.value) }}
+                            value={search}
+                        />
+                    </Search>
 
 
-                <Table responsive striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>LastName <i class="bi bi-arrow-down-up"></i>
-                            </th>
-                            <th>Seller <i class="bi bi-arrow-down-up"></i></th>
-                            <th>Premium <i class="bi bi-arrow-down-up"></i></th>
-                            <th>Privacy <i class="bi bi-arrow-down-up"></i></th>
+                </div>
+                <div>
+
+                    <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
+                    <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
+                    <Button >Add Customer</Button>
+                </div>
+            </div>
+
+
+            <Table responsive striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>LastName <i class="bi bi-arrow-down-up"></i>
+                        </th>
+                        <th>Seller <i class="bi bi-arrow-down-up"></i></th>
+                        <th>Premium <i class="bi bi-arrow-down-up"></i></th>
+                        <th>Privacy <i class="bi bi-arrow-down-up"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map(u =>
+
+                        <tr onClick={updateCustomer}>
+                            <SingleCustomer customer={u} />
                         </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(u =>
 
-                            <tr onClick={updateCustomer}>
-                                <SingleCustomer customer={u} />
-                            </tr>
+                    )}
+                </tbody>
 
-                        )}
-                    </tbody>
+            </Table>
 
-                </Table>
-          
         </div >
     )
 }

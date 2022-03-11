@@ -5,7 +5,7 @@ export const getCustomersAction = () => {
         try {
             const res = await fetch("https://reqres.in/api/users?page=2");
             if (res.ok) {
-                const customers = res.json();
+                const customers = await res.json();
                 console.log("customers", customers);
                 dispatch({ type: GET_CUSTOMERS, payload: customers });
             } else {
