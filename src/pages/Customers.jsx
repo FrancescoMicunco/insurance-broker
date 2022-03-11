@@ -1,6 +1,9 @@
 import React from 'react'
 import SingleCustomer from '../Components/itemCustomer'
 import { useSelector } from 'react-redux'
+import InputBase from '@mui/material/InputBase';
+import { styled, alpha } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
 import { Table, Form, Button, FormControl } from 'react-bootstrap'
 
 
@@ -60,6 +63,50 @@ const users = [{
 },
 ];
 
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+}));
+
+
+
+
+
 const Customers = () => {
 
     const updateCustomer = () => {
@@ -70,20 +117,24 @@ const Customers = () => {
     console.log('props from state Customers', customers)
     console.log('those are the users', users)
     return (
-        <div >
-            <>
-                <div style={{ display: 'block', justifyContent: 'center' }}>
-                    <div style={{ text: 'center' }}>
-                        <Form inline style={{ width: '50%', display: 'flex', }}>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
-                    </div><div>
+<div>
+        <div style={{ color: 'gray' }} >
+            <Search>
+                <SearchIconWrapper>
+                    <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                />
+            </Search>
+                    <div>
                         <i class="bi bi-arrow-left"></i>
                         <i class="bi bi-arrow-right"></i>
                     </div>
+           </div>
 
-                </div>
+
                 <Table responsive striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -106,7 +157,7 @@ const Customers = () => {
                     </tbody>
 
                 </Table>
-            </>
+          
         </div >
     )
 }
