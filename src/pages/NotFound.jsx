@@ -1,12 +1,13 @@
 import '../style/notfound.css'
 
 
-const NotFound = ()=>{
-     return (
-         <div className="NotFound">
-             <h1>PAGE NOT FOUND!</h1>
-             <img src="notfound.jpg" alt="not found" />
-         </div>
-     )
+const NotFound = () => {
+    return (
+        <div className="NotFound" style={{ paddingTop: '3rem' }}>
+
+            <img src="404page Screenshot.png" alt="not found" style={{ width: '80%' }} />
+
+        </div>
+    )
 }
-     export default NotFound
+export default NotFound
