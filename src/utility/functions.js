@@ -9,3 +9,11 @@ export function goBack() {
 export function handleSearch(input) {
     alert("this is your keyword", input);
 }
+
+export function handleDelete() {
+    alert("confirm delete customer?");
+}
+
+export function handleAddCustomer() {
+    alert("confirm you are adding new customer");
+}

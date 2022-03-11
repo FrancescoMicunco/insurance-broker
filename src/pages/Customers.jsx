@@ -6,7 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table, Button, } from 'react-bootstrap'
-import { goForward, goBack } from '../utility/functions'
+import { goForward, goBack, handleAddCustomer } from '../utility/functions'
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -120,14 +120,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Customers = () => {
 
     const [search, setSearch] = useState('')
-    const updateCustomer = () => {
-        alert("Stai modificando il cliente")
-    }
-    const handleSearch = (input) => {
-        alert("this is your keyword", input);
-        setSearch(input)
 
-    }
+
+
+
     const customers = useSelector((state) => state.customers)
 
     return (
@@ -158,13 +154,12 @@ const Customers = () => {
                         />
                     </Search>
 
-
                 </div>
                 <div>
 
                     <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
                     <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
-                    <Button >Add Customer</Button>
+                    <Button onClick={handleAddCustomer}>Add Customer</Button>
                 </div>
             </div>
 
@@ -182,14 +177,11 @@ const Customers = () => {
                 </thead>
                 <tbody>
                     {users.map(u =>
-
-                        <tr onClick={updateCustomer}>
+                        <tr style={{ cursor: 'pointer' }}>
                             <SingleCustomer customer={u} />
                         </tr>
-
                     )}
                 </tbody>
-
             </Table>
 
         </div >
