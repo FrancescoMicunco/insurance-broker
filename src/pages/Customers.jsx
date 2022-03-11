@@ -1,21 +1,21 @@
 import React from 'react'
-import SingleCustomer from '../Components/SingleCustomer'
+import SingleCustomer from '../Components/itemCustomer'
 import { useSelector } from 'react-redux'
-import { Table } from 'react-bootstrap'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
+import { Table, Form, Button, FormControl } from 'react-bootstrap'
 
 
 
 const users = [{
     id: 1,
     name: "num1",
-    lastName: "Lnum1",
+    lastName: "Lucci",
     email: "ali@ali.com",
     job: "journay",
     family: { married: true, sons: 2 },
-    privacy: { first_field: true, second_field: true, third_field: false },
+    privacy: { first_field: true, second_field: false, third_field: false },
     compliance: { identify: true, PPI: false },
     isActive: true,
     contracts: {
@@ -109,10 +109,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Customers = () => {
 
+    const updateCustomer = () => {
+        alert("Stai modificando il cliente")
+    }
+
     const customers = useSelector((state) => state.customers)
     console.log('props from state Customers', customers)
     console.log('those are the users', users)
     return (
+<div>
         <div style={{ color: 'gray' }} >
             <Search>
                 <SearchIconWrapper>
@@ -123,29 +128,36 @@ const Customers = () => {
                     inputProps={{ 'aria-label': 'search' }}
                 />
             </Search>
-            <Table responsive striped bordered hover variant="dark">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>LastName</th>
-                        <th>Seller</th>
-                        <th>Premium</th>
-                        <th>Privacy</th>
+                    <div>
+                        <i class="bi bi-arrow-left"></i>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+           </div>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(u =>
 
+                <Table responsive striped bordered hover variant="dark">
+                    <thead>
                         <tr>
-                            <SingleCustomer customer={u} />
+                            <th>#</th>
+                            <th>LastName <i class="bi bi-arrow-down-up"></i>
+                            </th>
+                            <th>Seller <i class="bi bi-arrow-down-up"></i></th>
+                            <th>Premium <i class="bi bi-arrow-down-up"></i></th>
+                            <th>Privacy <i class="bi bi-arrow-down-up"></i></th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        {users.map(u =>
 
-                    )}
-                </tbody>
+                            <tr onClick={updateCustomer}>
+                                <SingleCustomer customer={u} />
+                            </tr>
 
-            </Table>
+                        )}
+                    </tbody>
 
+                </Table>
+          
         </div >
     )
 }

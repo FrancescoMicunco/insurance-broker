@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers"
 import Companies from "./pages/Companies"
 import MyNavBar from './Components/MyNavBar'
+import NotFound from "../src/pages/NotFound"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { getCustomersAction } from '../src/redux/action'
 import { useSelector, useDispatch } from 'react-redux'
@@ -33,6 +34,8 @@ function App() {
                             <Route exact path='/dashboard' element={<Dashboard />} />
                             <Route exact path='/customer' element={<Customers />} />
                             <Route exact path='/companies' element={<Companies />} />
+                            <Route exact path='/customer/:customer' element={<Companies />} />
+                            <Route exact path='*' element={<NotFound />} />
                         </Routes></div>
                 </div>
             </BrowserRouter >
