@@ -4,6 +4,7 @@ import Sidebar from '../src/Components/Sidebar'
 import HomePage from './pages/HomePage'
 import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers"
+import CustomerDetails from './pages/CustomerDetails'
 import Companies from "./pages/Companies"
 import MyNavBar from './Components/MyNavBar'
 import NotFound from "../src/pages/NotFound"
@@ -34,7 +35,7 @@ function App() {
                             <Route exact path='/dashboard' element={<Dashboard />} />
                             <Route exact path='/customer' element={<Customers />} />
                             <Route exact path='/companies' element={<Companies />} />
-                            <Route exact path='/customer/:customer' element={<Companies />} />
+                            <Route exact path='/customer/:customerId' element={<CustomerDetails />} />
                             <Route exact path='*' element={<NotFound />} />
                         </Routes></div>
                 </div>

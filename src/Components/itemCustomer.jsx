@@ -1,21 +1,21 @@
 import React from 'react'
 import { handleDelete } from '../utility/functions'
+import { useNavigate } from "react-router";
 
 const SingleCustomer = ({ customer }) => {
-
-    const updateCustomer = () => {
-        alert("Stai modificando il cliente")
-    }
+    const navigate = useNavigate();
 
     return (<>
-        <td onClick={updateCustomer}>{customer.id}</td>
-        <td onClick={updateCustomer}>{customer.lastName}</td>
-        <td onClick={updateCustomer}>{customer.seller}</td>
-        <td onClick={updateCustomer}>{customer.contracts.premium}</td>
+
+        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.id}</td>
+        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.last_name}</td>
+        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.email}</td>
+        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.avatar}</td>
         {
-            customer.privacy.first_field ?
+            customer.email ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
         }
+
         <td onClick={handleDelete}><i className="bi bi-person-x"> </i></td>
     </>
     )

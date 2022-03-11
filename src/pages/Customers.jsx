@@ -122,9 +122,10 @@ const Customers = () => {
     const [search, setSearch] = useState('')
 
 
-
-
     const customers = useSelector((state) => state.customers)
+
+    console.log('customers from redux', customers.data)
+
 
     return (
         <div>
@@ -176,9 +177,10 @@ const Customers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(u =>
+                    {customers.data?.map(u =>
                         <tr style={{ cursor: 'pointer' }}>
-                            <SingleCustomer customer={u} />
+
+                            <SingleCustomer key={u.id} customer={u} />
                         </tr>
                     )}
                 </tbody>
