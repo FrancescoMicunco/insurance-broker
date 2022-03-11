@@ -1,13 +1,16 @@
 const users = [{
         id: 1,
-        name: "num1",
-        lastName: "Lnum1",
+        name: "Alberto",
+        lastName: "Lucci",
         email: "ali@ali.com",
         job: "journay",
         family: { married: true, sons: 2 },
         privacy: { first_field: true, second_field: true, third_field: false },
         compliance: { identify: true, PPI: false },
+        username: "albi21",
+        password: "wfnewonjcoqnoqcanc",
     },
+
     {
         id: 2,
         name: "num2",
@@ -17,6 +20,8 @@ const users = [{
         family: { married: false, sons: 2 },
         privacy: { first_field: true, second_field: true, third_field: false },
         compliance: { identify: true, PPI: true },
+        username: "albi21",
+        password: "wfnewonjcoqnoqcanc",
     },
     {
         id: 3,
@@ -27,5 +32,7 @@ const users = [{
         family: { married: false, sons: 1 },
         privacy: { first_field: true, second_field: true, third_field: false },
         compliance: { identify: true, PPI: false },
+        username: "albi21",
+        password: "wfnewonjcoqnoqcanc",
     },
 ];

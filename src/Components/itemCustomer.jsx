@@ -2,6 +2,8 @@ import React from 'react'
 
 const SingleCustomer = ({ customer }) => {
 
+
+
     return (<>
         <td>{customer.id}</td>
         <td>{customer.lastName}</td>
