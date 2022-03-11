@@ -10,28 +10,31 @@ function CustomerDetails() {
 
     const [customerDetail, setCustomerDetail] = useState(undefined)
 
-    const customers = useSelector((state) => state.customers)
+    const customers = useSelector((state) => state.customers).data
 
-    console.log('customers from detail', customers)
 
     const params = useParams()
-    console.log(params)
+
 
     useEffect(() => {
 
         let customerId = params.customerId
 
-        // let customerToShow = customers.find(c => c.id.toString() === customerId)
-        let customerToShow = 'uno'
+        console.log('id', customerId)
 
-        setCustomerDetail(customerToShow)
+        let cToShow = customers.find(c => c.id.toString() === customerId)
 
-        console.log(customerDetail)
-    }, [])
+        console.log("cToShow", cToShow)
+
+        if (cToShow) setCustomerDetail(cToShow)
+
+        console.log("customer to show", customerDetail)
+    }, [customerDetail])
 
     return (
         <div>
-            <h1>Details</h1>
+            <h1>{customerDetail?.first_name}</h1>
+            <img src={customerDetail?.avatar} alt={customerDetail?.first_Name} />
         </div>
     )
 }
