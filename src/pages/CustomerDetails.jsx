@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import '../style/customerdetails.css'
 
 
@@ -34,9 +36,14 @@ function CustomerDetails() {
     return (
         <div className="customerDet">
             <div className="d-flex">
-                <h3 >{customerDetail?.first_name}</h3>
+                <h3>{customerDetail?.first_name}</h3>
                 <img src={customerDetail?.avatar} alt={customerDetail?.first_Name} />
             </div>
+
+            <div><Stack spacing={2} direction="row">
+
+                <Button variant="outlined">Outlined</Button>
+            </Stack></div>
         </div>
     )
 }
