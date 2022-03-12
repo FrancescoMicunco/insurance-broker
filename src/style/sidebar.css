@@ -4,10 +4,11 @@
     
     .Sidebar {
         background-color: rgb(31, 37, 53);
-        width: 20vw;
+        width: 13vw;
         height: 100vh;
         padding: 0;
         margin: 0;
+        font-size: 1.2em;
     }
     
     .Row {
@@ -18,7 +19,7 @@
         display: flex;
         flex-direction: row;
         color: white;
-        justify-content: center;
+        justify-content: space-around;
     }
     
     .sidebarList .row:hover {
@@ -34,7 +35,6 @@
     .row #icon {
         flex: 20%;
         display: grid;
-        place-items: center;
     }
     
     .row #name {

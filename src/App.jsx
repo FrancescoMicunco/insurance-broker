@@ -10,7 +10,7 @@ import MyNavBar from './Components/MyNavBar'
 import NotFound from "../src/pages/NotFound"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { getCustomersAction } from '../src/redux/action'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -29,7 +29,7 @@ function App() {
                 <div style={{ display: 'flex' }}>
                     <div>
                         <Sidebar /></div>
-                    <div>
+                    <div style={{ backgroundColor: 'gainsboro', width: '100%' }}>
                         <Routes>
                             <Route exact path='/' element={<HomePage />} />
                             <Route exact path='/dashboard' element={<Dashboard />} />
@@ -37,7 +37,8 @@ function App() {
                             <Route exact path='/companies' element={<Companies />} />
                             <Route exact path='/customer/:customerId' element={<CustomerDetails />} />
                             <Route exact path='*' element={<NotFound />} />
-                        </Routes></div>
+                        </Routes>
+                    </div>
                 </div>
             </BrowserRouter >
         </div >)

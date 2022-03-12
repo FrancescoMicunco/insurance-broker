@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
-
+import '../style/customerdetails.css'
 
 
 import React from 'react'
@@ -22,7 +22,7 @@ function CustomerDetails() {
 
         console.log('id', customerId)
 
-        let cToShow = customers.find(c => c.id.toString() === customerId)
+        let cToShow = customers?.find(c => c.id.toString() === customerId)
 
         console.log("cToShow", cToShow)
 
@@ -32,9 +32,11 @@ function CustomerDetails() {
     }, [customerDetail])
 
     return (
-        <div>
-            <h1>{customerDetail?.first_name}</h1>
-            <img src={customerDetail?.avatar} alt={customerDetail?.first_Name} />
+        <div className="customerDet">
+            <div className="d-flex">
+                <h3 >{customerDetail?.first_name}</h3>
+                <img src={customerDetail?.avatar} alt={customerDetail?.first_Name} />
+            </div>
         </div>
     )
 }
