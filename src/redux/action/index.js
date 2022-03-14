@@ -1,4 +1,5 @@
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
+export const DELETE_CUSTOMER = "DELETE_CUSTOMER";
 
 export const getCustomersAction = () => {
     return async(dispatch) => {
@@ -16,3 +17,8 @@ export const getCustomersAction = () => {
         }
     };
 };
+
+export const deleteCustomerAction = (_id) => ({
+    type: DELETE_CUSTOMER,
+    payload: _id,
+});

@@ -31,8 +31,6 @@ const users = [{
         rate_earnings: 5,
     },
     seller: 'Arino Lacca',
-
-
 },
 
 ];
@@ -91,7 +89,7 @@ const Customers = () => {
 
     const customers = useSelector((state) => state.customers)
 
-    console.log('customers from redux', customers.data)
+    console.log('customers from redux', customers)
 
 
     return (
