@@ -143,8 +143,8 @@ const Customers = () => {
                 </thead>
                 <tbody>
                     {customers?.map(u =>
-                        <tr style={{ cursor: 'pointer' }}>
-                            <SingleCustomer key={u._id} customer={u} />
+                        <tr key={u._id} style={{ cursor: 'pointer' }}>
+                            <SingleCustomer customer={u} />
                         </tr>
                     )}
                 </tbody>
