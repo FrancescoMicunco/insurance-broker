@@ -27,7 +27,7 @@ export const getCustomersAction = () => {
 export const deleteCustomerAction = (_id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/customers" + { _id }, {
+            const res = await fetch("http://localhost:3001/customers/" + _id, {
                 method: "DELETE",
             });
             if (res.ok) {
