@@ -1,41 +1,36 @@
 import React from 'react'
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import SingleCustomer from '../Components/itemCustomer'
-import { useSelector } from 'react-redux'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table, Button, } from 'react-bootstrap'
-import { goForward, goBack, handleAddCustomer, deleteCustomer } from '../utility/functions'
+import { goForward, goBack } from '../utility/functions'
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import FormPropsTextFields from '../Components/CustomersList'
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+import { addNewCustomerAction } from '../redux/action'
 
 
-
-
-const users = [{
-    id: 1,
-    name: "num1",
-    lastName: "Lucci",
-    email: "ali@ali.com",
-    job: "journay",
-    family: { married: true, sons: 2 },
-    privacy: { first_field: true, second_field: false, third_field: false },
-    compliance: { identify: true, PPI: false },
-    isActive: true,
-    contracts: {
-        contract_name: 'aliud',
-        premium: 500.20,
-        rate_earnings: 5,
-    },
-    seller: 'Arino Lacca',
-},
-
-];
-
-
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '80vw',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -80,16 +75,43 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-
-
 const Customers = () => {
+
+    const [name, setName] = useState('')
+    const [lastname, setLastName] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+
+    const newCustomer = {
+        name: name,
+        lastname: lastname,
+        password: password,
+        email: email,
+    }
+
+
+
+    // MODAL
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const [search, setSearch] = useState('')
 
+    const dispatch = useDispatch()
 
     const customers = useSelector((state) => state.customers)
 
     console.log('customers from redux', customers)
+
+    console.log('newCustomer', newCustomer)
+
+    const addNewCustomer = (newCustomer) => {
+
+        dispatch(addNewCustomerAction(newCustomer))
+
+        setOpen(false)
+    }
 
 
     return (
@@ -125,7 +147,76 @@ const Customers = () => {
 
                     <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
                     <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
-                    <Button onClick={handleAddCustomer}>Add Customer</Button>
+                    <Button onClick={handleOpen}>Add Customer</Button>
+
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Add a new Customer
+                            </Typography>
+                            <div className='d-flex' style={{ width: '80vw' }}>
+
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <div>
+                                        <TextField
+                                            required
+                                            id="outlined-required"
+                                            label="Name"
+                                            // defaultValue="Name"
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                        <TextField
+                                            required
+                                            id="outlined-disabled"
+                                            label="Last name"
+                                            // defaultValue="Last Name"
+                                            value={lastname}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                        />
+                                        <TextField
+                                            id="outlined-password-input"
+                                            label="Password"
+                                            type="password"
+                                            autoComplete="current-password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+                                        <TextField
+                                            required
+                                            id="outlined-disabled"
+                                            label="email"
+                                            // defaultValue="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </div>
+                                </Box>
+                            </div>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                You are adding a new customer.
+                            </Typography>
+
+                            <Button variant="outlined" onClick={() => { addNewCustomer() }}>Add</Button>
+                        </Box>
+                    </Modal>
+
+
+
+
+
                 </div>
             </div>
 
