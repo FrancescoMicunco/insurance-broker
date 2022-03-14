@@ -7,16 +7,16 @@ const SingleCustomer = ({ customer }) => {
 
     return (<>
 
-        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.id}</td>
-        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.last_name}</td>
-        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.email}</td>
-        <td onClick={() => navigate('/customer/' + customer.id)}>{customer.avatar}</td>
+        <td onClick={() => navigate('/customer/' + customer._id)}>{customer._id}</td>
+        <td onClick={() => navigate('/customer/' + customer._id)}>{customer.name}</td>
+        <td onClick={() => navigate('/customer/' + customer._id)}>{customer.email}</td>
+        <td onClick={() => navigate('/customer/' + customer._id)}>{customer.avatar}</td>
         {
             customer.email ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
         }
 
-        <td onClick={handleDelete}><i className="bi bi-person-x"> </i></td>
+        <td onClick={console.log("user")}><i className="bi bi-person-x"> </i></td>
     </>
     )
 }

@@ -6,7 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table, Button, } from 'react-bootstrap'
-import { goForward, goBack, handleAddCustomer } from '../utility/functions'
+import { goForward, goBack, handleAddCustomer, deleteCustomer } from '../utility/functions'
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -34,40 +34,7 @@ const users = [{
 
 
 },
-{
-    id: 2,
-    name: "num2",
-    lastName: "Lnum2",
-    email: "uri@uri.com",
-    job: "manager",
-    family: { married: false, sons: 2 },
-    privacy: { first_field: true, second_field: true, third_field: false },
-    compliance: { identify: true, PPI: true },
-    isActive: true,
-    contracts: {
-        contract_name: 'lassm',
-        premium: 200.20,
-        rate_earnings: 5,
-    },
-    seller: 'Verio Sola',
-},
-{
-    id: 3,
-    name: "num3",
-    lastName: "Lnum3",
-    email: "sushi@sushi.com",
-    job: "manager",
-    family: { married: false, sons: 1 },
-    privacy: { first_field: false, second_field: true, third_field: false },
-    compliance: { identify: true, PPI: false },
-    isActive: true,
-    contracts: {
-        contract_name: 'pulp',
-        premium: 1200.00,
-        rate_earnings: 5,
-    },
-    seller: 'Arino Lacca',
-},
+
 ];
 
 
@@ -177,10 +144,9 @@ const Customers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {customers.data?.map(u =>
+                    {customers?.map(u =>
                         <tr style={{ cursor: 'pointer' }}>
-
-                            <SingleCustomer key={u.id} customer={u} />
+                            <SingleCustomer key={u._id} customer={u} />
                         </tr>
                     )}
                 </tbody>

@@ -16,9 +16,9 @@ export const SidebarData = [{
         link: "/dashboard",
     },
     {
-        name: "Customer",
+        name: "Customers",
         icon: < MdPeopleAlt / > ,
-        link: "/customer",
+        link: "/customers",
     },
     {
         name: "Companies",

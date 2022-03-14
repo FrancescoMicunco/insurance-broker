@@ -43,6 +43,7 @@ function CustomerDetails() {
             <div><Stack spacing={2} direction="row">
 
                 <Button variant="outlined">Outlined</Button>
+
             </Stack></div>
         </div>
     )
