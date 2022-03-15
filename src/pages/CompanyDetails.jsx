@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import '../style/customerdetails.css'
 import React from 'react'
-import { deleteCustomerAction, updateCustomerAction } from '../redux/action/index'
+import { deleteCompanyAction, updateCompanyAction } from '../redux/action/index'
 import TextField from '@mui/material/TextField';
 
 
@@ -26,23 +26,21 @@ const style = {
 };
 
 
-function CustomerDetails() {
+function CompanyDetails() {
     const [name, setName] = useState('')
-    const [lastname, setLastName] = useState('')
     const [email, setEmail] = useState('')
-    const [customerId, setCustomerId] = useState('')
+    const [companyId, setCompanyId] = useState('')
     const [isUpdate, setIsUpdate] = useState(false)
-    const [customerDetail, setCustomerDetail] = useState(undefined)
+    const [companyDetail, setCompanyDetail] = useState(undefined)
 
 
-    const customerToUpdate = {
-        id: customerId,
+    const companyToUpdate = {
+        id: companyId,
         name: name,
-        lastname: lastname,
         email: email
     }
 
-    console.log("to update", customerToUpdate)
+    console.log("to update", companyToUpdate)
 
     const handleToUpdate = () => {
         setIsUpdate(true)
@@ -58,7 +56,7 @@ function CustomerDetails() {
 
 
 
-    const customers = useSelector((state) => state.customers.customers)
+    const company = useSelector((state) => state.company)
 
     const params = useParams()
 
@@ -66,17 +64,17 @@ function CustomerDetails() {
 
     useEffect(() => {
 
-        let customerId = params.customerId
+        let companyId = params.companyId
 
-        let cToShow = customers?.find(c => c._id.toString() === customerId)
+        let cToShow = company?.find(c => c._id.toString() === companyId)
 
         console.log("cToShow", cToShow)
 
-        if (cToShow) setCustomerDetail(cToShow)
+        if (cToShow) setCompanyDetail(cToShow)
 
-        console.log("customer to show", customerDetail)
+        console.log("company to show", companyDetail)
 
-    }, [customerDetail])
+    }, [companyDetail])
 
 
 
@@ -99,36 +97,28 @@ function CustomerDetails() {
                                 required
                                 id="outlined-required"
                                 label="Name"
-                                defaultValue={customerDetail?.name}
+                                defaultValue={companyDetail?.name}
                                 // value={name}
                                 onChange={(e) => setName(e.target.value)}
-                            />
-                            <TextField
-                                required
-                                id="outlined-disabled"
-                                label="Last name"
-                                defaultValue={customerDetail?.name}
-                                // value={lastname}
-                                onChange={(e) => setLastName(e.target.value)}
                             />
 
                             <TextField
                                 required
                                 id="outlined-disabled"
                                 label="email"
-                                defaultValue={customerDetail?.email}
+                                defaultValue={companyDetail?.email}
                                 // value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <Button variant="outlined"
                                 onClick={() => {
-                                    dispatch(updateCustomerAction(customerToUpdate, customerDetail?._id))
+                                    dispatch(updateCompanyAction(companyToUpdate, companyDetail?._id))
                                 }}>Update</Button>
                         </div>
                     </Box> :
                     <>
-                        <h3>{customerDetail?.name}</h3>
-                        <p>{customerDetail?.email}</p>
+                        <h3>{companyDetail?.name}</h3>
+                        <p>{companyDetail?.email}</p>
                     </>
                 }
 
@@ -156,12 +146,12 @@ function CustomerDetails() {
                     >
                         <Box sx={style}>
                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                DELETING CUSTOMER
+                                DELETING COMPANY
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                You are deleting a customer. If you confirm, press the button.
+                                You are deleting a company. If you confirm, press the button.
                             </Typography>
-                            <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction(customerDetail?._id))}>DELETE</Button>
+                            <Button variant="outlined" onClick={() => dispatch(deleteCompanyAction(companyDetail?._id))}>DELETE</Button>
                         </Box>
                     </Modal>
                 </Stack></div>
@@ -169,4 +159,4 @@ function CustomerDetails() {
     )
 }
 
-export default CustomerDetails
+export default CompanyDetails

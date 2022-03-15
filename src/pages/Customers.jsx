@@ -100,7 +100,7 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    const customers = useSelector((state) => state.customers)
+    const customers = useSelector((state) => state.customers.customers)
 
     console.log('customers from redux', customers)
 

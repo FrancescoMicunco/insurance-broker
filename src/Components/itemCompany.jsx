@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteCustomerAction } from '../redux/action/index'
+import { deleteCompanyAction } from '../redux/action/index'
 
 
 const style = {
@@ -21,13 +21,13 @@ const style = {
 };
 
 
-const SingleCustomer = ({ customer }) => {
+const SingleCompany = ({ company }) => {
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    //  DISPATCH DELETE CUSTOMER
+    //  DISPATCH DELETE COMPANY
     const dispatch = useDispatch()
 
     const navigate = useNavigate();
@@ -35,11 +35,11 @@ const SingleCustomer = ({ customer }) => {
     return (<>
 
         <td ></td>
-        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.name}</td>
-        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.email}</td>
-        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.avatar}</td>
+        <td onClick={() => navigate('/companies/' + company._id)}>{company.name}</td>
+        <td onClick={() => navigate('/companies/' + company._id)}>{company.email}</td>
+        <td onClick={() => navigate('/companies/' + company._id)}>{company.avatar}</td>
         {
-            customer.email ?
+            company.email ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
         }
 
@@ -52,16 +52,16 @@ const SingleCustomer = ({ customer }) => {
         >
             <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                    DELETING CUSTOMER
+                    DELETING COMPANY
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     You are deleting a customer. If you confirm, press the button.
                 </Typography>
-                <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction())}>DELETE</Button>
+                <Button variant="outlined" onClick={() => dispatch(deleteCompanyAction())}>DELETE</Button>
             </Box>
         </Modal>
     </>
     )
 }
 
-export default SingleCustomer
+export default SingleCompany

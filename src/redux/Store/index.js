@@ -1,13 +1,25 @@
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import mainReducer from "../reducer";
+import customersReducer from "../reducer/customer";
+import companiesReducer from "../reducer/companies";
 
 export const initialState = {
     customers: { customers: [] },
+    companies: {
+        list: [],
+    },
+    saleforce: {
+        sellers: [],
+    },
 };
 
+const bigReducer = combineReducers({
+    customers: customersReducer,
+    companies: companiesReducer,
+});
+
 export let configStore = createStore(
-    mainReducer,
+    bigReducer,
     initialState,
     (window.__REDUX__DEVTOOL_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__) ||

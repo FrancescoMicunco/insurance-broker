@@ -9,7 +9,7 @@ import Companies from "./pages/Companies"
 import MyNavBar from './Components/MyNavBar'
 import NotFound from "../src/pages/NotFound"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { getCustomersAction } from '../src/redux/action'
+import { getCustomersAction, getCompaniesAction } from '../src/redux/action'
 import { useDispatch } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +19,7 @@ function App() {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction()) }, [])
+    useEffect(() => { dispatch(getCustomersAction()); dispatch(getCompaniesAction()) }, [])
 
 
     return (
@@ -35,7 +35,7 @@ function App() {
                             <Route exact path='/dashboard' element={<Dashboard />} />
                             <Route exact path='/customers' element={<Customers />} />
                             <Route exact path='/companies' element={<Companies />} />
-                            <Route exact path='/customer/:customerId' element={<CustomerDetails />} />
+                            <Route exact path='/customers/:customerId' element={<CustomerDetails />} />
                             <Route exact path='*' element={<NotFound />} />
                         </Routes>
                     </div>
