@@ -39,14 +39,14 @@ export const deleteCustomerAction = (_id) => {
 
 export const addNewCustomerAction = (newCustomer) => {
     console.log("this is c =>", newCustomer);
+    //   const newCustomer = { name: "Ale", email: "ale@gmail.com" };
+
     return async(dispatch) => {
         try {
             const res = await fetch("http://localhost:3001/customers", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
                 body: JSON.stringify(newCustomer),
+                headers: new Headers({ "Content-Type": "application/json" }),
             });
             if (res.ok) {
                 console.log("this is c =>", newCustomer);

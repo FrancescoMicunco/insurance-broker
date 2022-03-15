@@ -186,14 +186,7 @@ const Customers = () => {
                                             value={lastname}
                                             onChange={(e) => setLastName(e.target.value)}
                                         />
-                                        <TextField
-                                            id="outlined-password-input"
-                                            label="Password"
-                                            type="password"
-                                            autoComplete="current-password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                        />
+
                                         <TextField
                                             required
                                             id="outlined-disabled"
@@ -209,7 +202,7 @@ const Customers = () => {
                                 You are adding a new customer.
                             </Typography>
 
-                            <Button variant="outlined" onClick={() => { addNewCustomer() }}>Add</Button>
+                            <Button variant="outlined" onClick={() => { addNewCustomer(newCustomer) }}>Add</Button>
                         </Box>
                     </Modal>
 
