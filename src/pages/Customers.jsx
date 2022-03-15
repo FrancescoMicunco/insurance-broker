@@ -119,6 +119,8 @@ const Customers = () => {
             <div style={{ color: 'gray' }} >
                 <div className='d-flex'>
 
+                    {/* ================= search section */}
+
                     <FormControl component="fieldset">
                         <FormGroup aria-label="position" row>
                             <FormControlLabel
@@ -143,10 +145,13 @@ const Customers = () => {
                     </Search>
 
                 </div>
+
                 <div>
 
                     <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
                     <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
+
+                    {/* =========== add customer section */}
                     <Button onClick={handleOpen}>Add Customer</Button>
 
                     <Modal
@@ -207,9 +212,6 @@ const Customers = () => {
                     </Modal>
 
 
-
-
-
                 </div>
             </div>
 
@@ -218,11 +220,11 @@ const Customers = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>LastName <i class="bi bi-arrow-down-up"></i>
+                        <th>LastName <i className="bi bi-arrow-down-up"></i>
                         </th>
-                        <th>Seller <i class="bi bi-arrow-down-up"></i></th>
-                        <th>Premium <i class="bi bi-arrow-down-up"></i></th>
-                        <th>Privacy <i class="bi bi-arrow-down-up"></i></th>
+                        <th>Seller <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Premium <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Privacy <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
                 </thead>
                 <tbody>

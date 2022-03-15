@@ -9,8 +9,7 @@ import Modal from '@mui/material/Modal';
 import '../style/customerdetails.css'
 import React from 'react'
 import { deleteCustomerAction } from '../redux/action/index'
-
-
+import TextField from '@mui/material/TextField';
 
 
 
@@ -28,6 +27,22 @@ const style = {
 
 
 function CustomerDetails() {
+    const [name, setName] = useState('')
+    const [lastname, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [isUpdate, setIsUpdate] = useState(false)
+
+    const customerToUpdate = {
+        name: name,
+        lastname: lastname,
+        email: email
+    }
+
+    const handleToUpdate = () => {
+        setIsUpdate(true)
+
+    }
+
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -62,35 +77,83 @@ function CustomerDetails() {
     return (
         <div className="customerDet">
             <div className="d-flex">
-                <h3>{customerDetail?.name}</h3>
-                <p>{customerDetail?.email}</p>
-                <p>{customerDetail?._id}</p>
+                {isUpdate ?
+
+                    <Box
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <div>
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Name"
+                                // defaultValue="Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                            <TextField
+                                required
+                                id="outlined-disabled"
+                                label="Last name"
+                                // defaultValue="Last Name"
+                                value={lastname}
+                                onChange={(e) => setLastName(e.target.value)}
+                            />
+
+                            <TextField
+                                required
+                                id="outlined-disabled"
+                                label="email"
+                                // defaultValue="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <Button variant="outlined" onClick={() => alert("to update!")}>Update</Button>
+                        </div>
+                    </Box> :
+                    <>
+                        <h3>{customerDetail?.name}</h3>
+                        <p>{customerDetail?.email}</p>
+                    </>
+                }
+
+
             </div>
 
-            <div><Stack spacing={2} direction="row">
+            <div>
+                <Stack spacing={2} direction="row">
+                    {
+                        isUpdate ? '' :
+                            <>
 
-                <Button variant="outlined">Update</Button>
+                                <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
+                                <Button variant="outlined" onClick={handleOpen}>Delete</Button>
+                            </>
 
+                    }
 
-                {/* DELETE MODAL SECTION  */}
-                <Button variant="outlined" onClick={handleOpen}>Delete</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            DELETING CUSTOMER
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            You are deleting a customer. If you confirm, press the button.
-                        </Typography>
-                        <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction(customerDetail?._id))}>DELETE</Button>
-                    </Box>
-                </Modal>
-            </Stack></div>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                DELETING CUSTOMER
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                You are deleting a customer. If you confirm, press the button.
+                            </Typography>
+                            <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction(customerDetail?._id))}>DELETE</Button>
+                        </Box>
+                    </Modal>
+                </Stack></div>
         </div>
     )
 }
