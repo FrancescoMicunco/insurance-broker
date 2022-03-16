@@ -116,7 +116,7 @@ const Companies = () => {
 
                     {/* ================= search section */}
 
-                    <FormControl component="fieldset">
+                    {/* <FormControl component="fieldset">
                         <FormGroup aria-label="position" row>
                             <FormControlLabel
                                 value="list"
@@ -125,7 +125,7 @@ const Companies = () => {
                                 labelPlacement="start"
                             />
                         </FormGroup>
-                    </FormControl>
+                    </FormControl> */}
 
                     <Search >
                         <SearchIconWrapper>
@@ -208,11 +208,11 @@ const Companies = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>LastName <i className="bi bi-arrow-down-up"></i>
+                        <th>NAME <i className="bi bi-arrow-down-up"></i>
                         </th>
-                        <th>Seller <i className="bi bi-arrow-down-up"></i></th>
-                        <th>Premium <i className="bi bi-arrow-down-up"></i></th>
-                        <th>Privacy <i className="bi bi-arrow-down-up"></i></th>
+                        <th>OWNER <i className="bi bi-arrow-down-up"></i></th>
+                        <th>MAIL ADDRESS<i className="bi bi-arrow-down-up"></i></th>
+                        <th>ACTIVE <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
                 </thead>
                 <tbody>

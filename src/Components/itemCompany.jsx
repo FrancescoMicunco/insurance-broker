@@ -22,7 +22,7 @@ const style = {
 
 
 const SingleCompany = ({ company }) => {
-    console.log("this is companies", company)
+
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,8 +37,8 @@ const SingleCompany = ({ company }) => {
 
         <td ></td>
         <td onClick={() => navigate('/companies/' + company._id)}>{company.name}</td>
+        <td onClick={() => navigate('/companies/' + company._id)}>Alan</td>
         <td onClick={() => navigate('/companies/' + company._id)}>{company.email}</td>
-        <td onClick={() => navigate('/companies/' + company._id)}>{company.avatar}</td>
         {
             company.email ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>

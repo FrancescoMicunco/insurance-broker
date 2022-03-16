@@ -7,6 +7,7 @@ export const initialState = {
     customers: { customers: [] },
     companies: {
         list: [],
+        isSelected: false,
     },
     saleforce: {
         sellers: [],
