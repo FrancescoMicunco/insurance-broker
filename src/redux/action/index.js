@@ -47,17 +47,40 @@ export const getCompaniesAction = () => {
     };
 };
 
-export const deleteCompanyAction = (_id) => {
+export const deleteCompanyAction = (id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/companies/" + _id, {
+            const res = await fetch("http://localhost:3001/companies/" + id, {
                 method: "DELETE",
             });
             if (res.ok) {
-                dispatch({ type: DELETE_COMPANY, payload: _id });
+                dispatch({ type: DELETE_COMPANY, payload: id });
                 alert("successful deleted!");
             } else {
                 alert("Failed to delete");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
+export const updateCompanyAction = (c, i) => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch(`http://localhost:3001/companies/${i}`, {
+                method: "PUT",
+                body: JSON.stringify(c),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
+            if (res.ok) {
+                console.log("this is c =>", c);
+
+                dispatch({ type: UPDATE_COMPANY, payload: c });
+
+                alert("successful created!");
+            } else {
+                alert("Failed creating new customer");
             }
         } catch (error) {
             console.log("server error");
@@ -83,14 +106,14 @@ export const getCustomersAction = () => {
     };
 };
 
-export const deleteCustomerAction = (_id) => {
+export const deleteCustomerAction = (id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/customers/" + _id, {
+            const res = await fetch("http://localhost:3001/customers/" + id, {
                 method: "DELETE",
             });
             if (res.ok) {
-                dispatch({ type: DELETE_CUSTOMER, payload: _id });
+                dispatch({ type: DELETE_CUSTOMER, payload: id });
                 alert("successful deleted!");
             } else {
                 alert("Failed to delete");

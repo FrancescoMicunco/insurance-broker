@@ -56,7 +56,9 @@ function CompanyDetails() {
 
 
 
-    const company = useSelector((state) => state.company)
+    const company = useSelector((state) => state.companies.companies)
+
+    console.log("this is company from detail", company)
 
     const params = useParams()
 
@@ -80,7 +82,7 @@ function CompanyDetails() {
 
 
     return (
-        <div className="customerDet">
+        <div className="companiesDet">
             <div className="d-flex">
                 {isUpdate ?
 

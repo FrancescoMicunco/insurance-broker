@@ -6,7 +6,7 @@ import {
     ADD_NEW_COMPANY,
 } from "../action";
 
-const companiesReducer = (state = initialState.customers, action) => {
+const companiesReducer = (state = initialState.companies, action) => {
     const { type, payload } = action;
 
     switch (type) {
@@ -21,7 +21,7 @@ const companiesReducer = (state = initialState.customers, action) => {
         case ADD_NEW_COMPANY:
             return {
                 ...state,
-                company: [...state.company, payload],
+                companies: [...state.companies, payload],
             };
         case UPDATE_COMPANY:
             let companyToUpdateIndex = state.company.findIndex(

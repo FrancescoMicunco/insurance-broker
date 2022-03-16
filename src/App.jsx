@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers"
 import CustomerDetails from './pages/CustomerDetails'
+import CompanyDetails from './pages/CompanyDetails'
 import Companies from "./pages/Companies"
 import MyNavBar from './Components/MyNavBar'
 import NotFound from "../src/pages/NotFound"
@@ -36,6 +37,7 @@ function App() {
                             <Route exact path='/customers' element={<Customers />} />
                             <Route exact path='/companies' element={<Companies />} />
                             <Route exact path='/customers/:customerId' element={<CustomerDetails />} />
+                            <Route exact path='/companies/:companyId' element={<CompanyDetails />} />
                             <Route exact path='*' element={<NotFound />} />
                         </Routes>
                     </div>

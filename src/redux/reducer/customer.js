@@ -4,10 +4,6 @@ import {
     DELETE_CUSTOMER,
     UPDATE_CUSTOMER,
     ADD_NEW_CUSTOMER,
-    GET_COMPANIES,
-    DELETE_COMPANY,
-    UPDATE_COMPANY,
-    ADD_NEW_COMPANY,
 } from "../action";
 
 const customersReducer = (state = initialState.customers, action) => {

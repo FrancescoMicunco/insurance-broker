@@ -22,6 +22,7 @@ const style = {
 
 
 const SingleCompany = ({ company }) => {
+    console.log("this is companies", company)
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

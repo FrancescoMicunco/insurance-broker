@@ -11,7 +11,6 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormPropsTextFields from '../Components/CustomersList'
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -98,7 +97,7 @@ const Companies = () => {
 
     const companies = useSelector((state) => state.companies.companies)
 
-    console.log('company from redux', companies)
+    console.log('id company from redux', companies[0]._id)
 
     console.log('newCompany', newCompany)
 
