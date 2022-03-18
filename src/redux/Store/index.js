@@ -23,6 +23,7 @@ const bigReducer = combineReducers({
     customers: customersReducer,
     companies: companiesReducer,
     products: productsReducer,
+    sellers: sellersReducer,
 });
 
 export let configStore = createStore(

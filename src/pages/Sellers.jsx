@@ -138,7 +138,7 @@ const Sellers = () => {
                     <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
 
                     {/* =========== add customer section */}
-                    <Button onClick={handleOpen}>Add New Contract</Button>
+                    <Button onClick={handleOpen}>Add New Agent</Button>
 
                     <Modal
                         open={open}

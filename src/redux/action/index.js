@@ -58,6 +58,24 @@ export const getSellersAction = () => {
     };
 };
 
+export const deleteSellerAction = (id) => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/salesforce/" + id, {
+                method: "DELETE",
+            });
+            if (res.ok) {
+                dispatch({ type: DELETE_SELLER, payload: id });
+                alert("successful deleted!");
+            } else {
+                alert("Failed to delete");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
 //  ========== PRODUCT SECTION  =============
 export const addNewProductAction = (newProduct) => {
     return async(dispatch) => {
