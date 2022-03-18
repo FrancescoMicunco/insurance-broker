@@ -40,7 +40,6 @@ function App() {
                             <Route exact path='/companies' element={<Companies />} />
                             <Route exact path='/salesforce' element={<Sellers />} />
                             <Route exact path='/products' element={<Products />} />
-
                             <Route exact path='/customers/:customerId' element={<CustomerDetails />} />
                             <Route exact path='/companies/:companyId' element={<CompanyDetails />} />
                             <Route exact path='*' element={<NotFound />} />
