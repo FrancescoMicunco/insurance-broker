@@ -12,7 +12,7 @@ import Companies from "./pages/Companies"
 import MyNavBar from './Components/MyNavBar'
 import NotFound from "../src/pages/NotFound"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { getCustomersAction, getCompaniesAction } from '../src/redux/action'
+import { getCustomersAction, getCompaniesAction, getSellersAction, getProductsAction } from '../src/redux/action'
 import { useDispatch } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,7 +22,12 @@ function App() {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction()); dispatch(getCompaniesAction()) }, [])
+    useEffect(() => {
+        dispatch(getCustomersAction());
+        dispatch(getCompaniesAction());
+        dispatch(getSellersAction());
+        dispatch(getProductsAction());
+    }, [])
 
 
     return (

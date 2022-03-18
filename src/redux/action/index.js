@@ -13,6 +13,51 @@ export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const ADD_NEW_PRODUCT = "ADD_NEW_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
+export const GET_SELLERS = "GET_SELLERS";
+export const DELETE_SELLER = "DELETE_SELLER";
+export const ADD_NEW_SELLER = "ADD_NEW_SELLER";
+export const UPDATE_SELLER = "UPDATE_SELLER";
+
+//  ========= SALESFORCE SECTION  =================
+
+export const addNewSellersAction = (newSeller) => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/companies", {
+                method: "POST",
+                body: JSON.stringify(newSeller),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
+            if (res.ok) {
+                console.log("this is c =>", newSeller);
+                dispatch({ type: ADD_NEW_SELLER, payload: newSeller });
+                alert("successful created!");
+            } else {
+                alert("Failed creating new company");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
+export const getSellersAction = () => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/salesforce");
+            if (res.ok) {
+                const sellers = await res.json();
+                console.log("sellers", sellers);
+                dispatch({ type: GET_SELLERS, payload: sellers });
+            } else {
+                console.log("error fetching data");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
 //  ========== PRODUCT SECTION  =============
 export const addNewProductAction = (newProduct) => {
     return async(dispatch) => {
@@ -28,6 +73,23 @@ export const addNewProductAction = (newProduct) => {
                 alert("successful created!");
             } else {
                 alert("Failed creating new company");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
+export const getProductsAction = () => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/products");
+            if (res.ok) {
+                const products = await res.json();
+                console.log("products", products);
+                dispatch({ type: GET_PRODUCTS, payload: products });
+            } else {
+                console.log("error fetching data");
             }
         } catch (error) {
             console.log("server error");

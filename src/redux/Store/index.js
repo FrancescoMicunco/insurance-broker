@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import customersReducer from "../reducer/customer";
 import companiesReducer from "../reducer/companies";
 import productsReducer from "../reducer/products";
+import sellersReducer from "../reducer/seller";
 
 export const initialState = {
     customers: { customers: [] },
@@ -10,7 +11,7 @@ export const initialState = {
         list: [],
         isSelected: false,
     },
-    salesforce: {
+    sellers: {
         sellers: [],
     },
     products: {
