@@ -8,6 +8,33 @@ export const DELETE_COMPANY = "DELETE_COMPANY";
 export const ADD_NEW_COMPANY = "ADD_NEW_COMPANY";
 export const UPDATE_COMPANY = "UPDATE_COMPANY";
 
+export const GET_PRODUCTS = "GET_PRODUCTS";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const ADD_NEW_PRODUCT = "ADD_NEW_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+
+//  ========== PRODUCT SECTION  =============
+export const addNewProductAction = (newProduct) => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/companies", {
+                method: "POST",
+                body: JSON.stringify(newProduct),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
+            if (res.ok) {
+                console.log("this is c =>", newProduct);
+                dispatch({ type: ADD_NEW_PRODUCT, payload: newProduct });
+                alert("successful created!");
+            } else {
+                alert("Failed creating new company");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
 //  ========== COMPANY SECTION  ============
 export const addNewCompanyAction = (newCompany) => {
     return async(dispatch) => {

@@ -2,6 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import customersReducer from "../reducer/customer";
 import companiesReducer from "../reducer/companies";
+import productsReducer from "../reducer/products";
 
 export const initialState = {
     customers: { customers: [] },
@@ -20,6 +21,7 @@ export const initialState = {
 const bigReducer = combineReducers({
     customers: customersReducer,
     companies: companiesReducer,
+    products: productsReducer,
 });
 
 export let configStore = createStore(
