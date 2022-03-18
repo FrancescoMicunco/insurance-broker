@@ -131,8 +131,6 @@ function CustomerDetails() {
                         <p>{customerDetail?.email}</p>
                     </>
                 }
-
-
             </div>
 
             <div>
@@ -140,14 +138,10 @@ function CustomerDetails() {
                     {
                         isUpdate ? '' :
                             <>
-
                                 <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
                                 <Button variant="outlined" onClick={handleOpen}>Delete</Button>
-
                             </>
-
                     }
-
                     <Modal
                         open={open}
                         onClose={handleClose}

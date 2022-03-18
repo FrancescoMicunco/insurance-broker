@@ -57,7 +57,7 @@ const SingleCustomer = ({ customer }) => {
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     You are deleting a customer. If you confirm, press the button.
                 </Typography>
-                <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction())}>DELETE</Button>
+                <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction(customer?._id))}>DELETE</Button>
             </Box>
         </Modal>
     </>
