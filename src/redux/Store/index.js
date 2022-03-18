@@ -9,8 +9,11 @@ export const initialState = {
         list: [],
         isSelected: false,
     },
-    saleforce: {
+    salesforce: {
         sellers: [],
+    },
+    products: {
+        contract: [],
     },
 };
 

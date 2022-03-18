@@ -16,7 +16,7 @@ const customersReducer = (state = initialState.customers, action) => {
         case DELETE_CUSTOMER:
             return {
                 ...state,
-                customers: state.customers.filter((c) => c._id !== action.payload),
+                customers: state.customers.filter((c) => c._id !== payload),
             };
         case ADD_NEW_CUSTOMER:
             return {
@@ -25,7 +25,7 @@ const customersReducer = (state = initialState.customers, action) => {
             };
         case UPDATE_CUSTOMER:
             let customerToUpdateIndex = state.customers.findIndex(
-                (c) => c._id === action.payload.id
+                (c) => c._id === payload.id
             );
             let customersCopy = [...state.customers];
             customersCopy[customerToUpdateIndex].name = action.payload.name;
