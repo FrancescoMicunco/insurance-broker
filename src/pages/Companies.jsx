@@ -5,13 +5,9 @@ import SingleCompany from '../Components/itemCompany'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { Table, Button, } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
+import Button from '@mui/material/Button';
 import { goForward, goBack } from '../utility/functions'
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';

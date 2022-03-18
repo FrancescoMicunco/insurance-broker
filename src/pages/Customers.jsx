@@ -5,7 +5,8 @@ import SingleCustomer from '../Components/itemCustomer'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { Table, Button, } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
+import Button from '@mui/material/Button';
 import { goForward, goBack } from '../utility/functions'
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
@@ -87,8 +88,6 @@ const Customers = () => {
         email: email,
     }
 
-
-
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -119,16 +118,6 @@ const Customers = () => {
 
                     {/* ================= search section */}
 
-                    <FormControl component="fieldset">
-                        <FormGroup aria-label="position" row>
-                            <FormControlLabel
-                                value="list"
-                                control={<Switch color="primary" />}
-                                label="list"
-                                labelPlacement="start"
-                            />
-                        </FormGroup>
-                    </FormControl>
 
                     <Search >
                         <SearchIconWrapper>
@@ -177,7 +166,6 @@ const Customers = () => {
                                             required
                                             id="outlined-required"
                                             label="Name"
-                                            // defaultValue="Name"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
                                         />
@@ -185,7 +173,6 @@ const Customers = () => {
                                             required
                                             id="outlined-disabled"
                                             label="Last name"
-                                            // defaultValue="Last Name"
                                             value={lastname}
                                             onChange={(e) => setLastName(e.target.value)}
                                         />
@@ -194,7 +181,6 @@ const Customers = () => {
                                             required
                                             id="outlined-disabled"
                                             label="email"
-                                            // defaultValue="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                         />

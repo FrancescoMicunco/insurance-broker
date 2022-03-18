@@ -115,6 +115,24 @@ export const getProductsAction = () => {
     };
 };
 
+export const deleteProductAction = (id) => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch("http://localhost:3001/products/" + id, {
+                method: "DELETE",
+            });
+            if (res.ok) {
+                dispatch({ type: DELETE_PRODUCT, payload: id });
+                alert("successful deleted!");
+            } else {
+                alert("Failed to delete");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
 //  ========== COMPANY SECTION  ============
 export const addNewCompanyAction = (newCompany) => {
     return async(dispatch) => {
