@@ -97,7 +97,7 @@ const Products = () => {
 
     const dispatch = useDispatch()
 
-    const products = useSelector((state) => state.products?.contracts)
+    const products = useSelector((state) => state.products?.products)
 
     console.log('products from redux', products)
 
