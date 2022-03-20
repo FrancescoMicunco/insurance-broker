@@ -131,14 +131,10 @@ const Customers = () => {
 
                     </div>
 
-
-
                     <div>
 
-
-
                         {/* =========== add customer section */}
-                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>Add Customer</Button>
+                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
 
                         <Modal
                             open={open}
@@ -185,13 +181,6 @@ const Customers = () => {
                                                 onChange={(e) => setLastName(e.target.value)}
                                             />
 
-                                            <TextField
-                                                required
-                                                id="outlined-disabled"
-                                                label="password"
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
-                                            />
 
                                             <TextField
                                                 required
@@ -208,6 +197,14 @@ const Customers = () => {
                                                 onChange={(e) => setUserName(e.target.value)}
                                             />
 
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                            />
+
                                         </div>
                                     </Box>
                                 </div>
@@ -215,7 +212,7 @@ const Customers = () => {
                                     You are adding a new customer.
                                 </Typography>
 
-                                <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>Add</Button>
+                                <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>SEND</Button>
                             </Box>
                         </Modal>
 
@@ -238,6 +235,7 @@ const Customers = () => {
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
                         <th>email <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Compliance <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
                 </thead>
                 <tbody>

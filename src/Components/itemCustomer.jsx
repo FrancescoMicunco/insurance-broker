@@ -40,7 +40,7 @@ const SingleCustomer = ({ customer }) => {
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.seller[0].name}</td>
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.email}</td>
         {
-            customer.email ?
+            customer.compliance ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
         }
 
