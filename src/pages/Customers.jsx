@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { addNewCustomerAction } from '../redux/action'
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const style = {
     position: 'absolute',
@@ -110,117 +110,124 @@ const Customers = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
-                <h2>CUSTOMERS</h2>
-                <div className='d-flex'>
 
-                    {/* ================= search section */}
+                <div className='d-flex justify-content-around m-md-3 '>
+                    <h2>CUSTOMERS</h2>
+                    <div className='d-flex'>
+
+                        {/* ================= search section */}
+
+                        <Search >
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                                onChange={(e) => { setSearch(e.target.value) }}
+                                value={search}
+                            />
+                        </Search>
+
+                    </div>
 
 
-                    <Search >
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                            onChange={(e) => { setSearch(e.target.value) }}
-                            value={search}
-                        />
-                    </Search>
+
+                    <div>
+
+
+
+                        {/* =========== add customer section */}
+                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>Add Customer</Button>
+
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    Add a new Customer
+                                </Typography>
+                                <div className='d-flex' style={{ width: '80vw' }}>
+
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <div>
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="seller"
+                                                value={seller}
+                                                onChange={(e) => setSeller(e.target.value)}
+                                            />
+
+                                            <TextField
+                                                required
+                                                id="outlined-required"
+                                                label="Name"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="Last name"
+                                                value={lastname}
+                                                onChange={(e) => setLastName(e.target.value)}
+                                            />
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                            />
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="userName"
+                                                value={userName}
+                                                onChange={(e) => setUserName(e.target.value)}
+                                            />
+
+                                        </div>
+                                    </Box>
+                                </div>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    You are adding a new customer.
+                                </Typography>
+
+                                <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>Add</Button>
+                            </Box>
+                        </Modal>
+
+
+                    </div>
 
                 </div>
 
-                <div>
 
-                    <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
-                    <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
-
-                    {/* =========== add customer section */}
-                    <Button onClick={handleOpen}>Add Customer</Button>
-
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Add a new Customer
-                            </Typography>
-                            <div className='d-flex' style={{ width: '80vw' }}>
-
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
-
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="seller"
-                                            value={seller}
-                                            onChange={(e) => setSeller(e.target.value)}
-                                        />
-
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Name"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="Last name"
-                                            value={lastname}
-                                            onChange={(e) => setLastName(e.target.value)}
-                                        />
-
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                        />
-
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="userName"
-                                            value={userName}
-                                            onChange={(e) => setUserName(e.target.value)}
-                                        />
-
-                                    </div>
-                                </Box>
-                            </div>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                You are adding a new customer.
-                            </Typography>
-
-                            <Button variant="outlined" onClick={() => { addNewCustomer(newCustomer) }}>Add</Button>
-                        </Box>
-                    </Modal>
-
-
-                </div>
             </div>
-
+            <i className="bi bi-arrow-left mr-md-3" onClick={() => goBack()}></i>
+            <i className="bi bi-arrow-right" onClick={() => goForward()}></i>
 
             <Table responsive striped bordered hover variant="dark">
                 <thead>
