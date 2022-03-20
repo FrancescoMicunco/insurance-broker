@@ -23,8 +23,10 @@ const style = {
 
 const SingleProduct = ({ product }) => {
 
-    let seller = product.seller[0].last_name
-
+    let seller = product?.seller[0]?.last_name
+    console.log("this is the seller from itemProduct", seller)
+    let customers = product?.customer
+    console.log("those are the customers from itemProduct", customers)
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -39,7 +41,11 @@ const SingleProduct = ({ product }) => {
 
         <td ></td>
         <td onClick={() => navigate('/products/' + product?._id)}>{product.name}</td>
+
         <td onClick={() => navigate('/products/' + product?._id)}>{seller}</td>
+
+        {/* <td onClick={() => navigate('/products/' + product?._id)}>{customer}</td> */}
+
         <td onClick={() => navigate('/products/' + product?._id)}>{product.amount}</td>
 
         <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>

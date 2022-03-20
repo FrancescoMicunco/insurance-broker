@@ -8,10 +8,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
 import { goForward, goBack } from '../utility/functions'
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -80,12 +76,16 @@ const Customers = () => {
     const [lastname, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    const [seller, setSeller] = useState('')
+    const [userName, setUserName] = useState('')
 
     const newCustomer = {
         name: name,
-        lastname: lastname,
+        last_name: lastname,
         password: password,
         email: email,
+        userName: userName,
+        seller: seller
     }
 
     // MODAL
@@ -99,10 +99,6 @@ const Customers = () => {
 
     const customers = useSelector((state) => state.customers.customers)
 
-    console.log('customers from redux', customers)
-
-    console.log('newCustomer', newCustomer)
-
     const addNewCustomer = (newCustomer) => {
 
         dispatch(addNewCustomerAction(newCustomer))
@@ -114,6 +110,7 @@ const Customers = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
+                <h2>CUSTOMERS</h2>
                 <div className='d-flex'>
 
                     {/* ================= search section */}
@@ -162,6 +159,15 @@ const Customers = () => {
                                     autoComplete="off"
                                 >
                                     <div>
+
+                                        <TextField
+                                            required
+                                            id="outlined-disabled"
+                                            label="seller"
+                                            value={seller}
+                                            onChange={(e) => setSeller(e.target.value)}
+                                        />
+
                                         <TextField
                                             required
                                             id="outlined-required"
@@ -180,10 +186,26 @@ const Customers = () => {
                                         <TextField
                                             required
                                             id="outlined-disabled"
+                                            label="password"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                        />
+
+                                        <TextField
+                                            required
+                                            id="outlined-disabled"
                                             label="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                         />
+                                        <TextField
+                                            required
+                                            id="outlined-disabled"
+                                            label="userName"
+                                            value={userName}
+                                            onChange={(e) => setUserName(e.target.value)}
+                                        />
+
                                     </div>
                                 </Box>
                             </div>
@@ -204,11 +226,11 @@ const Customers = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>LastName <i className="bi bi-arrow-down-up"></i>
+                        <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
+                        <th>Last Name <i className="bi bi-arrow-down-up"></i></th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
-                        <th>Premium <i className="bi bi-arrow-down-up"></i></th>
-                        <th>Privacy <i className="bi bi-arrow-down-up"></i></th>
+                        <th>email <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
                 </thead>
                 <tbody>

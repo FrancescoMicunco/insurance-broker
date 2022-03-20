@@ -36,8 +36,9 @@ const SingleCustomer = ({ customer }) => {
 
         <td ></td>
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.name}</td>
+        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.last_name}</td>
+        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.seller[0].name}</td>
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.email}</td>
-        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.avatar}</td>
         {
             customer.email ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>

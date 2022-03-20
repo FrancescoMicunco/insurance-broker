@@ -80,7 +80,7 @@ export const deleteSellerAction = (id) => {
 export const addNewProductAction = (newProduct) => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/companies", {
+            const res = await fetch("http://localhost:3001/products", {
                 method: "POST",
                 body: JSON.stringify(newProduct),
                 headers: new Headers({ "Content-Type": "application/json" }),

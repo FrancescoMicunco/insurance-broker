@@ -17,6 +17,10 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 
 const style = {
@@ -30,6 +34,10 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+
+
+
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -76,37 +84,52 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Products = () => {
 
-    const [name, setName] = useState('')
+
+    const [productName, setProductName] = useState('')
     const [customerId, setCustomerId] = useState('')
+    const [number, setNumber] = useState('')
+    const [amount, setAmount] = useState('')
+    const [search, setSearch] = useState('')
+    const [open, setOpen] = React.useState(false);
     const [sellerId, setSellerId] = useState('')
 
 
+
+
     const newProduct = {
-        name: name,
-        customerId: customerId
+        seller: sellerId,
+        number: number,
+        productName: productName,
+        customer: customerId,
+        amount: amount
     }
 
-
-
     // MODAL
-    const [open, setOpen] = React.useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [search, setSearch] = useState('')
+    const handleChangeSeller = (event) => {
+        setSellerId(event.target.value);
+    };
+
+    const handleChangeCustomer = (event) => {
+        setCustomerId(event.target.value);
+    };
+
+
 
     const dispatch = useDispatch()
 
     const products = useSelector((state) => state.products?.products)
-
-    console.log('products from redux', products)
-
-    console.log('newProduct', newProduct)
+    console.log("products from products", products)
+    const seller = useSelector((state) => state.sellers?.sellers)
+    console.log("seller from products", seller);
+    const customer = useSelector((state) => state.customers?.customers)
+    console.log("customer from products", customer)
 
     const addnewProduct = (newProduct) => {
-
         dispatch(addNewProductAction(newProduct))
-
         setOpen(false)
     }
 
@@ -158,7 +181,7 @@ const Products = () => {
                     >
                         <Box sx={style}>
                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Add a new Customer
+                                Add a new Product
                             </Typography>
                             <div className='d-flex' style={{ width: '80vw' }}>
 
@@ -171,30 +194,68 @@ const Products = () => {
                                     autoComplete="off"
                                 >
                                     <div>
+
+                                        {/*  seller Name */}
+                                        <FormControl >
+                                            <InputLabel id="demo-simple-select-label">Seller</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={sellerId}
+                                                label="Seller"
+                                                onChange={(e) => handleChangeSeller(e)}
+                                            >
+                                                {seller?.map(n =>
+                                                    <MenuItem >{n.name}</MenuItem>
+
+                                                )}
+                                            </Select>
+                                        </FormControl>
+
+                                        {/* Customer Name */}
+                                        <FormControl >
+                                            <InputLabel id="demo-simple-select-label">Customer</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={customerId}
+                                                label="Seller"
+                                                onChange={(e) => handleChangeCustomer(e)}
+                                            >
+                                                {customer?.map(c =>
+                                                    <MenuItem >{c.name}</MenuItem>
+                                                )}
+                                            </Select>
+                                        </FormControl>
+
+
+                                        <TextField
+                                            required
+                                            id="outlined-required"
+                                            label="Number"
+                                            // defaultValue="Name"
+                                            value={number}
+                                            onChange={(e) => setNumber(e.target.value)}
+                                        />
+
+                                        {/*  product name */}
                                         <TextField
                                             required
                                             id="outlined-required"
                                             label="Name"
                                             // defaultValue="Name"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
+                                            value={productName}
+                                            onChange={(e) => setProductName(e.target.value)}
                                         />
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="Customer"
-                                            // defaultValue="Last Name"
-                                            value={customerId}
-                                            onChange={(e) => setCustomerId(e.target.value)}
-                                        />
+
 
                                         <TextField
                                             required
                                             id="outlined-disabled"
-                                            label="email"
+                                            label="amount"
                                             // defaultValue="email"
-                                            value={sellerId}
-                                            onChange={(e) => setSellerId(e.target.value)}
+                                            value={amount}
+                                            onChange={(e) => setAmount(e.target.value)}
                                         />
                                     </div>
                                 </Box>
