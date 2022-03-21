@@ -19,11 +19,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
+    const allcustomers = '/customers?limit=2'
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getCustomersAction());
+        dispatch(getCustomersAction(allcustomers));
         dispatch(getCompaniesAction());
         dispatch(getSellersAction());
         dispatch(getProductsAction());

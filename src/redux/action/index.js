@@ -214,10 +214,10 @@ export const updateCompanyAction = (c, i) => {
 };
 
 //  ========== CUSTOMER SECTION ============
-export const getCustomersAction = () => {
+export const getCustomersAction = (pages) => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/customers?limit=5");
+            const res = await fetch(`http://localhost:3001${pages}`);
             if (res.ok) {
                 const customers = await res.json();
                 console.log("customers", customers);

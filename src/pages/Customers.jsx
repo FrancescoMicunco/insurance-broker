@@ -1,13 +1,13 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleCustomer from '../Components/itemCustomer'
+import { getCustomersAction } from '../redux/action'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
-import { goForward, goBack } from '../utility/functions'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -21,6 +21,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const style = {
     position: 'absolute',
@@ -77,6 +79,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
+
 const Customers = () => {
 
     const [name, setName] = useState('')
@@ -89,6 +92,11 @@ const Customers = () => {
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
     const [pages, setPages] = useState('')
+
+
+
+
+
 
 
     const newCustomer = {
@@ -111,11 +119,12 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
+    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages])
+
     const customers = useSelector((state) => state.customers?.customers)
+    console.log("this customers", customers)
 
     const sellers = useSelector((state) => state.sellers?.sellers)
-
-    const numberOfPages = customers?.length / 2
 
     const handleChangeSeller = (event) => {
 
@@ -285,9 +294,10 @@ const Customers = () => {
                 </div>
             </div>
 
+            <ChevronRightIcon onClick={() => setPages(customers?.links.next)} />
+            <LastPageIcon onClick={() => setPages(customers?.links.last)} />
 
-            <i className="bi bi-arrow-left mr-md-3" onClick={() => goBack()}></i>
-            <i className="bi bi-arrow-right" onClick={() => goForward()}> {numberOfPages}</i>
+
 
             <Table responsive striped bordered hover variant="dark">
                 <thead>
@@ -303,7 +313,7 @@ const Customers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {customers?.map(u =>
+                    {customers.customer?.map(u =>
                         <tr key={u._id} style={{ cursor: 'pointer' }}>
                             <SingleCustomer customer={u} />
                         </tr>
