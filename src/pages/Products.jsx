@@ -17,7 +17,6 @@ import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -122,11 +121,11 @@ const Products = () => {
     const dispatch = useDispatch()
 
     const products = useSelector((state) => state.products?.products)
-    console.log("products from products", products)
+
     const seller = useSelector((state) => state.sellers?.sellers)
-    console.log("seller from products", seller);
+
     const customer = useSelector((state) => state.customers?.customers)
-    console.log("customer from products", customer)
+
 
     const addnewProduct = (newProduct) => {
         dispatch(addNewProductAction(newProduct))

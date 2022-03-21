@@ -14,6 +14,13 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { addNewCustomerAction } from '../redux/action'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+
 
 const style = {
     position: 'absolute',
@@ -97,6 +104,14 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
+    const products = useSelector((state) => state.products?.products)
+
+    const sellers = useSelector((state) => state.sellers?.sellers)
+
+    const handleChangeSeller = (event) => {
+        setSeller(event.target.value);
+    };
+
     const customers = useSelector((state) => state.customers.customers)
 
     const addNewCustomer = (newCustomer) => {
@@ -158,13 +173,21 @@ const Customers = () => {
                                     >
                                         <div>
 
-                                            <TextField
-                                                required
-                                                id="outlined-disabled"
-                                                label="seller"
-                                                value={seller}
-                                                onChange={(e) => setSeller(e.target.value)}
-                                            />
+                                            <FormControl >
+                                                <InputLabel id="demo-simple-select-label">Seller</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={seller}
+                                                    label="Seller"
+                                                    onChange={(e) => handleChangeSeller(e)}
+                                                >
+                                                    {sellers?.map(n =>
+                                                        <MenuItem key={n.index}>{n.name}</MenuItem>
+
+                                                    )}
+                                                </Select>
+                                            </FormControl>
 
                                             <TextField
                                                 required
