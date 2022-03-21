@@ -58,3 +58,13 @@
     border: 2px solid rgba(78, 78, 78, 0.719);
     border-radius: 10px
 }
+
+.tdGreen {
+    color: rgb(0, 255, 0);
+    font-weight: bold;
+}
+
+.tdRed {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}

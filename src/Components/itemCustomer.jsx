@@ -43,11 +43,11 @@ const SingleCustomer = ({ customer }) => {
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.email}</td>
         {
             customer.isPrivacy ?
-                <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
+                <td className='tdGreen' > OK</td> : <td className='tdRed' > NO</td>
         }
         {
             customer.isCompliance ?
-                <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
+                <td className='tdGreen' > OK</td> : <td className='tdRed' > NO</td>
         }
 
 
