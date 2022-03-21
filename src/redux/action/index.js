@@ -217,7 +217,7 @@ export const updateCompanyAction = (c, i) => {
 export const getCustomersAction = () => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/customers");
+            const res = await fetch("http://localhost:3001/customers?limit=5");
             if (res.ok) {
                 const customers = await res.json();
                 console.log("customers", customers);

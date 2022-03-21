@@ -88,6 +88,8 @@ const Customers = () => {
     const [userName, setUserName] = useState('')
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
+    const [pages, setPages] = useState('')
+
 
     const newCustomer = {
         name: name,
@@ -109,7 +111,11 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
+    const customers = useSelector((state) => state.customers?.customers)
+
     const sellers = useSelector((state) => state.sellers?.sellers)
+
+    const numberOfPages = customers?.length / 2
 
     const handleChangeSeller = (event) => {
 
@@ -135,7 +141,7 @@ const Customers = () => {
     };
 
 
-    const customers = useSelector((state) => state.customers?.customers)
+
 
     const addNewCustomer = (newCustomer) => {
 
@@ -281,7 +287,7 @@ const Customers = () => {
 
 
             <i className="bi bi-arrow-left mr-md-3" onClick={() => goBack()}></i>
-            <i className="bi bi-arrow-right" onClick={() => goForward()}></i>
+            <i className="bi bi-arrow-right" onClick={() => goForward()}> {numberOfPages}</i>
 
             <Table responsive striped bordered hover variant="dark">
                 <thead>
