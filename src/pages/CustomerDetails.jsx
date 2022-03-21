@@ -27,19 +27,30 @@ const style = {
 
 
 function CustomerDetails() {
-    const [name, setName] = useState('')
-    const [lastname, setLastName] = useState('')
-    const [email, setEmail] = useState('')
+
     const [customerId, setCustomerId] = useState('')
     const [isUpdate, setIsUpdate] = useState(false)
     const [customerDetail, setCustomerDetail] = useState(undefined)
-
+    const [name, setName] = useState('')
+    const [lastname, setLastName] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [seller, setSeller] = useState('')
+    const [sellerId, setSellerId] = useState('')
+    const [userName, setUserName] = useState('')
+    const [isPrivacy, setIsPrivacy] = useState(false)
+    const [isCompliance, setIsCompliance] = useState(false)
 
     const customerToUpdate = {
         id: customerId,
         name: name,
-        lastname: lastname,
-        email: email
+        last_name: lastname,
+        password: password,
+        email: email,
+        userName: userName,
+        seller: sellerId,
+        isPrivacy: isPrivacy,
+        isCompliance: isCompliance
     }
 
     console.log("to update", customerToUpdate)
@@ -56,9 +67,7 @@ function CustomerDetails() {
 
     const dispatch = useDispatch()
 
-
-
-    const customers = useSelector((state) => state.customers.customers)
+    const customer = useSelector((state) => state.customers?.customers)
 
     const params = useParams()
 
@@ -68,9 +77,7 @@ function CustomerDetails() {
 
         let customerId = params.customerId
 
-        let cToShow = customers?.find(c => c._id.toString() === customerId)
-
-        console.log("cToShow", cToShow)
+        let cToShow = customer?.find(c => c._id.toString() === customerId)
 
         if (cToShow) setCustomerDetail(cToShow)
 
@@ -82,7 +89,7 @@ function CustomerDetails() {
 
 
     return (
-        <div className="customerDet">
+        <div className="customerDet" style={{ color: 'gray' }}>
             <div className="d-flex">
                 {isUpdate ?
 
@@ -126,10 +133,17 @@ function CustomerDetails() {
                                 }}>Update</Button>
                         </div>
                     </Box> :
-                    <>
-                        <h3>{customerDetail?.name}</h3>
-                        <p>{customerDetail?.email}</p>
-                    </>
+                    <div className='container-fluid mainDetails'>
+                        <h2 className='pageTitle'>CUSTOMER DETAIL</h2>
+                        <div className='detailBody'>
+                            <p>Full name:   <span style={{ color: 'black' }}>{customerDetail?.name} {customerDetail?.last_name}</span></p>
+                            <p>Email:  <span style={{ color: 'black' }}>{customerDetail?.email}</span></p>
+                            <p>Seller:  <span style={{ color: 'black' }}>{customerDetail?.seller[0].name} {customerDetail?.seller[0].last_name}</span></p>
+                            <p>{customerDetail?.isPrivacy}</p>
+                        </div>
+
+
+                    </div>
                 }
             </div>
 
@@ -137,10 +151,10 @@ function CustomerDetails() {
                 <Stack spacing={2} direction="row">
                     {
                         isUpdate ? '' :
-                            <>
+                            <div className="container-fluid">
                                 <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
-                                <Button variant="outlined" onClick={handleOpen}>Delete</Button>
-                            </>
+                                <Button variant="contained" onClick={handleOpen}>Delete</Button>
+                            </div>
                     }
                     <Modal
                         open={open}

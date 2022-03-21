@@ -112,11 +112,15 @@ const Customers = () => {
     const sellers = useSelector((state) => state.sellers?.sellers)
 
     const handleChangeSeller = (event) => {
+
         event.preventDefault()
+
         setSeller(event.target.value);
         console.log("seller", seller)
+
         const id = sellers.find(s => s?.name === seller)
         console.log("seller id", id)
+
         setSellerId(id)
         console.log("seller id ", sellerId)
 
