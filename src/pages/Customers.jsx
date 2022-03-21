@@ -20,7 +20,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-
+import Checkbox from '@mui/material/Checkbox';
 
 const style = {
     position: 'absolute',
@@ -84,7 +84,10 @@ const Customers = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [seller, setSeller] = useState('')
+    const [sellerId, setSellerId] = useState('')
     const [userName, setUserName] = useState('')
+    const [isPrivacy, setIsPrivacy] = useState(false)
+    const [isCompliance, setIsCompliance] = useState(false)
 
     const newCustomer = {
         name: name,
@@ -92,7 +95,9 @@ const Customers = () => {
         password: password,
         email: email,
         userName: userName,
-        seller: seller
+        seller: sellerId,
+        isPrivacy: isPrivacy,
+        isCompliance: isCompliance
     }
 
     // MODAL
@@ -104,15 +109,29 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    const products = useSelector((state) => state.products?.products)
-
     const sellers = useSelector((state) => state.sellers?.sellers)
 
     const handleChangeSeller = (event) => {
+        event.preventDefault()
         setSeller(event.target.value);
+        console.log("seller", seller)
+        const id = sellers.find(s => s?.name === seller)
+        console.log("seller id", id)
+        setSellerId(id)
+        console.log("seller id ", sellerId)
+
     };
 
-    const customers = useSelector((state) => state.customers.customers)
+    const handleIsPrivacy = (event) => {
+        setIsPrivacy(event.target.checked);
+    };
+
+    const handleIsCompliance = (event) => {
+        setIsCompliance(event.target.checked);
+    };
+
+
+    const customers = useSelector((state) => state.customers?.customers)
 
     const addNewCustomer = (newCustomer) => {
 
@@ -147,7 +166,6 @@ const Customers = () => {
                     </div>
 
                     <div>
-
                         {/* =========== add customer section */}
                         <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
 
@@ -196,6 +214,7 @@ const Customers = () => {
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
                                             />
+
                                             <TextField
                                                 required
                                                 id="outlined-disabled"
@@ -204,7 +223,6 @@ const Customers = () => {
                                                 onChange={(e) => setLastName(e.target.value)}
                                             />
 
-
                                             <TextField
                                                 required
                                                 id="outlined-disabled"
@@ -212,6 +230,7 @@ const Customers = () => {
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
                                             />
+
                                             <TextField
                                                 required
                                                 id="outlined-disabled"
@@ -228,9 +247,23 @@ const Customers = () => {
                                                 onChange={(e) => setPassword(e.target.value)}
                                             />
 
+                                            <FormControlLabel control={<Checkbox
+                                                checked={isPrivacy}
+
+                                                onChange={handleIsPrivacy}
+                                                inputProps={{ 'aria-label': 'controlled' }}
+                                            />} label="Privacy" />
+
+                                            <FormControlLabel control={<Checkbox
+                                                checked={isCompliance}
+                                                onChange={handleIsCompliance}
+                                                inputProps={{ 'aria-label': 'controlled' }}
+                                            />} label="Compliance" />
+
                                         </div>
                                     </Box>
                                 </div>
+
                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                     You are adding a new customer.
                                 </Typography>
@@ -238,14 +271,11 @@ const Customers = () => {
                                 <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>SEND</Button>
                             </Box>
                         </Modal>
-
-
                     </div>
-
                 </div>
-
-
             </div>
+
+
             <i className="bi bi-arrow-left mr-md-3" onClick={() => goBack()}></i>
             <i className="bi bi-arrow-right" onClick={() => goForward()}></i>
 
@@ -258,6 +288,7 @@ const Customers = () => {
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
                         <th>email <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Privacy <i className="bi bi-arrow-down-up"></i></th>
                         <th>Compliance <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
                 </thead>

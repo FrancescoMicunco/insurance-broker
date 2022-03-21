@@ -22,6 +22,8 @@ const style = {
 
 
 const SingleCustomer = ({ customer }) => {
+
+    console.log("this customer", customer)
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,12 +39,17 @@ const SingleCustomer = ({ customer }) => {
         <td ></td>
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.name}</td>
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.last_name}</td>
-        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.seller[0].name}</td>
+        <td onClick={() => navigate('/customers/' + customer._id)}>{customer.seller[0]?.name}</td>
         <td onClick={() => navigate('/customers/' + customer._id)}>{customer.email}</td>
         {
-            customer.compliance ?
+            customer.isPrivacy ?
                 <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
         }
+        {
+            customer.isCompliance ?
+                <td style={{ color: 'green' }}> OK</td> : <td style={{ color: 'red' }} > NO</td>
+        }
+
 
         <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
         <Modal
