@@ -129,11 +129,10 @@ const Products = () => {
     console.log("products from redux", products)
 
 
-
     const seller = useSelector((state) => state.sellers?.sellers)
 
-    const customer = useSelector((state) => state.customers?.customers)
-
+    const customer = useSelector((state) => state.customers?.customers.customer)
+    console.log("customers in products", customer)
 
     const addnewProduct = (newProduct) => {
 
@@ -281,10 +280,10 @@ const Products = () => {
 
 
 
-            <Table responsive striped bordered hover variant="dark">
+            <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
                 <thead>
                     <tr>
-                        <th>#</th>
+
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
@@ -293,7 +292,7 @@ const Products = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.product?.map(p =>
+                    {products?.product?.map(p =>
                         <tr key={p._id} style={{ cursor: 'pointer' }}>
                             <SingleProduct product={p} />
                         </tr>

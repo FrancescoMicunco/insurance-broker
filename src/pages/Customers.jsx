@@ -97,11 +97,17 @@ const Customers = () => {
     const [isCompliance, setIsCompliance] = useState(false)
     const [pages, setPages] = useState('')
     const [isNewCustomer, setIsNewCustomer] = ('')
+    const [search, setSearch] = useState('')
 
 
 
 
 
+
+    // MODAL
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const newCustomer = {
         name: name,
@@ -114,22 +120,14 @@ const Customers = () => {
         isCompliance: isCompliance
     }
 
-    // MODAL
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const [search, setSearch] = useState('')
 
     const dispatch = useDispatch()
 
     useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, isNewCustomer])
 
     const customers = useSelector((state) => state.customers?.customers)
-    // console.log("this customers", customers)   include link for pagination
 
     const sellers = useSelector((state) => state.sellers?.sellers)
-
 
 
     const handleChangeSeller = (event) => {
