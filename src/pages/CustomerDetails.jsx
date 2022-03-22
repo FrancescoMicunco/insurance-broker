@@ -82,7 +82,7 @@ function CustomerDetails() {
     )
     // .map(e => e.customer)
 
-    console.log(params.customerId)
+    console.log("params customer Id", params.customerId)
     console.log("filteredCustomer", filteredCustomer)
     console.log("products", products)
 
@@ -151,7 +151,7 @@ function CustomerDetails() {
                         <div className='detailBody'>
                             <p>Full name:   <span style={{ color: 'black' }}>{customerDetail?.name} {customerDetail?.last_name}</span></p>
                             <p>Email:  <span style={{ color: 'black' }}>{customerDetail?.email}</span></p>
-                            <p>Seller:  <span style={{ color: 'black' }}>{customerDetail?.seller[0].name} {customerDetail?.seller[0].last_name}</span></p>
+                            <p>Seller:  <span style={{ color: 'black' }}>{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name}</span></p>
                             <p>{customerDetail?.isPrivacy}</p>
                         </div>
 
@@ -182,11 +182,16 @@ function CustomerDetails() {
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 You are deleting a customer. If you confirm, press the button.
                             </Typography>
-                            <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction(customerDetail?._id))}>DELETE</Button>
+                            <Button variant="outlined" onClick={() => {
+
+                                console.log("customerDetails ", customerDetail._id);
+                                dispatch(deleteCustomerAction(customerDetail?._id))
+                            }}
+                            > DELETE</Button>
                         </Box>
                     </Modal>
                 </Stack></div>
-        </div>
+        </div >
     )
 }
 

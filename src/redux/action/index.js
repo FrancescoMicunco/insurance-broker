@@ -232,6 +232,7 @@ export const getCustomersAction = (pages) => {
 };
 
 export const deleteCustomerAction = (id) => {
+    console.log("this id from customer", id);
     return async(dispatch) => {
         try {
             const res = await fetch("http://localhost:3001/customers/" + id, {

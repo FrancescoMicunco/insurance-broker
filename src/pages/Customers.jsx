@@ -96,7 +96,7 @@ const Customers = () => {
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
     const [pages, setPages] = useState('')
-
+    const [isNewCustomer, setIsNewCustomer] = ('')
 
 
 
@@ -123,10 +123,10 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages])
+    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, isNewCustomer])
 
     const customers = useSelector((state) => state.customers?.customers)
-    console.log("this customers", customers)
+    // console.log("this customers", customers)   include link for pagination
 
     const sellers = useSelector((state) => state.sellers?.sellers)
 
@@ -134,13 +134,15 @@ const Customers = () => {
 
         event.preventDefault()
 
-        setSeller(event.explicitOriginalTarget.textContent);
-        console.log("seller", seller)
+        // setSeller(event.explicitOriginalTarget.textContent);
+        // console.log("seller", seller)
 
-        const id = sellers.find(s => s?.name === seller)
-        console.log("seller id", id)
+        // const id = sellers.find(s => s?.name === seller)
+        const id = sellers.find(s => s?.name === event.explicitOriginalTarget.textContent)
 
-        setSellerId(id)
+        console.log("seller for id", id._id)
+        if (id) { setSellerId(id) }
+
         console.log("seller id ", sellerId)
 
     };
@@ -155,6 +157,7 @@ const Customers = () => {
 
 
 
+    console.log('total pages', customers.total)
 
     const addNewCustomer = (newCustomer) => {
 
@@ -169,7 +172,7 @@ const Customers = () => {
             <div style={{ color: 'gray' }} >
 
                 <div className='d-flex justify-content-around m-md-3 '>
-                    <h2>CUSTOMERS</h2>
+                    <h2>CUSTOMERS LIST</h2>
                     <div className='d-flex'>
 
                         {/* ================= search section */}
@@ -297,14 +300,16 @@ const Customers = () => {
                     </div>
                 </div>
             </div>
-            <FirstPageIcon onClick={() => setPages(customers?.links.first)} />
-            <ChevronLeftIcon onClick={() => setPages(customers?.links.prev)} />
-            <ChevronRightIcon onClick={() => setPages(customers?.links.next)} />
-            <LastPageIcon onClick={() => setPages(customers?.links.last)} />
+            {customers?.total !== 1 ?
+                <>
+                    <FirstPageIcon onClick={() => setPages(customers?.links.first)} />
+                    <ChevronLeftIcon onClick={() => setPages(customers?.links.prev)} />
+                    <ChevronRightIcon onClick={() => setPages(customers?.links.next)} />
+                    <LastPageIcon onClick={() => setPages(customers?.links.last)} />
+                </> : ''
+            }
 
-
-
-            <Table responsive striped bordered hover variant="dark">
+            <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
                 <thead>
                     <tr>
                         <th>#</th>
