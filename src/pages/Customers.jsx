@@ -214,7 +214,7 @@ const Customers = () => {
                                     >
                                         <div>
 
-                                            <FormControl >
+                                            <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
                                                 <InputLabel id="demo-simple-select-label">Seller</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-label"
