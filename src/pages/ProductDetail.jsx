@@ -134,10 +134,10 @@ function ProductDetails() {
                 <Stack spacing={2} direction="row">
                     {
                         isUpdate ? '' :
-                            <>
+                            <div className="container-fluid">
                                 <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
-                                <Button variant="outlined" onClick={handleOpen}>Delete</Button>
-                            </>
+                                <Button variant="contained" onClick={handleOpen}>Delete</Button>
+                            </div>
                     }
                     <Modal
                         open={open}
