@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleProduct from '../Components/ItemProduct'
 import InputBase from '@mui/material/InputBase';
@@ -7,12 +7,12 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
-import { goForward, goBack } from '../utility/functions'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import { addNewProductAction } from '../redux/action'
+import { addNewProductAction, getProductsAction } from '../redux/action'
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -20,7 +20,10 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-
+import LastPageIcon from '@mui/icons-material/LastPage';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
 
 const style = {
     position: 'absolute',
@@ -91,8 +94,8 @@ const Products = () => {
     const [search, setSearch] = useState('')
     const [open, setOpen] = React.useState(false);
     const [sellerId, setSellerId] = useState('')
-
-
+    const [pages, setPages] = useState('')
+    const [isNewProduct, setIsNewProduct] = useState('')
 
 
     const newProduct = {
@@ -120,6 +123,8 @@ const Products = () => {
 
     const dispatch = useDispatch()
 
+    useEffect(() => { dispatch(getProductsAction(pages)) }, [pages, isNewProduct])
+
     const products = useSelector((state) => state.products?.products)
 
     const seller = useSelector((state) => state.sellers?.sellers)
@@ -134,85 +139,74 @@ const Products = () => {
 
 
     return (
-        <div>
+        <div >
             <div style={{ color: 'gray' }} >
-                <div className='d-flex'>
+                <div className='d-flex justify-content-around m-md-3 '>
+                    <h2>PRODUCTS LIST</h2>
+                    <div className='d-flex'>
+                        {/* ================= search section */}
 
-                    {/* ================= search section */}
-                    <FormControl component="fieldset">
-                        <FormGroup aria-label="position" row>
-                            <FormControlLabel
-                                value="list"
-                                control={<Switch color="primary" />}
-                                label="list"
-                                labelPlacement="start"
+
+                        <Search >
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                                onChange={(e) => { setSearch(e.target.value) }}
+                                value={search}
                             />
-                        </FormGroup>
-                    </FormControl>
+                        </Search>
+                    </div>
 
-                    <Search >
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                            onChange={(e) => { setSearch(e.target.value) }}
-                            value={search}
-                        />
-                    </Search>
 
-                </div>
+                    <div>
 
-                <div>
+                        {/* =========== add customer section */}
+                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>Add New Contract</Button>
 
-                    <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
-                    <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    Add a new Product
+                                </Typography>
+                                <div className='d-flex' style={{ width: '80vw' }}>
 
-                    {/* =========== add customer section */}
-                    <Button onClick={handleOpen}>Add New Contract</Button>
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <div>
 
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Add a new Product
-                            </Typography>
-                            <div className='d-flex' style={{ width: '80vw' }}>
+                                            {/*  seller Name */}
+                                            <FormControl >
+                                                <InputLabel id="demo-simple-select-label">Seller</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={sellerId}
+                                                    label="Seller"
+                                                    onChange={(e) => handleChangeSeller(e)}
+                                                >
+                                                    {seller?.map(n =>
+                                                        <MenuItem >{n.name}</MenuItem>
 
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
+                                                    )}
+                                                </Select>
+                                            </FormControl>
 
-                                        {/*  seller Name */}
-                                        <FormControl >
-                                            <InputLabel id="demo-simple-select-label">Seller</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value={sellerId}
-                                                label="Seller"
-                                                onChange={(e) => handleChangeSeller(e)}
-                                            >
-                                                {seller?.map(n =>
-                                                    <MenuItem >{n.name}</MenuItem>
-
-                                                )}
-                                            </Select>
-                                        </FormControl>
-
-                                        {/* Customer Name */}
-                                        <FormControl >
+                                            {/* Customer Name */}
+                                            {/* <FormControl >
                                             <InputLabel id="demo-simple-select-label">Customer</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-label"
@@ -225,51 +219,61 @@ const Products = () => {
                                                     <MenuItem >{c.name}</MenuItem>
                                                 )}
                                             </Select>
-                                        </FormControl>
+                                        </FormControl> */}
 
 
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Number"
-                                            // defaultValue="Name"
-                                            value={number}
-                                            onChange={(e) => setNumber(e.target.value)}
-                                        />
+                                            <TextField
+                                                required
+                                                id="outlined-required"
+                                                label="Number"
+                                                // defaultValue="Name"
+                                                value={number}
+                                                onChange={(e) => setNumber(e.target.value)}
+                                            />
 
-                                        {/*  product name */}
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Name"
-                                            // defaultValue="Name"
-                                            value={productName}
-                                            onChange={(e) => setProductName(e.target.value)}
-                                        />
-
-
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="amount"
-                                            // defaultValue="email"
-                                            value={amount}
-                                            onChange={(e) => setAmount(e.target.value)}
-                                        />
-                                    </div>
-                                </Box>
-                            </div>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                You are adding a new contract.
-                            </Typography>
-
-                            <Button variant="outlined" onClick={() => { addnewProduct(newProduct) }}>Add</Button>
-                        </Box>
-                    </Modal>
+                                            {/*  product name */}
+                                            <TextField
+                                                required
+                                                id="outlined-required"
+                                                label="Name"
+                                                // defaultValue="Name"
+                                                value={productName}
+                                                onChange={(e) => setProductName(e.target.value)}
+                                            />
 
 
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="amount"
+                                                // defaultValue="email"
+                                                value={amount}
+                                                onChange={(e) => setAmount(e.target.value)}
+                                            />
+                                        </div>
+                                    </Box>
+                                </div>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    You are adding a new contract.
+                                </Typography>
+
+                                <Button variant="outlined" onClick={() => { addnewProduct(newProduct) }}>Add</Button>
+                            </Box>
+                        </Modal>
+
+
+                    </div>
                 </div>
             </div>
+            {products?.total !== 1 ?
+                <>
+                    <FirstPageIcon onClick={() => setPages(products?.links.first)} />
+                    <ChevronLeftIcon onClick={() => setPages(products?.links.prev)} />
+                    <ChevronRightIcon onClick={() => setPages(products?.links.next)} />
+                    <LastPageIcon onClick={() => setPages(products?.links.last)} />
+                </> : ''
+            }
+
 
 
             <Table responsive striped bordered hover variant="dark">
