@@ -23,6 +23,10 @@ import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+
+
 
 const style = {
     position: 'absolute',
@@ -293,7 +297,8 @@ const Customers = () => {
                     </div>
                 </div>
             </div>
-
+            <FirstPageIcon onClick={() => setPages(customers?.links.first)} />
+            <ChevronLeftIcon onClick={() => setPages(customers?.links.prev)} />
             <ChevronRightIcon onClick={() => setPages(customers?.links.next)} />
             <LastPageIcon onClick={() => setPages(customers?.links.last)} />
 
