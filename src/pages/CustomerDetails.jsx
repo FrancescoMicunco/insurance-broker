@@ -55,9 +55,10 @@ function CustomerDetails() {
 
     console.log("to update", customerToUpdate)
 
+    const params = useParams()
+
     const handleToUpdate = () => {
         setIsUpdate(true)
-
     }
 
     // MODAL
@@ -67,11 +68,23 @@ function CustomerDetails() {
 
     const dispatch = useDispatch()
 
-    const customer = useSelector((state) => state.customers?.customers)
+    const customer = useSelector((state) => state.customers?.customers.customer)
+    console.log("customer from redux", customer)
 
-    const params = useParams()
+    const products = useSelector((state) => state.products?.products)
 
+    //  1 filterd product è l'array di tutti i prodotti per cui ogni prodotto.customer array filtra customer id
 
+    const filteredCustomer = products?.filter(c => console.log("c.customer", c.customer[0] === "623769bca805ae581949cd35")
+
+        // === params.customerId
+
+    )
+    // .map(e => e.customer)
+
+    console.log(params.customerId)
+    console.log("filteredCustomer", filteredCustomer)
+    console.log("products", products)
 
     useEffect(() => {
 

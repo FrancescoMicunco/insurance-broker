@@ -220,7 +220,7 @@ export const getCustomersAction = (pages) => {
             const res = await fetch(`http://localhost:3001${pages}`);
             if (res.ok) {
                 const customers = await res.json();
-                console.log("customers", customers);
+                console.log("customer from index", customers);
                 dispatch({ type: GET_CUSTOMERS, payload: customers });
             } else {
                 console.log("error fetching data");
