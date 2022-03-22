@@ -313,7 +313,7 @@ const Customers = () => {
             <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
                 <thead>
                     <tr>
-                        <th>#</th>
+
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>

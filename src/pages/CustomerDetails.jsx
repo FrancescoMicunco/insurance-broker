@@ -75,7 +75,7 @@ function CustomerDetails() {
 
     //  1 filterd product è l'array di tutti i prodotti per cui ogni prodotto.customer array filtra customer id
 
-    const filteredCustomer = products?.filter(c => console.log("c.customer", c.customer[0] === "623769bca805ae581949cd35")
+    const filteredCustomer = products?.product.filter(c => console.log("c.customer", c.customer[0] === "623769bca805ae581949cd35")
 
         // === params.customerId
 
@@ -182,11 +182,10 @@ function CustomerDetails() {
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 You are deleting a customer. If you confirm, press the button.
                             </Typography>
-                            <Button variant="outlined" onClick={() => {
-
-                                console.log("customerDetails ", customerDetail._id);
+                            <Button variant="outlined" onClick={() =>
                                 dispatch(deleteCustomerAction(customerDetail?._id))
-                            }}
+                            }
+
                             > DELETE</Button>
                         </Box>
                     </Modal>

@@ -40,20 +40,16 @@ function ProductDetails() {
 
 
     const productToUpdate = {
-
-
         number: number,
         name: name,
         seller: seller,
         customer: customerId,
-
     }
 
     console.log("to update", productToUpdate)
 
     const handleToUpdate = () => {
         setIsUpdate(true)
-
     }
 
     // MODAL
@@ -64,8 +60,8 @@ function ProductDetails() {
     const dispatch = useDispatch()
 
 
-
-    const products = useSelector((state) => state.products.products)
+    const products = useSelector((state) => state.products?.products)
+    console.log("products from pro details", products)
 
     const params = useParams()
 
@@ -73,7 +69,8 @@ function ProductDetails() {
 
     useEffect(() => {
 
-        let productId = params.customerId
+        let productId = params.productId
+        console.log("product id", productId)
 
         let pToShow = products?.find(c => c._id.toString() === productId)
 
@@ -106,37 +103,33 @@ function ProductDetails() {
                                 required
                                 id="outlined-required"
                                 label="Name"
-                                defaultValue={customerDetail?.name}
+                                defaultValue={productDetails?.name}
                                 // value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
-                            <TextField
-                                required
-                                id="outlined-disabled"
-                                label="Last name"
-                                defaultValue={customerDetail?.name}
-                                // value={lastname}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
 
-                            <TextField
-                                required
-                                id="outlined-disabled"
-                                label="email"
-                                defaultValue={productDetails?.email}
-                                // value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
+
                             <Button variant="outlined"
                                 onClick={() => {
                                     dispatch(updateProductAction(productToUpdate, productDetails?._id))
                                 }}>Update</Button>
                         </div>
                     </Box> :
-                    <>
-                        <h3>{productDetails?.name}</h3>
-                        <p>{productDetails?.email}</p>
-                    </>
+                    <div className='container-fluid mainDetails'>
+                        <h2 className='pageTitle'>PRODUCT DETAIL</h2>
+                        <div className='detailBody'>
+                            <p>Product name:   <span style={{ color: 'black' }}>{productDetails?.name} {productDetails?.last_name}</span></p>
+                            <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0]}</span></p>
+                            <p>Seller:  <span style={{ color: 'black' }}>{productDetails?.seller[0]?.name} {productDetails?.seller[0].last_name}</span></p>
+                            <p>Amount: <span style={{ color: 'black' }}>{productDetails?.amount} </span></p>
+                        </div>
+
+
+                    </div>
+                    // <>
+                    //     <h3>{productDetails?.name}</h3>
+                    //     <p>{productDetails?.email}</p>
+                    // </>
                 }
             </div>
 
