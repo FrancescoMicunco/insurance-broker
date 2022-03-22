@@ -41,16 +41,12 @@ const SingleProduct = ({ product }) => {
 
     return (<>
 
-
         <td onClick={() => navigate('/products/' + product?._id)}>{product.productName}</td>
-
         <td onClick={() => navigate('/products/' + product?._id)}>{seller}</td>
-
         <td onClick={() => navigate('/products/' + product?._id)}>{product.customer[0]}</td>
-
         <td onClick={() => navigate('/products/' + product?._id)}>{product.amount}</td>
-
         <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
+
         <Modal
             open={open}
             onClose={handleClose}

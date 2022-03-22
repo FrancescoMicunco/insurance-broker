@@ -133,6 +133,29 @@ export const deleteProductAction = (id) => {
     };
 };
 
+export const updateProductAction = (p, i) => {
+    return async(dispatch) => {
+        try {
+            const res = await fetch(`http://localhost:3001/products/${i}`, {
+                method: "PUT",
+                body: JSON.stringify(p),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
+            if (res.ok) {
+                console.log("this is p =>", p);
+
+                dispatch({ type: UPDATE_PRODUCT, payload: p });
+
+                alert("successful created!");
+            } else {
+                alert("Failed creating new customer");
+            }
+        } catch (error) {
+            console.log("server error");
+        }
+    };
+};
+
 //  ========== COMPANY SECTION  ============
 export const addNewCompanyAction = (newCompany) => {
     return async(dispatch) => {

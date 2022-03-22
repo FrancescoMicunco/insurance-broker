@@ -72,7 +72,7 @@ function ProductDetails() {
         let productId = params.productId
         console.log("product id", productId)
 
-        let pToShow = products?.find(c => c._id.toString() === productId)
+        let pToShow = products?.product?.find(c => c._id.toString() === productId)
 
         console.log("pToShow", pToShow)
 
@@ -118,18 +118,15 @@ function ProductDetails() {
                     <div className='container-fluid mainDetails'>
                         <h2 className='pageTitle'>PRODUCT DETAIL</h2>
                         <div className='detailBody'>
-                            <p>Product name:   <span style={{ color: 'black' }}>{productDetails?.name} {productDetails?.last_name}</span></p>
+                            <p>Product name:   <span style={{ color: 'black' }}>{productDetails?.productName} </span></p>
                             <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0]}</span></p>
-                            <p>Seller:  <span style={{ color: 'black' }}>{productDetails?.seller[0]?.name} {productDetails?.seller[0].last_name}</span></p>
+                            <p>Seller:  <span style={{ color: 'black' }}>{productDetails?.seller[0]} {productDetails?.seller[0].last_name}</span></p>
                             <p>Amount: <span style={{ color: 'black' }}>{productDetails?.amount} </span></p>
                         </div>
 
 
                     </div>
-                    // <>
-                    //     <h3>{productDetails?.name}</h3>
-                    //     <p>{productDetails?.email}</p>
-                    // </>
+
                 }
             </div>
 
