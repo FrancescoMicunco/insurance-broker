@@ -23,7 +23,8 @@ const style = {
 
 const SingleProduct = ({ product }) => {
 
-    let seller = product?.seller[0]?.last_name
+    console.log("products from redux", product)
+    let seller = product?.seller
     console.log("this is the seller from itemProduct", seller)
     let customers = product?.customer
     console.log("those are the customers from itemProduct", customers)
@@ -40,7 +41,7 @@ const SingleProduct = ({ product }) => {
     return (<>
 
         <td ></td>
-        <td onClick={() => navigate('/products/' + product?._id)}>{product.name}</td>
+        <td onClick={() => navigate('/products/' + product?._id)}>{product.productName}</td>
 
         <td onClick={() => navigate('/products/' + product?._id)}>{seller}</td>
 
