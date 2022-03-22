@@ -98,10 +98,10 @@ export const addNewProductAction = (newProduct) => {
     };
 };
 
-export const getProductsAction = () => {
+export const getProductsAction = (pages) => {
     return async(dispatch) => {
         try {
-            const res = await fetch("http://localhost:3001/products");
+            const res = await fetch(`http://localhost:3001${pages}`);
             if (res.ok) {
                 const products = await res.json();
                 console.log("products", products);

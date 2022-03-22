@@ -126,6 +126,9 @@ const Products = () => {
     useEffect(() => { dispatch(getProductsAction(pages)) }, [pages, isNewProduct])
 
     const products = useSelector((state) => state.products?.products)
+    console.log("products from redux", products)
+
+
 
     const seller = useSelector((state) => state.sellers?.sellers)
 
@@ -133,7 +136,9 @@ const Products = () => {
 
 
     const addnewProduct = (newProduct) => {
+
         dispatch(addNewProductAction(newProduct))
+
         setOpen(false)
     }
 
@@ -288,7 +293,7 @@ const Products = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {products?.map(p =>
+                    {products.product?.map(p =>
                         <tr key={p._id} style={{ cursor: 'pointer' }}>
                             <SingleProduct product={p} />
                         </tr>

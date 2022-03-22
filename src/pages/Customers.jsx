@@ -130,6 +130,8 @@ const Customers = () => {
 
     const sellers = useSelector((state) => state.sellers?.sellers)
 
+
+
     const handleChangeSeller = (event) => {
 
         event.preventDefault()
@@ -147,17 +149,18 @@ const Customers = () => {
 
     };
 
+
+
     const handleIsPrivacy = (event) => {
         setIsPrivacy(event.target.checked);
     };
+
+
 
     const handleIsCompliance = (event) => {
         setIsCompliance(event.target.checked);
     };
 
-
-
-    console.log('total pages', customers.total)
 
     const addNewCustomer = (newCustomer) => {
 
