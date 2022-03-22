@@ -134,7 +134,7 @@ const Customers = () => {
 
         event.preventDefault()
 
-        setSeller(event.target.value);
+        setSeller(event.explicitOriginalTarget.textContent);
         console.log("seller", seller)
 
         const id = sellers.find(s => s?.name === seller)
