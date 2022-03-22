@@ -131,8 +131,9 @@ const Products = () => {
 
     const seller = useSelector((state) => state.sellers?.sellers)
 
+
     const customer = useSelector((state) => state.customers?.customers.customer)
-    console.log("customers in products", customer)
+
 
     const addnewProduct = (newProduct) => {
 
@@ -146,11 +147,12 @@ const Products = () => {
         <div >
             <div style={{ color: 'gray' }} >
                 <div className='d-flex justify-content-around m-md-3 '>
+
                     <h2>PRODUCTS LIST</h2>
+
                     <div className='d-flex'>
+
                         {/* ================= search section */}
-
-
                         <Search >
                             <SearchIconWrapper>
                                 <SearchIcon />
@@ -164,10 +166,10 @@ const Products = () => {
                         </Search>
                     </div>
 
-
+                    {/* =========== add customer section */}
                     <div>
 
-                        {/* =========== add customer section */}
+
                         <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>Add New Contract</Button>
 
                         <Modal
@@ -178,7 +180,7 @@ const Products = () => {
                         >
                             <Box sx={style}>
                                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    Add a new Product
+                                    Add a new Contract
                                 </Typography>
                                 <div className='d-flex' style={{ width: '80vw' }}>
 
@@ -193,7 +195,7 @@ const Products = () => {
                                         <div>
 
                                             {/*  seller Name */}
-                                            <FormControl >
+                                            <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
                                                 <InputLabel id="demo-simple-select-label">Seller</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-label"
@@ -203,27 +205,27 @@ const Products = () => {
                                                     onChange={(e) => handleChangeSeller(e)}
                                                 >
                                                     {seller?.map(n =>
-                                                        <MenuItem >{n.name}</MenuItem>
+                                                        <MenuItem >{n.name} {n.last_name}</MenuItem>
 
                                                     )}
                                                 </Select>
                                             </FormControl>
 
                                             {/* Customer Name */}
-                                            {/* <FormControl >
-                                            <InputLabel id="demo-simple-select-label">Customer</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value={customerId}
-                                                label="Seller"
-                                                onChange={(e) => handleChangeCustomer(e)}
-                                            >
-                                                {customer?.map(c =>
-                                                    <MenuItem >{c.name}</MenuItem>
-                                                )}
-                                            </Select>
-                                        </FormControl> */}
+                                            <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
+                                                <InputLabel id="demo-simple-select-label">Customer</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={customerId}
+                                                    label="Seller"
+                                                    onChange={(e) => handleChangeCustomer(e)}
+                                                >
+                                                    {customer?.map(c =>
+                                                        <MenuItem >{c.name} {c.last_name}</MenuItem>
+                                                    )}
+                                                </Select>
+                                            </FormControl>
 
 
                                             <TextField
