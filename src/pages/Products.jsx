@@ -38,10 +38,6 @@ const style = {
 };
 
 
-
-
-
-
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -85,8 +81,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Products = () => {
-
-
     const [productName, setProductName] = useState('')
     const [customerId, setCustomerId] = useState('')
     const [number, setNumber] = useState('')
@@ -99,7 +93,6 @@ const Products = () => {
 
 
     const newProduct = {
-        seller: sellerId,
         number: number,
         productName: productName,
         customer: customerId,
@@ -130,15 +123,11 @@ const Products = () => {
 
 
     const seller = useSelector((state) => state.sellers?.sellers)
-
-
     const customer = useSelector((state) => state.customers?.customers.customer)
 
 
     const addnewProduct = (newProduct) => {
-
         dispatch(addNewProductAction(newProduct))
-
         setOpen(false)
     }
 
@@ -195,7 +184,7 @@ const Products = () => {
                                         <div>
 
                                             {/*  seller Name */}
-                                            <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
+                                            {/* <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
                                                 <InputLabel id="demo-simple-select-label">Seller</InputLabel>
                                                 <Select
                                                     labelId="demo-simple-select-label"
@@ -209,7 +198,7 @@ const Products = () => {
 
                                                     )}
                                                 </Select>
-                                            </FormControl>
+                                            </FormControl> */}
 
                                             {/* Customer Name */}
                                             <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
@@ -288,9 +277,10 @@ const Products = () => {
 
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
+                        <th>Amount <i className="bi bi-arrow-down-up"></i></th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
                         <th>Customer <i className="bi bi-arrow-down-up"></i></th>
-                        <th>Amount <i className="bi bi-arrow-down-up"></i></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
