@@ -5,8 +5,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteCustomerAction } from '../redux/action/index'
-
+import { deleteCustomerAction, getCustomersAction } from '../redux/action/index'
+import { useState, useEffect } from 'react'
 
 const style = {
     position: 'absolute',
@@ -23,16 +23,19 @@ const style = {
 
 const SingleCustomer = ({ customer }) => {
 
-    console.log("this customer", customer)
     // MODAL
     const [open, setOpen] = React.useState(false);
+    const [deleteCustomer, setDeleteCustomer] = useState('')
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const pages = "/customers?limit=5"
 
-    //  DISPATCH DELETE CUSTOMER
     const dispatch = useDispatch()
 
     const navigate = useNavigate();
+
+    useEffect(() => { dispatch(getCustomersAction()) }, [deleteCustomer])
+
 
     return (<>
 
@@ -52,6 +55,7 @@ const SingleCustomer = ({ customer }) => {
 
 
         <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
+
         <Modal
             open={open}
             onClose={handleClose}
@@ -65,7 +69,14 @@ const SingleCustomer = ({ customer }) => {
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     You are deleting a customer. If you confirm, press the button.
                 </Typography>
-                <Button variant="outlined" onClick={() => dispatch(deleteCustomerAction(customer?._id))}>DELETE</Button>
+                <Button variant="outlined"
+                    onClick={() => {
+                        dispatch(deleteCustomerAction(customer?._id));
+                        setOpen(false);
+                        setDeleteCustomer(customer?._id)
+                    }
+
+                    }>DELETE</Button>
             </Box>
         </Modal>
     </>
