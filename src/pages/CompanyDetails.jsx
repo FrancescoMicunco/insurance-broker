@@ -82,7 +82,7 @@ function CompanyDetails() {
 
 
     return (
-        <div className="companiesDet">
+        <div className="companiesDet" style={{ color: 'gray' }}>
             <div className="d-flex">
                 {isUpdate ?
 
@@ -118,10 +118,15 @@ function CompanyDetails() {
                                 }}>Update</Button>
                         </div>
                     </Box> :
-                    <>
-                        <h3>{companyDetail?.name}</h3>
-                        <p>{companyDetail?.email}</p>
-                    </>
+                    <div className='container-fluid mainDetails'>
+                        <h2 className='pageTitle'>COMPANY DETAIL</h2>
+                        <div className='detailBody'>
+                            <p>Company name:   <span style={{ color: 'black' }}>{companyDetail?.name} </span></p>
+                            <p>Email:  <span style={{ color: 'black' }}>{companyDetail?.email}</span></p>
+
+                        </div>
+                    </div>
+
                 }
 
 
@@ -131,12 +136,12 @@ function CompanyDetails() {
                 <Stack spacing={2} direction="row">
                     {
                         isUpdate ? '' :
-                            <>
+                            <div className="container-fluid" >
 
                                 <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
-                                <Button variant="outlined" onClick={handleOpen}>Delete</Button>
+                                <Button variant="contained" onClick={handleOpen}>Delete</Button>
 
-                            </>
+                            </div>
 
                     }
 
