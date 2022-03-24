@@ -73,17 +73,7 @@ function CustomerDetails() {
 
     const products = useSelector((state) => state.products?.products)
 
-    //  1 filterd product è l'array di tutti i prodotti per cui ogni prodotto.customer array filtra customer id
 
-    const filteredCustomer = products?.product.filter(c => console.log("c.customer", c.customer[0] === "623769bca805ae581949cd35")
-
-        // === params.customerId
-
-    )
-    // .map(e => e.customer)
-
-    console.log("params customer Id", params.customerId)
-    console.log("filteredCustomer", filteredCustomer)
     console.log("products", products)
 
     useEffect(() => {
@@ -154,8 +144,6 @@ function CustomerDetails() {
                             <p>Seller:  <span style={{ color: 'black' }}>{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name}</span></p>
                             <p>{customerDetail?.isPrivacy}</p>
                         </div>
-
-
                     </div>
                 }
             </div>
@@ -165,7 +153,7 @@ function CustomerDetails() {
                     {
                         isUpdate ? '' :
                             <div className="container-fluid">
-                                <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
+                                <Button variant="outlined" onClick={handleToUpdate}>Update</Button>
                                 <Button variant="contained" onClick={handleOpen}>Delete</Button>
                             </div>
                     }
