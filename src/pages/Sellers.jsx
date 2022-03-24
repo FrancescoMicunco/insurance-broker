@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { addNewSellersAction } from '../redux/action'
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const style = {
     position: 'absolute',
@@ -74,8 +74,8 @@ const Sellers = () => {
 
     const [name, setName] = useState('')
     const [last_name, setLastName] = useState('')
-
-
+    const [open, setOpen] = React.useState(false);
+    const [search, setSearch] = useState('')
 
     const newSeller = {
         name: name,
@@ -85,11 +85,11 @@ const Sellers = () => {
 
 
     // MODAL
-    const [open, setOpen] = React.useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [search, setSearch] = useState('')
+
 
     const dispatch = useDispatch()
 
@@ -110,84 +110,82 @@ const Sellers = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
-                <div className='d-flex'>
-
+                <div className='d-flex justify-content-around m-md-3'>
+                    <h2>SELLERS LIST</h2>
                     {/* ================= search section */}
 
+                    <div className='d-flex'>
+                        <Search >
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                                onChange={(e) => { setSearch(e.target.value) }}
+                                value={search}
+                            />
+                        </Search>
 
-                    <Search >
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                            onChange={(e) => { setSearch(e.target.value) }}
-                            value={search}
-                        />
-                    </Search>
+                    </div>
 
-                </div>
-
-                <div>
-
-                    <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
-                    <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
-
-                    {/* =========== add customer section */}
-                    <Button onClick={handleOpen}>Add New Agent</Button>
-
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Add a new Seller
-                            </Typography>
-                            <div className='d-flex' style={{ width: '80vw' }}>
-
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Name"
-                                            // defaultValue="Name"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="Last Name"
-                                            // defaultValue="Last Name"
-                                            value={last_name}
-                                            onChange={(e) => setLastName(e.target.value)}
-                                        />
+                    <div>
 
 
-                                    </div>
-                                </Box>
-                            </div>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                You are adding a new contract.
-                            </Typography>
+                        {/* =========== add customer section */}
+                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Agent</Button>
 
-                            <Button variant="outlined" onClick={() => { addnewSeller(newSeller) }}>Add</Button>
-                        </Box>
-                    </Modal>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    Add a new Seller
+                                </Typography>
+                                <div className='d-flex' style={{ width: '80vw' }}>
+
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <div>
+                                            <TextField
+                                                required
+                                                id="outlined-required"
+                                                label="Name"
+                                                // defaultValue="Name"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="Last Name"
+                                                // defaultValue="Last Name"
+                                                value={last_name}
+                                                onChange={(e) => setLastName(e.target.value)}
+                                            />
 
 
+                                        </div>
+                                    </Box>
+                                </div>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    You are adding a new contract.
+                                </Typography>
+
+                                <Button variant="outlined" onClick={() => { addnewSeller(newSeller) }}>Add</Button>
+                            </Box>
+                        </Modal>
+
+                    </div>
                 </div>
             </div>
 
