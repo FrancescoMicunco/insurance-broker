@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleCompany from '../Components/itemCompany'
 import InputBase from '@mui/material/InputBase';
@@ -7,12 +7,12 @@ import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
-import { goForward, goBack } from '../utility/functions'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { addNewCompanyAction } from '../redux/action'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 const style = {
@@ -74,6 +74,9 @@ const Companies = () => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [search, setSearch] = useState('')
+    const [open, setOpen] = React.useState(false);
+
 
     const newCompany = {
         name: name,
@@ -83,19 +86,17 @@ const Companies = () => {
 
 
     // MODAL
-    const [open, setOpen] = React.useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [search, setSearch] = useState('')
+
 
     const dispatch = useDispatch()
 
     const companies = useSelector((state) => state.companies.companies)
 
-    console.log('id company from redux', companies[0]._id)
 
-    console.log('newCompany', newCompany)
 
     const addNewCompany = (newCompany) => {
 
@@ -108,8 +109,8 @@ const Companies = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
-                <div className='d-flex'>
-
+                <div className='d-flex justify-content-around m-md-3'>
+                    <h2>COMPANIES LIST</h2>
                     {/* ================= search section */}
 
                     {/* <FormControl component="fieldset">
@@ -122,79 +123,78 @@ const Companies = () => {
                             />
                         </FormGroup>
                     </FormControl> */}
-
-                    <Search >
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                            onChange={(e) => { setSearch(e.target.value) }}
-                            value={search}
-                        />
-                    </Search>
-
-                </div>
-
-                <div>
-
-                    <i class="bi bi-arrow-left" onClick={() => goBack()}></i>
-                    <i class="bi bi-arrow-right" onClick={() => goForward()}></i>
-
-                    {/* =========== add customer section */}
-                    <Button onClick={handleOpen}>Add Company</Button>
-
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Add a new Company
-                            </Typography>
-                            <div className='d-flex' style={{ width: '80vw' }}>
-
-                                <Box
-                                    component="form"
-                                    sx={{
-                                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
-                                        <TextField
-                                            required
-                                            id="outlined-required"
-                                            label="Name"
-                                            // defaultValue="Name"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
+                    <div className='d-flex'>
+                        <Search >
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                                onChange={(e) => { setSearch(e.target.value) }}
+                                value={search}
+                            />
+                        </Search>
+                    </div>
 
 
-                                        <TextField
-                                            required
-                                            id="outlined-disabled"
-                                            label="email"
-                                            // defaultValue="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                    </div>
-                                </Box>
-                            </div>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                You are adding a new customer.
-                            </Typography>
+                    <div>
 
-                            <Button variant="outlined" onClick={() => { addNewCompany(newCompany) }}>Add</Button>
-                        </Box>
-                    </Modal>
+                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Company</Button>
 
+                        {/* =========== add customer section */}
+
+
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    Add a new Company
+                                </Typography>
+                                <div className='d-flex' style={{ width: '80vw' }}>
+
+                                    <Box
+                                        component="form"
+                                        sx={{
+                                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                                        }}
+                                        noValidate
+                                        autoComplete="off"
+                                    >
+                                        <div>
+                                            <TextField
+                                                required
+                                                id="outlined-required"
+                                                label="Name"
+                                                // defaultValue="Name"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="email"
+                                                // defaultValue="email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
+                                        </div>
+                                    </Box>
+                                </div>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    You are adding a new customer.
+                                </Typography>
+
+                                <Button variant="outlined" onClick={() => { addNewCompany(newCompany) }}>Add</Button>
+                            </Box>
+                        </Modal>
+                    </div>
 
                 </div>
             </div>

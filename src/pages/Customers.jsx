@@ -14,7 +14,6 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { addNewCustomerAction } from '../redux/action'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
