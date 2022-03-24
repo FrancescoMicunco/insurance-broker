@@ -183,23 +183,6 @@ const Products = () => {
                                     >
                                         <div>
 
-                                            {/*  seller Name */}
-                                            {/* <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
-                                                <InputLabel id="demo-simple-select-label">Seller</InputLabel>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    value={sellerId}
-                                                    label="Seller"
-                                                    onChange={(e) => handleChangeSeller(e)}
-                                                >
-                                                    {seller?.map(n =>
-                                                        <MenuItem >{n.name} {n.last_name}</MenuItem>
-
-                                                    )}
-                                                </Select>
-                                            </FormControl> */}
-
                                             {/* Customer Name */}
                                             <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
                                                 <InputLabel id="demo-simple-select-label">Customer</InputLabel>
@@ -221,17 +204,15 @@ const Products = () => {
                                                 required
                                                 id="outlined-required"
                                                 label="Number"
-                                                // defaultValue="Name"
                                                 value={number}
                                                 onChange={(e) => setNumber(e.target.value)}
                                             />
 
-                                            {/*  product name */}
+
                                             <TextField
                                                 required
                                                 id="outlined-required"
                                                 label="Name"
-                                                // defaultValue="Name"
                                                 value={productName}
                                                 onChange={(e) => setProductName(e.target.value)}
                                             />
@@ -252,7 +233,7 @@ const Products = () => {
                                     You are adding a new contract.
                                 </Typography>
 
-                                <Button variant="outlined" onClick={() => { addnewProduct(newProduct) }}>Add</Button>
+                                <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addnewProduct(newProduct) }}>Add</Button>
                             </Box>
                         </Modal>
 

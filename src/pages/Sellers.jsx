@@ -126,12 +126,9 @@ const Sellers = () => {
                                 value={search}
                             />
                         </Search>
-
                     </div>
 
                     <div>
-
-
                         {/* =========== add customer section */}
                         <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Agent</Button>
 
@@ -184,7 +181,6 @@ const Sellers = () => {
                                 <Button variant="outlined" onClick={() => { addnewSeller(newSeller) }}>Add</Button>
                             </Box>
                         </Modal>
-
                     </div>
                 </div>
             </div>
