@@ -42,7 +42,7 @@ const SingleCustomer = ({ customer }) => {
 
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.name}</td>
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.last_name}</td>
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.seller[0]?.name}</td>
+        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.seller[0]?.name} {customer.seller[0]?.last_name}</td>
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.email}</td>
         {
             customer.isPrivacy ?

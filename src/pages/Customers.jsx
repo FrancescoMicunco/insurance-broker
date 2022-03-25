@@ -305,7 +305,7 @@ const Customers = () => {
                 <tbody>{search ?
                     customers.customer?.filter(c => c.name.toLowerCase() === search.toLowerCase()
                         || c.last_name.toLowerCase() === search.toLowerCase()
-                        || c.seller[0].name.toLowerCase() === search.toLowerCase()
+                        || c.seller[0].last_name.toLowerCase() === search.toLowerCase()
                     ).map(u =>
                         <tr key={u._id} style={{ cursor: 'pointer' }}>
                             <SingleCustomer customer={u} />
