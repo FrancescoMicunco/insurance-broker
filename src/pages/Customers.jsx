@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleCustomer from '../Components/itemCustomer'
 import { getCustomersAction } from '../redux/action'
+import { InputGroup, Form } from 'react-bootstrap'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
+
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -18,13 +19,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
-
+import Select from 'react-select'
 
 const style = {
     position: 'absolute',
@@ -96,10 +96,15 @@ const Customers = () => {
     const [pages, setPages] = useState('')
     const [isNewCustomer, setIsNewCustomer] = ('')
     const [search, setSearch] = useState('')
-    const [searchParams] = useState(["name", "lastname", "seller", "email"])
+    const searchParams = [{ label: "name" }, { label: "last_name" }, { label: "seller" }, { label: "email" }]
+    const [params, setParams] = useState('')
+
     const [open, setOpen] = React.useState(false);
 
     const customers = useSelector((state) => state.customers?.customers)
+
+    const searchedCustomers = customers.customer.filter(customer => customer?.name.toLowerCase() === search.toLowerCase())
+
 
     const sellers = useSelector((state) => state.sellers?.sellers)
 
@@ -158,19 +163,13 @@ const Customers = () => {
                     <div className='d-flex'>
 
                         {/* ================= search section */}
+                        <InputGroup className="mb-3">
 
-                        <Search >
-                            <SearchIconWrapper>
-                                <SearchIcon />
-                            </SearchIconWrapper>
-                            <StyledInputBase
-                                placeholder="Search…"
-                                inputProps={{ 'aria-label': 'search' }}
-                                onChange={(e) => setSearch(e.target.value)}
-                                value={search}
-                            />
-                        </Search>
+                            <Form.Group >
 
+                                <Form.Control type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
+                            </Form.Group>
+                        </InputGroup>
                     </div>
 
                     <div>
@@ -294,7 +293,6 @@ const Customers = () => {
             <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
                 <thead>
                     <tr>
-
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>
@@ -304,8 +302,16 @@ const Customers = () => {
                         <th>Compliance <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
                 </thead>
-                <tbody>
-                    {customers.customer?.map(u =>
+                <tbody>{search ?
+                    customers.customer?.filter(c => c.name.toLowerCase() === search.toLowerCase()
+                        || c.last_name.toLowerCase() === search.toLowerCase()
+                        || c.seller[0].name.toLowerCase() === search.toLowerCase()
+                    ).map(u =>
+                        <tr key={u._id} style={{ cursor: 'pointer' }}>
+                            <SingleCustomer customer={u} />
+                        </tr>)
+                    :
+                    customers.customer?.map(u =>
                         <tr key={u._id} style={{ cursor: 'pointer' }}>
                             <SingleCustomer customer={u} />
                         </tr>
