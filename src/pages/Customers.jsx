@@ -81,7 +81,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 
-
 const Customers = () => {
 
     const [name, setName] = useState('')
@@ -96,15 +95,11 @@ const Customers = () => {
     const [pages, setPages] = useState('')
     const [isNewCustomer, setIsNewCustomer] = ('')
     const [search, setSearch] = useState('')
-    const searchParams = [{ label: "name" }, { label: "last_name" }, { label: "seller" }, { label: "email" }]
-    const [params, setParams] = useState('')
+
 
     const [open, setOpen] = React.useState(false);
 
     const customers = useSelector((state) => state.customers?.customers)
-
-    const searchedCustomers = customers.customer.filter(customer => customer?.name.toLowerCase() === search.toLowerCase())
-
 
     const sellers = useSelector((state) => state.sellers?.sellers)
 
