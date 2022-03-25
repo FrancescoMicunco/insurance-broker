@@ -26,7 +26,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 
 
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -89,7 +88,7 @@ const Customers = () => {
     const [lastname, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [seller, setSeller] = useState('')
+    const [seller, setSeller] = useState('customer')
     const [sellerId, setSellerId] = useState('')
     const [userName, setUserName] = useState('')
     const [isPrivacy, setIsPrivacy] = useState(false)
@@ -97,14 +96,15 @@ const Customers = () => {
     const [pages, setPages] = useState('')
     const [isNewCustomer, setIsNewCustomer] = ('')
     const [search, setSearch] = useState('')
+    const [searchParams] = useState(["name", "lastname", "seller", "email"])
+    const [open, setOpen] = React.useState(false);
 
+    const customers = useSelector((state) => state.customers?.customers)
 
-
-
-
+    const sellers = useSelector((state) => state.sellers?.sellers)
 
     // MODAL
-    const [open, setOpen] = React.useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -122,36 +122,19 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, isNewCustomer])
+    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages])
 
-    const customers = useSelector((state) => state.customers?.customers)
 
-    const sellers = useSelector((state) => state.sellers?.sellers)
 
 
     const handleChangeSeller = (event) => {
-
-        event.preventDefault()
-
-        // setSeller(event.explicitOriginalTarget.textContent);
-        // console.log("seller", seller)
-
-        // const id = sellers.find(s => s?.name === seller)
-        const id = sellers.find(s => s?.name === event.explicitOriginalTarget.textContent)
-
-        console.log("seller for id", id._id)
-        if (id) { setSellerId(id) }
-
-        console.log("seller id ", sellerId)
-
-    };
-
+        setSellerId(event.target.value)
+    }
 
 
     const handleIsPrivacy = (event) => {
         setIsPrivacy(event.target.checked);
     };
-
 
 
     const handleIsCompliance = (event) => {
@@ -160,10 +143,9 @@ const Customers = () => {
 
 
     const addNewCustomer = (newCustomer) => {
-
+        // setIsNewCustomer(newCustomer)
         dispatch(addNewCustomerAction(newCustomer))
-
-        setOpen(false)
+        setOpen(!open)
     }
 
 
@@ -184,7 +166,7 @@ const Customers = () => {
                             <StyledInputBase
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
-                                onChange={(e) => { setSearch(e.target.value) }}
+                                onChange={(e) => setSearch(e.target.value)}
                                 value={search}
                             />
                         </Search>
@@ -224,10 +206,10 @@ const Customers = () => {
                                                     id="demo-simple-select"
                                                     value={seller}
                                                     label="Seller"
-                                                    onChange={(e) => handleChangeSeller(e)}
+                                                    onChange={handleChangeSeller}
                                                 >
                                                     {sellers?.map(n =>
-                                                        <MenuItem key={n.index}>{n.name}</MenuItem>
+                                                        <MenuItem key={n.index} value={n._id}>{n.name} {n.last_name}</MenuItem>
 
                                                     )}
                                                 </Select>

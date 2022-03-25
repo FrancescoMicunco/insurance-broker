@@ -239,8 +239,10 @@ export const updateCompanyAction = (c, i) => {
 //  ========== CUSTOMER SECTION ============
 export const getCustomersAction = (pages) => {
     return async(dispatch) => {
+        let url = `http://localhost:3001${pages}`;
+        console.log("this is url", url);
         try {
-            const res = await fetch(`http://localhost:3001${pages}`);
+            const res = await fetch(url);
             if (res.ok) {
                 const customers = await res.json();
                 console.log("customer from index", customers);
