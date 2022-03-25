@@ -148,7 +148,7 @@ const Customers = () => {
 
 
     const addNewCustomer = (newCustomer) => {
-        // setIsNewCustomer(newCustomer)
+
         dispatch(addNewCustomerAction(newCustomer))
         setOpen(!open)
     }
