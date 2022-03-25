@@ -28,7 +28,7 @@ const SingleCustomer = ({ customer }) => {
     const [deleteCustomer, setDeleteCustomer] = useState('')
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const pages = "/customers?limit=5"
+
 
     const dispatch = useDispatch()
 

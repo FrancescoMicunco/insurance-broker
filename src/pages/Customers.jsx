@@ -6,7 +6,6 @@ import { getCustomersAction } from '../redux/action'
 import { InputGroup, Form } from 'react-bootstrap'
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
-
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -103,6 +102,8 @@ const Customers = () => {
 
     const sellers = useSelector((state) => state.sellers?.sellers)
 
+
+
     // MODAL
 
     const handleOpen = () => setOpen(true);
@@ -125,8 +126,6 @@ const Customers = () => {
     useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages])
 
 
-
-
     const handleChangeSeller = (event) => {
         setSellerId(event.target.value)
     }
@@ -143,9 +142,10 @@ const Customers = () => {
 
 
     const addNewCustomer = (newCustomer) => {
-
         dispatch(addNewCustomerAction(newCustomer))
         setOpen(!open)
+        alert("New Customer correctly added!")
+
     }
 
 
@@ -159,9 +159,7 @@ const Customers = () => {
 
                         {/* ================= search section */}
                         <InputGroup className="mb-3">
-
                             <Form.Group >
-
                                 <Form.Control type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
                             </Form.Group>
                         </InputGroup>
@@ -192,22 +190,15 @@ const Customers = () => {
                                         autoComplete="off"
                                     >
                                         <div>
+                                            <Form.Select aria-label="Default select "
 
-                                            <FormControl style={{ width: '40%', paddingRight: '5%', marginLeft: '0.5%', marginTop: '0.5%' }}>
-                                                <InputLabel id="demo-simple-select-label">Seller</InputLabel>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    value={seller}
-                                                    label="Seller"
-                                                    onChange={handleChangeSeller}
-                                                >
-                                                    {sellers?.map(n =>
-                                                        <MenuItem key={n.index} value={n._id}>{n.name} {n.last_name}</MenuItem>
+                                                onChange={handleChangeSeller}
 
-                                                    )}
-                                                </Select>
-                                            </FormControl>
+                                                style={{ backgroundColor: 'white', borderRadius: '4px', width: '25ch', height: '56px', fontSize: '1rem', fontWeight: '400', boxSizing: 'border-box' }}>
+                                                {sellers?.map(s =>
+                                                    <option value={s._id} >{s.last_name}</option>
+                                                )}
+                                            </Form.Select>
 
                                             <TextField
                                                 required
@@ -274,8 +265,8 @@ const Customers = () => {
                             </Box>
                         </Modal>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
             {customers?.total !== 1 ?
                 <>
                     <FirstPageIcon onClick={() => setPages(customers?.links.first)} />
