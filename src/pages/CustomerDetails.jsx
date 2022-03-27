@@ -42,7 +42,7 @@ function CustomerDetails() {
     const [isCompliance, setIsCompliance] = useState(false)
 
     const customerToUpdate = {
-        id: customerId,
+
         name: name,
         last_name: lastname,
         password: password,
