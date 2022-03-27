@@ -144,11 +144,16 @@ function CustomerDetails() {
                             <p>Seller:  <span style={{ color: 'black' }}>{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name}</span></p>
                             <p>Gender:  <span style={{ color: 'black' }}>{customerDetail?.gender}</span></p>
                             <p>Birth:  <span style={{ color: 'black' }}>{customerDetail?.birth_date}</span></p>
-                            <p>Username:  <span style={{ color: 'black' }}>{customerDetail?.username}</span></p>
+                            <p>Username:  <span style={{ color: 'black' }}>{customerDetail?.userName}</span></p>
                             <p>Password:  <span style={{ color: 'black' }}>{customerDetail?.password}</span></p>
                             <p>Marital:  <span style={{ color: 'black' }}>{customerDetail?.marital}</span></p>
                             <p>Role:  <span style={{ color: 'black' }}>{customerDetail?.role}</span></p>
-                            {/* <p>Healt:  <span style={{ color: 'black' }}>{customerDetail?.healt.surgery} {customerDetail?.healt.medicine}</span></p> */}
+                            {customerDetail?.healt?.surgery ? <p>Healt:  <span style={{ color: 'black' }}>
+                                Surgery: Yes </span></p>
+                                : <p>Healt:  <span style={{ color: 'black' }}>
+                                    Surgery: NO </span></p>
+                            }
+
                             <Button>Purchased History</Button>
 
 
