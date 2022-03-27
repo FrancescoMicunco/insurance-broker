@@ -85,6 +85,11 @@ const Customers = () => {
     const [email, setEmail] = useState('')
     const [sellerId, setSellerId] = useState('')
     const [userName, setUserName] = useState('')
+    const [birth_date, setBirth_Date] = useState('')
+    const [healt, setHealt] = useState({ surgery: "false", medicine: "false" })
+    const [isHealt, setIsHealt] = useState('')
+    const [gender, setGender] = useState(["Male", "Female", "Other"])
+    const [marital, setMarital] = useState(["Married", "Divorced", "Separate", "Celibate/Maiden"])
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
     const [pages, setPages] = useState('')
@@ -275,8 +280,10 @@ const Customers = () => {
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Gender <i className="bi bi-arrow-down-up"></i></th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
                         <th>email <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Birdth <i className="bi bi-arrow-down-up"></i></th>
                         <th>Privacy <i className="bi bi-arrow-down-up"></i></th>
                         <th>Compliance <i className="bi bi-arrow-down-up"></i></th>
                     </tr>
