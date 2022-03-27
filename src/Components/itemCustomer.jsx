@@ -40,11 +40,15 @@ const SingleCustomer = ({ customer }) => {
 
     return (<>
 
-
+        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.seller[0]?.name} {customer.seller[0]?.last_name}</td>
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.name}</td>
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.last_name}</td>
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.seller[0]?.name} {customer.seller[0]?.last_name}</td>
+        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.gender}</td>
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.email}</td>
+
+        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth}</td>
+
+
         {
             customer.isPrivacy ?
                 <td className='tdGreen' > OK</td> : <td className='tdRed' > NO</td>
