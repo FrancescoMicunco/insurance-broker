@@ -15,9 +15,6 @@ import TextField from '@mui/material/TextField';
 import { addNewCustomerAction } from '../redux/action'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -86,22 +83,19 @@ const Customers = () => {
     const [lastname, setLastName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [seller, setSeller] = useState('customer')
     const [sellerId, setSellerId] = useState('')
     const [userName, setUserName] = useState('')
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
     const [pages, setPages] = useState('')
-    const [isNewCustomer, setIsNewCustomer] = ('')
     const [search, setSearch] = useState('')
-
-
     const [open, setOpen] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false)
+
 
     const customers = useSelector((state) => state.customers?.customers)
 
     const sellers = useSelector((state) => state.sellers?.sellers)
-
 
 
     // MODAL
@@ -142,17 +136,15 @@ const Customers = () => {
 
 
     const addNewCustomer = (newCustomer) => {
+        setIsLoading(!isLoading)
         dispatch(addNewCustomerAction(newCustomer))
         setOpen(!open)
         alert("New Customer correctly added!")
-
     }
-
 
     return (
         <div>
             <div style={{ color: 'gray' }} >
-
                 <div className='d-flex justify-content-around m-md-3 '>
                     <h2>CUSTOMERS LIST</h2>
                     <div className='d-flex'>
@@ -179,6 +171,7 @@ const Customers = () => {
                                 <Typography id="modal-modal-title" variant="h6" component="h2">
                                     Add a new Customer
                                 </Typography>
+
                                 <div className='d-flex' style={{ width: '80vw' }}>
 
                                     <Box
@@ -289,9 +282,9 @@ const Customers = () => {
                     </tr>
                 </thead>
                 <tbody>{search ?
-                    customers.customer?.filter(c => c.name.toLowerCase() === search.toLowerCase()
-                        || c.last_name.toLowerCase() === search.toLowerCase()
-                        || c.seller[0].last_name.toLowerCase() === search.toLowerCase()
+                    customers.customer?.filter(c => c.name.toLowerCase().includes(search.toLowerCase())
+                        || c.last_name.toLowerCase().includes(search.toLowerCase())
+                        || c.seller[0].last_name.toLowerCase().includes(search.toLowerCase())
                     ).map(u =>
                         <tr key={u._id} style={{ cursor: 'pointer' }}>
                             <SingleCustomer customer={u} />

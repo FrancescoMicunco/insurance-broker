@@ -237,7 +237,7 @@ export const updateCompanyAction = (c, i) => {
 };
 
 //  ========== CUSTOMER SECTION ============
-export const getCustomersAction = (pages) => {
+export const getCustomersAction = (pages = "/customers") => {
     return async(dispatch) => {
         let url = `http://localhost:3001${pages}`;
         console.log("this is url", url);
@@ -297,19 +297,24 @@ export const addNewCustomerAction = (newCustomer) => {
 };
 
 export const updateCustomerAction = (c, i) => {
+    let cToUpdate = console.log("I & c", c, i);
     return async(dispatch) => {
         try {
             const res = await fetch(`http://localhost:3001/customers/${i}`, {
                 method: "PUT",
-                body: JSON.stringify(c),
-                headers: new Headers({ "Content-Type": "application/json" }),
+                body: JSON.stringify({ name: "Davies", last_name: "Barbot" }),
+                headers: { "Content-Type": "application/json" },
             });
+            console.log("res", res);
             if (res.ok) {
                 console.log("this is c =>", c);
 
-                dispatch({ type: UPDATE_CUSTOMER, payload: c });
+                dispatch({
+                    type: UPDATE_CUSTOMER,
+                    payload: { name: "Davies", last_name: "Barbot" },
+                });
 
-                alert("successful created!");
+                alert("successful updated!");
             } else {
                 alert("Failed creating new customer");
             }
