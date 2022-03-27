@@ -142,6 +142,17 @@ function CustomerDetails() {
                             <p>Full name:   <span style={{ color: 'black' }}>{customerDetail?.name} {customerDetail?.last_name}</span></p>
                             <p>Email:  <span style={{ color: 'black' }}>{customerDetail?.email}</span></p>
                             <p>Seller:  <span style={{ color: 'black' }}>{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name}</span></p>
+                            <p>Gender:  <span style={{ color: 'black' }}>{customerDetail?.gender}</span></p>
+                            <p>Birth:  <span style={{ color: 'black' }}>{customerDetail?.birth_date}</span></p>
+                            <p>Username:  <span style={{ color: 'black' }}>{customerDetail?.username}</span></p>
+                            <p>Password:  <span style={{ color: 'black' }}>{customerDetail?.password}</span></p>
+                            <p>Marital:  <span style={{ color: 'black' }}>{customerDetail?.marital}</span></p>
+                            <p>Role:  <span style={{ color: 'black' }}>{customerDetail?.role}</span></p>
+                            {/* <p>Healt:  <span style={{ color: 'black' }}>{customerDetail?.healt.surgery} {customerDetail?.healt.medicine}</span></p> */}
+                            <Button>Purchased History</Button>
+
+
+
                             <p>{customerDetail?.isPrivacy}</p>
                         </div>
                     </div>
