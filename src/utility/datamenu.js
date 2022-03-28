@@ -26,7 +26,7 @@ export const SidebarData = [{
         link: "/companies",
     },
     {
-        name: "Products",
+        name: "Contracts",
         icon: < MdBusinessCenter / > ,
         link: "/products",
     },

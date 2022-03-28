@@ -255,12 +255,15 @@ const Products = () => {
             <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
                 <thead>
                     <tr>
-
+                        <th>Number <i className="bi bi-arrow-down-up"></i>
+                        </th>
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Amount <i className="bi bi-arrow-down-up"></i></th>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
                         <th>Customer <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Expiring Date <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Rebate <i className="bi bi-arrow-down-up"></i></th>
                         <th></th>
                     </tr>
                 </thead>
