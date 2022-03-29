@@ -48,7 +48,6 @@ const SingleCustomer = ({ customer }) => {
 
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth_date}</td>
 
-
         {
             customer.isPrivacy ?
                 <td className='tdGreen' > OK</td> : <td className='tdRed' > NO</td>

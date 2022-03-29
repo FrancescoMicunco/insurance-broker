@@ -9,7 +9,6 @@ export const initialState = {
     customers: { customers: [] },
     companies: {
         list: [],
-        isSelected: false,
     },
     sellers: {
         sellers: [],
@@ -29,7 +28,7 @@ const bigReducer = combineReducers({
 export let configStore = createStore(
     bigReducer,
     initialState,
-    (window.__REDUX__DEVTOOL_EXTENSION__ &&
+    (window.__REDUX__DEVTOOLS_EXTENSION__ &&
         window.__REDUX_DEVTOOLS_EXTENSION__) ||
     compose(applyMiddleware(thunk))
 );
