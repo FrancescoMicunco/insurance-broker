@@ -30,13 +30,9 @@ function ProductDetails() {
     const [number, setNumber] = useState('')
     const [name, setName] = useState('')
     const [seller, setSeller] = useState('')
-    // const [customer, setCustomer] = useState('')
     const [customerId, setCustomerId] = useState('')
     const [isUpdate, setIsUpdate] = useState(false)
-    const [amount, setAmount] = useState(undefined)
-    const [isDocumentWaiting, setDocumentWaiting] = useState(true)
-    const [isOffer, setIsOffer] = useState(false)
-    const [productDetails, setProductDetails] = useState(undefined)
+    const [productDetails, setProductDetails] = useState('')
 
 
     const productToUpdate = {
@@ -66,15 +62,15 @@ function ProductDetails() {
     const params = useParams()
 
 
-
     useEffect(() => {
 
         let productId = params.productId
-        console.log("product id", productId)
 
         let pToShow = products?.product?.find(c => c._id.toString() === productId)
 
         console.log("pToShow", pToShow)
+
+        console.log("customer buyer", pToShow?.customer[0].name)
 
         if (pToShow) setProductDetails(pToShow)
 
@@ -119,8 +115,8 @@ function ProductDetails() {
                         <h2 className='pageTitle'>PRODUCT DETAIL</h2>
                         <div className='detailBody'>
                             <p>Product name:   <span style={{ color: 'black' }}>{productDetails?.productName} </span></p>
-                            <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0]}</span></p>
-                            <p>Seller:  <span style={{ color: 'black' }}>{productDetails?.seller[0]} {productDetails?.seller[0].last_name}</span></p>
+                            <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0]?.name}  {productDetails?.customer[0]?.last_name}</span></p>
+                            {/* <p>Seller:  <span style={{ color: 'black' }}>{productDetails?.seller[0]} {productDetails?.seller[0].last_name}</span></p> */}
                             <p>Amount: <span style={{ color: 'black' }}>{productDetails?.amount} </span></p>
                         </div>
 

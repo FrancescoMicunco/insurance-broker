@@ -95,7 +95,7 @@ const Products = () => {
     const [sellerId, setSellerId] = useState('')
     const [pages, setPages] = useState('')
     const [isNewProduct, setIsNewProduct] = useState('')
-    const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [value, setValue] = React.useState(new Date());
 
 
     const handleChange = (newValue) => {
@@ -110,7 +110,6 @@ const Products = () => {
         amount: amount,
         endDate: value,
         rebate: rebate
-
     }
 
     // MODAL
@@ -118,11 +117,8 @@ const Products = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleChangeSeller = (event) => {
-        setSellerId(event.target.value);
-    };
-
     const handleChangeCustomer = (event) => {
+        console.log("event customer", event)
         setCustomerId(event.target.value);
     };
 
@@ -205,10 +201,10 @@ const Products = () => {
                                                     id="demo-simple-select"
                                                     value={customerId}
                                                     label="Customer"
-                                                    onChange={(e) => handleChangeCustomer(e)}
+                                                    onChange={handleChangeCustomer}
                                                 >
                                                     {customer?.map(c =>
-                                                        <MenuItem >{c.name} {c.last_name}</MenuItem>
+                                                        <MenuItem value={c._id}>{c.name} {c.last_name}</MenuItem>
                                                     )}
                                                 </Select>
                                             </FormControl>

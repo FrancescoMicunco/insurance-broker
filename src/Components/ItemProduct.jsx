@@ -23,16 +23,15 @@ const style = {
 
 const SingleProduct = ({ product }) => {
 
-    console.log("products from redux", product)
-
-    const customers = useSelector((state) => state.customers?.customers)
-
-    console.log("those are the customers from itemProduct", customers)
-
-
-
     // MODAL
     const [open, setOpen] = React.useState(false);
+
+    const seller = useSelector((state) => state.sellers?.sellers)
+
+    const sellerToShow = seller.find(s => s._id === product?.customer[0]?.seller[0])
+
+
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -41,12 +40,14 @@ const SingleProduct = ({ product }) => {
 
     const navigate = useNavigate();
 
+
+
     return (<>
         <td onClick={() => navigate('/products/' + product?._id)}>{product?.number}</td>
         <td onClick={() => navigate('/products/' + product?._id)}>{product?.productName}</td>
         <td onClick={() => navigate('/products/' + product?._id)}>{product?.amount}</td>
-        <td onClick={() => navigate('/products/' + product?._id)}>{product?.customer[0]?.seller[0]}</td>
-        <td onClick={() => navigate('/products/' + product?._id)}>{product?.customer[0]?.last_name}</td>
+        <td onClick={() => navigate('/products/' + product?._id)}>{sellerToShow?.name}  {sellerToShow?.last_name}</td>
+        <td onClick={() => navigate('/products/' + product?._id)}>{product?.customer[0]?.name}  {product?.customer[0]?.last_name}</td>
         <td onClick={() => navigate('/products/' + product?._id)}>{product?.endDate}</td>
         <td onClick={() => navigate('/products/' + product?._id)}>{product?.rebate}</td>
         <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
