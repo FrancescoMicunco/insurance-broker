@@ -144,13 +144,12 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages])
+    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, customers])
 
 
     const handleChangeSeller = (event) => {
         setSellerId(event.target.value);
         const selectedSeller = sellers?.find(s => s._id === sellerId)
-        console.log("slected Seller", selectedSeller)
         setSeller(selectedSeller)
 
     }
@@ -167,7 +166,6 @@ const Customers = () => {
 
 
     const addNewCustomer = (newCustomer) => {
-        setIsLoading(!isLoading)
         dispatch(addNewCustomerAction(newCustomer))
         setOpen(!open)
         alert("New Customer correctly added!")

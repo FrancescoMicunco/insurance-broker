@@ -30,12 +30,12 @@ const SingleCustomer = ({ customer }) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
+    const customers = useSelector((state) => state.customers?.customers)
     const dispatch = useDispatch()
 
     const navigate = useNavigate();
 
-    useEffect(() => { dispatch(getCustomersAction(pages)) }, [customer])
+    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, customers])
 
 
     return (<>
