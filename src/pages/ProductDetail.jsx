@@ -75,7 +75,7 @@ function ProductDetails() {
 
 
         if (pToShow) setProductDetails(pToShow)
-        // console.log("products to show", productDetails)
+
         console.log("customer detail", productDetails?.customer[0].name)
 
     }, [productDetails])
@@ -84,7 +84,7 @@ function ProductDetails() {
 
 
     return (
-        <div className="customerDet">
+        <div className="customerDet" style={{ color: 'gray' }}>
             <div className="d-flex">
                 {isUpdate ?
 
@@ -116,9 +116,9 @@ function ProductDetails() {
                     <div className='container-fluid mainDetails'>
                         <h2 className='pageTitle'>PRODUCT DETAIL</h2>
                         <div className='detailBody'>
-                            <p>Product name:   <span style={{ color: 'black' }}>{productDetails?.productName} </span></p>
-                            <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0].name}  {productDetails?.customer[0]?.last_name}</span></p>
-                            <p>Amount: <span style={{ color: 'black' }}>{productDetails?.amount} </span></p>
+                            <p>Product name:   <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{productDetails?.productName} </span></p>
+                            <p>Customer:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{productDetails?.customer[0].name}  {productDetails?.customer[0]?.last_name}</span></p>
+                            <p>Amount: <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{productDetails?.amount} </span></p>
                         </div>
 
 

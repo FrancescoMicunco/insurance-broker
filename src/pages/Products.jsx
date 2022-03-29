@@ -147,7 +147,7 @@ const Products = () => {
             <div style={{ color: 'gray' }} >
                 <div className='d-flex justify-content-around m-md-3 '>
 
-                    <h2>PRODUCTS LIST</h2>
+                    <h3>CONTRACTS LIST</h3>
 
                     <div className='d-flex'>
 
