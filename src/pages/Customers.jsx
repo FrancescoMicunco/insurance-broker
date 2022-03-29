@@ -194,7 +194,7 @@ const Customers = () => {
 
                                                 style={{ backgroundColor: 'white', borderRadius: '4px', width: '25ch', height: '56px', fontSize: '1rem', fontWeight: '400', boxSizing: 'border-box' }}>
                                                 {sellers?.map(s =>
-                                                    <option value={s._id} >{s.last_name}</option>
+                                                    <option key={s._id} value={s._id} >{s.last_name}</option>
                                                 )}
                                             </Form.Select>
 

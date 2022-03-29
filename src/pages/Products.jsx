@@ -204,7 +204,7 @@ const Products = () => {
                                                     onChange={handleChangeCustomer}
                                                 >
                                                     {customer?.map(c =>
-                                                        <MenuItem value={c._id}>{c.name} {c.last_name}</MenuItem>
+                                                        <MenuItem key={c._id} value={c._id}>{c.name} {c.last_name}</MenuItem>
                                                     )}
                                                 </Select>
                                             </FormControl>
