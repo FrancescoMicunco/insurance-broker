@@ -32,8 +32,10 @@ function ProductDetails() {
     const [seller, setSeller] = useState('')
     const [customerId, setCustomerId] = useState('')
     const [isUpdate, setIsUpdate] = useState(false)
-    const [productDetails, setProductDetails] = useState('')
+    const [productDetails, setProductDetails] = useState(undefined)
 
+    const products = useSelector((state) => state.products?.products)
+    console.log("products from pro details", products)
 
     const productToUpdate = {
         number: number,
@@ -41,7 +43,6 @@ function ProductDetails() {
         seller: seller,
         customer: customerId,
     }
-
     console.log("to update", productToUpdate)
 
     const handleToUpdate = () => {
@@ -56,25 +57,26 @@ function ProductDetails() {
     const dispatch = useDispatch()
 
 
-    const products = useSelector((state) => state.products?.products)
-    console.log("products from pro details", products)
-
     const params = useParams()
+
+    let productId = params.productId
+
+    let pToShow = products?.product?.find(c => c._id.toString() === productId)
+
+    console.log("pToShow", pToShow)
+
+    console.log("customer buyer", pToShow?.customer[0].name)
+
+
+
 
 
     useEffect(() => {
 
-        let productId = params.productId
-
-        let pToShow = products?.product?.find(c => c._id.toString() === productId)
-
-        console.log("pToShow", pToShow)
-
-        console.log("customer buyer", pToShow?.customer[0].name)
 
         if (pToShow) setProductDetails(pToShow)
-
-        console.log("products to show", productDetails)
+        // console.log("products to show", productDetails)
+        console.log("customer detail", productDetails?.customer[0].name)
 
     }, [productDetails])
 
@@ -115,8 +117,7 @@ function ProductDetails() {
                         <h2 className='pageTitle'>PRODUCT DETAIL</h2>
                         <div className='detailBody'>
                             <p>Product name:   <span style={{ color: 'black' }}>{productDetails?.productName} </span></p>
-                            <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0]?.name}  {productDetails?.customer[0]?.last_name}</span></p>
-                            {/* <p>Seller:  <span style={{ color: 'black' }}>{productDetails?.seller[0]} {productDetails?.seller[0].last_name}</span></p> */}
+                            <p>Customer:  <span style={{ color: 'black' }}>{productDetails?.customer[0].name}  {productDetails?.customer[0]?.last_name}</span></p>
                             <p>Amount: <span style={{ color: 'black' }}>{productDetails?.amount} </span></p>
                         </div>
 

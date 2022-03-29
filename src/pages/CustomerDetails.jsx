@@ -69,12 +69,10 @@ function CustomerDetails() {
     const dispatch = useDispatch()
 
     const customer = useSelector((state) => state.customers?.customers.customer)
-    console.log("customer from redux", customer)
+
 
     const products = useSelector((state) => state.products?.products)
 
-
-    console.log("products", products)
 
     useEffect(() => {
 
