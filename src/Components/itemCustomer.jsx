@@ -46,7 +46,7 @@ const SingleCustomer = ({ customer }) => {
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.gender}</td>
         <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.email}</td>
 
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth}</td>
+        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth_date}</td>
 
 
         {

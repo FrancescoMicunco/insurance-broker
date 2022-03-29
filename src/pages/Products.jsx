@@ -89,7 +89,6 @@ const Products = () => {
     const [number, setNumber] = useState('')
     const [amount, setAmount] = useState('')
     const [rebate, setRebate] = useState('0')
-    const [expire, setExpire] = useState('')
     const [search, setSearch] = useState('')
     const [open, setOpen] = React.useState(false);
     const [sellerId, setSellerId] = useState('')
@@ -118,7 +117,7 @@ const Products = () => {
     const handleClose = () => setOpen(false);
 
     const handleChangeCustomer = (event) => {
-        console.log("event customer", event)
+
         setCustomerId(event.target.value);
     };
 

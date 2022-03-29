@@ -20,7 +20,17 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
-import Select from 'react-select'
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import Stack from '@mui/material/Stack';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+
+
+
 
 const style = {
     position: 'absolute',
@@ -84,18 +94,21 @@ const Customers = () => {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [sellerId, setSellerId] = useState('')
+    const [seller, setSeller] = useState(undefined)
     const [userName, setUserName] = useState('')
-    const [birth_date, setBirth_Date] = useState('')
+    const [value, setValue] = React.useState(new Date());
     const [healt, setHealt] = useState({ surgery: "false", medicine: "false" })
-    const [isHealt, setIsHealt] = useState('')
-    const [gender, setGender] = useState(["Male", "Female", "Other"])
-    const [marital, setMarital] = useState(["Married", "Divorced", "Separate", "Celibate/Maiden"])
+    const [isHealt, setIsHealt] = useState(false)
+    const [gender, setGender] = useState('')
+    const [marital, setMarital] = useState('')
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
     const [pages, setPages] = useState('')
     const [search, setSearch] = useState('')
     const [open, setOpen] = React.useState(false);
     const [isLoading, setIsLoading] = useState(false)
+    const generalGender = ["Male", "Female", "Other"]
+    const generalMarital = ["Married", "Divorced", "Separate", "Celibate/Maiden"]
 
 
     const customers = useSelector((state) => state.customers?.customers)
@@ -108,12 +121,21 @@ const Customers = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleChange = (newValue) => {
+        setValue(newValue);
+    };
+
     const newCustomer = {
         name: name,
         last_name: lastname,
+        birth_date: value,
+        gender: gender,
+        userName: userName,
         password: password,
         email: email,
-        userName: userName,
+        healt: healt,
+        marital: marital,
+        isHealt: isHealt,
         seller: sellerId,
         isPrivacy: isPrivacy,
         isCompliance: isCompliance
@@ -126,7 +148,11 @@ const Customers = () => {
 
 
     const handleChangeSeller = (event) => {
-        setSellerId(event.target.value)
+        setSellerId(event.target.value);
+        const selectedSeller = sellers?.find(s => s._id === sellerId)
+        console.log("slected Seller", selectedSeller)
+        setSeller(selectedSeller)
+
     }
 
 
@@ -188,7 +214,7 @@ const Customers = () => {
                                         autoComplete="off"
                                     >
                                         <div>
-                                            <Form.Select aria-label="Default select "
+                                            {/* <Form.Select aria-label="Default select "
 
                                                 onChange={handleChangeSeller}
 
@@ -196,7 +222,26 @@ const Customers = () => {
                                                 {sellers?.map(s =>
                                                     <option key={s._id} value={s._id} >{s.last_name}</option>
                                                 )}
-                                            </Form.Select>
+                                            </Form.Select> */}
+
+                                            <FormControl sx={{ m: 1, minWidth: 100 }}>
+                                                <InputLabel id="demo-simple-select-label">Seller</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={seller}
+                                                    label="Seller"
+                                                    onChange={
+                                                        handleChangeSeller}
+                                                >
+                                                    {
+                                                        sellers?.map(s =>
+                                                            <MenuItem key={s._id} value={s._id}>{s.last_name}</MenuItem>
+                                                        )}
+                                                </Select>
+                                            </FormControl>
+
+
 
                                             <TextField
                                                 required
@@ -213,14 +258,34 @@ const Customers = () => {
                                                 value={lastname}
                                                 onChange={(e) => setLastName(e.target.value)}
                                             />
+                                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                                <Stack spacing={3}>
+                                                    <DesktopDatePicker
+                                                        label="Birth Date"
+                                                        inputFormat="MM/dd/yyyy"
+                                                        value={value}
+                                                        onChange={handleChange}
+                                                        renderInput={(params) => <TextField {...params} />}
+                                                    />
+                                                </Stack>
+                                            </LocalizationProvider>
+                                            <FormControl sx={{ m: 1, minWidth: 100 }}>
+                                                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={gender}
+                                                    label="Gender"
+                                                    onChange={
+                                                        (e) => setGender(e.target.value)}
+                                                >
+                                                    {
+                                                        generalGender?.map(g =>
+                                                            <MenuItem key={g.index} value={g}>{g}</MenuItem>
+                                                        )}
+                                                </Select>
+                                            </FormControl>
 
-                                            <TextField
-                                                required
-                                                id="outlined-disabled"
-                                                label="email"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                            />
 
                                             <TextField
                                                 required
@@ -230,6 +295,7 @@ const Customers = () => {
                                                 onChange={(e) => setUserName(e.target.value)}
                                             />
 
+
                                             <TextField
                                                 required
                                                 id="outlined-disabled"
@@ -237,6 +303,46 @@ const Customers = () => {
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                             />
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
+
+
+                                            <FormControl sx={{ m: 1, minWidth: 100 }}>
+                                                <InputLabel id="demo-simple-select-label">Marital</InputLabel>
+                                                <Select
+                                                    labelId="demo-simple-select-label"
+                                                    id="demo-simple-select"
+                                                    value={marital}
+                                                    label="Marital"
+                                                    onChange={
+                                                        (e) => setMarital(e.target.value)}
+                                                >
+                                                    {
+                                                        generalMarital?.map(g =>
+                                                            <MenuItem key={g.index} value={g}>{g}</MenuItem>
+                                                        )}
+                                                </Select>
+                                            </FormControl>
+
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="surgery"
+                                                value={healt.surgery}
+                                                onChange={(e) => {
+                                                    setHealt({ surgery: e.target.value })
+                                                    setIsHealt(true)
+                                                }}
+                                            />
+
+
 
                                             <FormControlLabel control={<Checkbox
                                                 checked={isPrivacy}
