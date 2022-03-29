@@ -13,9 +13,9 @@ const Dashboard = () => {
     const sellers = useSelector((state) => state.sellers?.sellers)
     console.log("Sellers", sellers)
 
-    const products = useSelector((state) => state.products?.products.product)
-    console.log("amount", products?.amount)
-    console.log("Products", products.sort(function (a, b) { return a.amount - b.amount }))
+    const products = useSelector((state) => state.products?.products?.product)
+    // console.log("amount", products?.amount.toString())
+    // console.log("Products", products.sort(function (a, b) { return a.amount - b.amount }))
 
     return (
         <div style={{ color: 'gray' }}>
