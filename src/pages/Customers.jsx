@@ -107,8 +107,8 @@ const Customers = () => {
     const [search, setSearch] = useState('')
     const [open, setOpen] = React.useState(false);
     const [isLoading, setIsLoading] = useState(false)
-    const generalGender = ["Male", "Female", "Other"]
-    const generalMarital = ["Married", "Divorced", "Separate", "Celibate/Maiden"]
+    const generalGender = ["MALE", "FEMALE", "OTHER"]
+    const generalMarital = ["MARRIED", "DIVORCED", "SEPARATE", "CELIBATE/MAIDEN"]
 
 
     const customers = useSelector((state) => state.customers?.customers)
@@ -226,7 +226,7 @@ const Customers = () => {
                                                 >
                                                     {
                                                         sellers?.map(s =>
-                                                            <MenuItem key={s._id} value={s._id}>{s.last_name}</MenuItem>
+                                                            <MenuItem key={s._id} value={s._id}>{s.last_name.toUpperCase()}</MenuItem>
                                                         )}
                                                 </Select>
                                             </FormControl>
@@ -237,7 +237,7 @@ const Customers = () => {
                                                 required
                                                 id="outlined-required"
                                                 label="Name"
-                                                value={name}
+                                                value={name.toUpperCase()}
                                                 onChange={(e) => setName(e.target.value)}
                                             />
 
@@ -245,7 +245,7 @@ const Customers = () => {
                                                 required
                                                 id="outlined-disabled"
                                                 label="Last name"
-                                                value={lastname}
+                                                value={lastname.toUpperCase()}
                                                 onChange={(e) => setLastName(e.target.value)}
                                             />
                                             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -281,7 +281,7 @@ const Customers = () => {
                                                 required
                                                 id="outlined-disabled"
                                                 label="userName"
-                                                value={userName}
+                                                value={userName.toUpperCase()}
                                                 onChange={(e) => setUserName(e.target.value)}
                                             />
 
@@ -290,6 +290,7 @@ const Customers = () => {
                                                 required
                                                 id="outlined-disabled"
                                                 label="password"
+                                                type='password'
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                             />
@@ -298,7 +299,7 @@ const Customers = () => {
                                                 required
                                                 id="outlined-disabled"
                                                 label="email"
-                                                value={email}
+                                                value={email.toUpperCase()}
                                                 onChange={(e) => setEmail(e.target.value)}
                                             />
 
