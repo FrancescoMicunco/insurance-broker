@@ -9,13 +9,14 @@ import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Box from '@mui/material/Box';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { addNewProductAction, getProductsAction } from '../redux/action'
-import Switch from '@mui/material/Switch';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,6 +25,8 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import FirstPageIcon from '@mui/icons-material/FirstPage';
+import DateAdapter from '@mui/lab/AdapterDateFns';
+
 
 const style = {
     position: 'absolute',
@@ -85,18 +88,29 @@ const Products = () => {
     const [customerId, setCustomerId] = useState('')
     const [number, setNumber] = useState('')
     const [amount, setAmount] = useState('')
+    const [rebate, setRebate] = useState('0')
+    const [expire, setExpire] = useState('')
     const [search, setSearch] = useState('')
     const [open, setOpen] = React.useState(false);
     const [sellerId, setSellerId] = useState('')
     const [pages, setPages] = useState('')
     const [isNewProduct, setIsNewProduct] = useState('')
+    const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+
+
+    const handleChange = (newValue) => {
+        setValue(newValue);
+    };
 
 
     const newProduct = {
         number: number,
         productName: productName,
         customer: customerId,
-        amount: amount
+        amount: amount,
+        endDate: value,
+        rebate: rebate
+
     }
 
     // MODAL
@@ -190,7 +204,7 @@ const Products = () => {
                                                     labelId="demo-simple-select-label"
                                                     id="demo-simple-select"
                                                     value={customerId}
-                                                    label="Seller"
+                                                    label="Customer"
                                                     onChange={(e) => handleChangeCustomer(e)}
                                                 >
                                                     {customer?.map(c =>
@@ -221,11 +235,31 @@ const Products = () => {
                                             <TextField
                                                 required
                                                 id="outlined-disabled"
-                                                label="amount"
-                                                // defaultValue="email"
+                                                label="amount € __.__"
                                                 value={amount}
                                                 onChange={(e) => setAmount(e.target.value)}
                                             />
+
+                                            <TextField
+                                                required
+                                                id="outlined-disabled"
+                                                label="rebate %"
+                                                value={rebate}
+                                                onChange={(e) => setRebate(e.target.value)}
+                                            />
+
+
+                                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                                <Stack spacing={3}>
+                                                    <DesktopDatePicker
+                                                        label="Date"
+                                                        inputFormat="MM/dd/yyyy"
+                                                        value={value}
+                                                        onChange={handleChange}
+                                                        renderInput={(params) => <TextField {...params} />}
+                                                    />
+                                                </Stack>
+                                            </LocalizationProvider>
                                         </div>
                                     </Box>
                                 </div>
