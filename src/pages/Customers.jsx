@@ -174,8 +174,8 @@ const Customers = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
-                <div className='d-flex justify-content-around m-md-3 '>
-                    <h2>CUSTOMERS LIST</h2>
+                <div className='d-flex justify-content-between mt-md-5 '>
+                    <h2 className='ml-md-2'>CUSTOMERS LIST</h2>
                     <div className='d-flex'>
 
                         {/* ================= search section */}
@@ -188,7 +188,7 @@ const Customers = () => {
 
                     <div>
                         {/* =========== add customer section */}
-                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
+                        <Button className='mr-md-3' variant="contained" size="medium" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
 
                         <Modal
                             open={open}
@@ -212,15 +212,7 @@ const Customers = () => {
                                         autoComplete="off"
                                     >
                                         <div>
-                                            {/* <Form.Select aria-label="Default select "
 
-                                                onChange={handleChangeSeller}
-
-                                                style={{ backgroundColor: 'white', borderRadius: '4px', width: '25ch', height: '56px', fontSize: '1rem', fontWeight: '400', boxSizing: 'border-box' }}>
-                                                {sellers?.map(s =>
-                                                    <option key={s._id} value={s._id} >{s.last_name}</option>
-                                                )}
-                                            </Form.Select> */}
 
                                             <FormControl sx={{ m: 1, minWidth: 100 }}>
                                                 <InputLabel id="demo-simple-select-label">Seller</InputLabel>
@@ -369,14 +361,7 @@ const Customers = () => {
                     </div>
                 </div >
             </div >
-            {customers?.total !== 1 ?
-                <>
-                    <FirstPageIcon onClick={() => setPages(customers?.links.first)} />
-                    <ChevronLeftIcon onClick={() => setPages(customers?.links.prev)} />
-                    <ChevronRightIcon onClick={() => setPages(customers?.links.next)} />
-                    <LastPageIcon onClick={() => setPages(customers?.links.last)} />
-                </> : ''
-            }
+
 
             <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
                 <thead>
@@ -410,7 +395,14 @@ const Customers = () => {
                     )}
                 </tbody>
             </Table>
-
+            {customers?.total !== 1 ?
+                <>
+                    <FirstPageIcon onClick={() => setPages(customers?.links.first)} />
+                    <ChevronLeftIcon onClick={() => setPages(customers?.links.prev)} />
+                    <ChevronRightIcon onClick={() => setPages(customers?.links.next)} />
+                    <LastPageIcon onClick={() => setPages(customers?.links.last)} />
+                </> : ''
+            }
         </div >
     )
 }

@@ -7,6 +7,10 @@ import Modal from '@mui/material/Modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCustomerAction, getCustomersAction } from '../redux/action/index'
 import { useState, useEffect } from 'react'
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+
+
 
 const style = {
     position: 'absolute',
@@ -40,21 +44,20 @@ const SingleCustomer = ({ customer }) => {
 
     return (<>
 
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.seller[0]?.name} {customer.seller[0]?.last_name}</td>
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.name}</td>
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.last_name}</td>
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.gender}</td>
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.email}</td>
-
-        <td onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth_date}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.seller[0]?.name} {customer.seller[0]?.last_name}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.name}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.last_name}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.gender}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.email}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth_date}</td>
 
         {
             customer.isPrivacy ?
-                <td className='tdGreen' > OK</td> : <td className='tdRed' > NO</td>
+                <td className='tdGreen' ><CheckIcon /></td> : <td className='tdRed' > <CloseIcon /></td>
         }
         {
             customer.isCompliance ?
-                <td className='tdGreen' > OK</td> : <td className='tdRed' > NO</td>
+                <td className='tdGreen' > <CheckIcon /> </td> : <td className='tdRed' > <CloseIcon /> </td>
         }
 
 
