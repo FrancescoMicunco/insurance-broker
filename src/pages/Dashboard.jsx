@@ -21,11 +21,11 @@ const Dashboard = () => {
         <div style={{ color: 'gray' }}>
             <h2>DASHBOARD</h2>
 
-            <div className='d-flex fluid justify-content-around mt-4 flex-wrap'>
-                <div style={{ border: '1px solid gray', height: '30vh', width: '60vh', marginTop: '3%', padding: '3%' }}>
+            <div className='d-flex fluid justify-content-around mt-4 flex-wrap '>
+                <div className='detailBody' >
 
                     <p>Total active customers <span style={{ color: '#1976d2', fontWeight: 'bold' }}> {customers?.length}</span></p>
-                    <p>First 3 best products</p>
+                    <p>New Customer this month</p>
                 </div>
 
             </div>
