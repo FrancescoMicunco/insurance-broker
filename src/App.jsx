@@ -41,7 +41,7 @@ function App() {
                 <div style={{ display: 'flex' }}>
                     <div>
                         <Sidebar /></div>
-                    <div style={{ backgroundColor: 'gainsboro', width: '100%' }}>
+                    <div style={{ backgroundColor: 'white', width: '80%', marginLeft: '15%' }}>
                         <Routes>
                             <Route exact path='/' element={<HomePage />} />
                             <Route exact path='/dashboard' element={<Dashboard />} />

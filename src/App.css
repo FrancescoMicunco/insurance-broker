@@ -1,3 +1,25 @@
+/* Color Theme Swatches in RGBA */
+
+.Northern-Lights-1-rgba {
+    color: rgba(1, 63, 89, 1);
+}
+
+.Northern-Lights-2-rgba {
+    color: rgba(1, 103, 114, 1);
+}
+
+.Northern-Lights-3-rgba {
+    color: rgba(3, 191, 137, 1);
+}
+
+.Northern-Lights-4-rgba {
+    color: rgba(1, 89, 63, 1);
+}
+
+.Northern-Lights-5-rgba {
+    color: rgba(3, 165, 73, 1);
+}
+
 .App {
     text-align: center;
 }
@@ -15,6 +37,24 @@
 
 .App-link {
     color: #61dafb;
+}
+
+h1,
+h3,
+h4,
+h5 {
+    font-family: neue-haas-unica, sans-serif;
+}
+
+h2 {
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #3D3F46;
+}
+
+.button {
+    background-color: rgba(3, 165, 73, 1)
 }
 
 .mainDetails {
@@ -56,4 +96,7 @@
 
 .tabItem {
     text-align: left;
+    color: #00ffb7;
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 400;
 }

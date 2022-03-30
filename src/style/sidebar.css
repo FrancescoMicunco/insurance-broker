@@ -3,12 +3,14 @@
     }
     
     .Sidebar {
-        background-color: rgb(31, 37, 53);
+        position: fixed;
+        background-color: rgba(1, 63, 89, 1);
         width: 13vw;
         height: 100vh;
-        padding: 0;
+        padding-top: 1rem;
         margin: 0;
         font-size: 1.2em;
+        font-family: neue-haas-unica, sans-serif;
     }
     
     .Row {

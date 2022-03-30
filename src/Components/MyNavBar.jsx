@@ -79,8 +79,8 @@ export default function MyNavBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
+                <IconButton size="large" aria-label="show 0 new mails" color="inherit">
+                    <Badge badgeContent={0} color="error">
                         <MailIcon />
                     </Badge>
                 </IconButton>
@@ -89,10 +89,10 @@ export default function MyNavBar() {
             <MenuItem>
                 <IconButton
                     size="large"
-                    aria-label="show 17 new notifications"
+                    aria-label="show 0 new notifications"
                     color="inherit"
                 >
-                    <Badge badgeContent={17} color="error">
+                    <Badge badgeContent={0} color="error">
                         <NotificationsIcon />
                     </Badge>
                 </IconButton>
@@ -114,9 +114,9 @@ export default function MyNavBar() {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
+        <Box sx={{ flexGrow: 1 }} style={{ marginBottom: '3.8%', backgroundColor: 'RGB(31, 37, 53)' }}>
+            <AppBar position="fixed" >
+                <Toolbar style={{ backgroundColor: 'rgba(1, 63, 89, 1)' }}>
                     <IconButton
                         size="large"
                         edge="start"
@@ -137,17 +137,17 @@ export default function MyNavBar() {
 
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
+                        <IconButton size="large" aria-label="show 1 new mails" color="inherit">
+                            <Badge badgeContent={1} color="error">
                                 <MailIcon />
                             </Badge>
                         </IconButton>
                         <IconButton
                             size="large"
-                            aria-label="show 17 new notifications"
+                            aria-label="show 0 new notifications"
                             color="inherit"
                         >
-                            <Badge badgeContent={17} color="error">
+                            <Badge badgeContent={0} color="error">
                                 <NotificationsIcon />
                             </Badge>
                         </IconButton>

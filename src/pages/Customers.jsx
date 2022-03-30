@@ -188,7 +188,7 @@ const Customers = () => {
 
                     <div>
                         {/* =========== add customer section */}
-                        <Button className='mr-md-3' variant="contained" size="medium" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
+                        <Button className='mr-md-3 button' variant="contained" size="medium" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
 
                         <Modal
                             open={open}
@@ -365,7 +365,7 @@ const Customers = () => {
 
 
             <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
-                <thead>
+                <thead style={{ fontSize: '1rem' }}>
                     <tr>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>
                         <th>Name <i className="bi bi-arrow-down-up"></i>
@@ -385,12 +385,12 @@ const Customers = () => {
                         || c.last_name.toLowerCase().includes(search.toLowerCase())
                         || c.seller[0].last_name.toLowerCase().includes(search.toLowerCase())
                     ).map(u =>
-                        <tr key={u._id} style={{ cursor: 'pointer' }}>
+                        <tr key={u._id} style={{ cursor: 'pointer', fontSize: '1rem' }}>
                             <SingleCustomer customer={u} />
                         </tr>)
                     :
                     customers.customer?.map(u =>
-                        <tr key={u._id} style={{ cursor: 'pointer' }}>
+                        <tr key={u._id} style={{ cursor: 'pointer', fontSize: '1rem' }}>
                             <SingleCustomer customer={u} />
                         </tr>
                     )}
