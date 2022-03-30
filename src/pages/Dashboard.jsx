@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 
+
 const Dashboard = () => {
     const [value, setValue] = useState('')
 
@@ -19,13 +20,22 @@ const Dashboard = () => {
 
     return (
         <div style={{ color: 'gray' }}>
-            <h2>DASHBOARD</h2>
+            <h2 className='my-md-4'>DASHBOARD</h2>
 
-            <div className='d-flex fluid justify-content-around mt-4 flex-wrap '>
+            <div className='d-flex fluid flex-column justify-content-around mt-4 flex-wrap '>
                 <div className='detailBody' >
-
-                    <p>Total active customers <span style={{ color: '#1976d2', fontWeight: 'bold' }}> {customers?.length}</span></p>
-                    <p>New Customer this month</p>
+                    <p className='tDashboard'>Total active customers <span className='spanDash' > {customers?.length}</span></p>
+                    <p className='tDashboard'> New Customer this month</p>
+                    <p className='tDashboard'> Best three customers</p>
+                </div>
+                <div className='detailBody' >
+                    <p className='tDashboard'>Total active contracts <span className='spanDash' > {products?.length}</span></p>
+                    <p className='tDashboard'>Best three customers </p>
+                    <p className='tDashboard'> New Customer this month</p>
+                </div>
+                <div className='detailBody' >
+                    <p className='tDashboard'>Total active customers <span className='spanDash' > {customers?.length}</span></p>
+                    <p className='tDashboard'> New Customer this month</p>
                 </div>
 
             </div>

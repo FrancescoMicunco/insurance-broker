@@ -102,3 +102,16 @@ h2 {
     font-family: acumin-pro-wide, sans-serif;
     font-weight: 400;
 }
+
+.spanDash {
+    color: rgba(3, 191, 137, 1);
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.tDashboard {
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
