@@ -144,9 +144,9 @@ const Products = () => {
     return (
         <div >
             <div style={{ color: 'gray' }} >
-                <div className='d-flex justify-content-around m-md-3 '>
+                <div className='d-flex justify-content-between my-md-5 '>
 
-                    <h3>CONTRACTS LIST</h3>
+                    <h2 className='ml-md-2'>CONTRACTS LIST</h2>
 
                     <div className='d-flex'>
 
@@ -282,7 +282,7 @@ const Products = () => {
 
 
             <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
-                <thead>
+                <thead style={{ fontSize: '1rem' }}>
                     <tr>
                         <th>Number <i className="bi bi-arrow-down-up"></i>
                         </th>
@@ -297,11 +297,17 @@ const Products = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {products?.product?.map(p =>
-                        <tr key={p._id} style={{ cursor: 'pointer' }}>
-                            <SingleProduct product={p} />
-                        </tr>
-                    )}
+                    {search ?
+                        products?.product?.filter(p => p.number.includes(search).map(p => p =>
+                            <tr key={p._id} style={{ cursor: 'pointer', fontSize: '1rem' }}>
+                                <SingleProduct product={p} />
+                            </tr>)) :
+
+                        products?.product?.map(p =>
+                            <tr key={p._id} style={{ cursor: 'pointer' }}>
+                                <SingleProduct product={p} />
+                            </tr>)
+                    }
                 </tbody>
             </Table>
 

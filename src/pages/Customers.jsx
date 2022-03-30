@@ -337,7 +337,6 @@ const Customers = () => {
 
                                             <FormControlLabel control={<Checkbox
                                                 checked={isPrivacy}
-
                                                 onChange={handleIsPrivacy}
                                                 inputProps={{ 'aria-label': 'controlled' }}
                                             />} label="Privacy" />

@@ -116,3 +116,9 @@ h2 {
     font-weight: 400;
     font-size: 1.5rem;
 }
+
+.updatemodal {
+    padding: 2rem;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 5px 5px 15px 5px #000000;
+}

@@ -10,7 +10,8 @@ import '../style/customerdetails.css'
 import React from 'react'
 import { deleteCustomerAction, updateCustomerAction } from '../redux/action/index'
 import TextField from '@mui/material/TextField';
-
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 
 const style = {
@@ -40,14 +41,19 @@ function CustomerDetails() {
     const [userName, setUserName] = useState('')
     const [isPrivacy, setIsPrivacy] = useState(false)
     const [isCompliance, setIsCompliance] = useState(false)
+    const [healt, setHealt] = useState({ surgery: "false", medicine: "false" })
+    const [isHealt, setIsHealt] = useState(false)
+    const [marital, setMarital] = useState('')
 
     const customerToUpdate = {
-
         name: name,
         last_name: lastname,
+        userName: userName,
         password: password,
         email: email,
-        userName: userName,
+        healt: healt,
+        marital: marital,
+        isHealt: isHealt,
         seller: sellerId,
         isPrivacy: isPrivacy,
         isCompliance: isCompliance
@@ -65,6 +71,16 @@ function CustomerDetails() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleIsPrivacy = (event) => {
+        setIsPrivacy(event.target.checked);
+    };
+
+
+    const handleIsCompliance = (event) => {
+        setIsCompliance(event.target.checked);
+    };
+
 
     const dispatch = useDispatch()
 
@@ -91,49 +107,85 @@ function CustomerDetails() {
 
     return (
         <div className="customerDet" style={{ color: 'gray' }}>
-            <div className="d-flex">
+
+            <div className="d-flex mt-5">
                 {isUpdate ?
+                    <>
+                        <h2 className='my-md-4' style={{ textAlign: 'left' }}>CUSTOMER UPDATE</h2>
+                        <Box
+                            component="form"
+                            sx={{
+                                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <div className='d-flex flex-column align-item-center updatemodal' style={{ marginLeft: '20%' }}>
+                                <div className='mb-md-4'>
 
-                    <Box
-                        component="form"
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                    >
-                        <div>
-                            <TextField
-                                required
-                                id="outlined-required"
-                                label="Name"
-                                defaultValue={customerDetail?.name}
-                                // value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
-                            <TextField
-                                required
-                                id="outlined-disabled"
-                                label="Last name"
-                                defaultValue={customerDetail?.name}
-                                // value={lastname}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Name"
+                                        defaultValue={customerDetail?.name}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
+                                    <TextField
+                                        required
+                                        id="outlined-disabled"
+                                        label="Last name"
+                                        defaultValue={customerDetail?.last_name}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                    />
 
-                            <TextField
-                                required
-                                id="outlined-disabled"
-                                label="email"
-                                defaultValue={customerDetail?.email}
-                                // value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <Button variant="outlined"
-                                onClick={() => {
-                                    dispatch(updateCustomerAction(customerToUpdate, customerDetail?._id))
-                                }}>Update</Button>
-                        </div>
-                    </Box> :
+                                    <TextField
+                                        required
+                                        id="outlined-disabled"
+                                        label="email"
+                                        defaultValue={customerDetail?.email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                </div>
+                                <div>
+
+                                    <TextField
+                                        required
+                                        id="outlined-disabled"
+                                        label="Marital"
+                                        defaultValue={customerDetail?.marital}
+                                        onChange={(e) => setMarital(e.target.value)}
+                                    />
+
+                                    <TextField
+                                        required
+                                        id="outlined-disabled"
+                                        label="privacy"
+                                        defaultValue={customerDetail?.isPrivacy}
+                                        onChange={(e) => setIsPrivacy(e.target.value)}
+                                    />
+                                    <FormControlLabel control={<Checkbox
+                                        checked={isPrivacy}
+                                        onChange={handleIsPrivacy}
+                                        inputProps={{ 'aria-label': 'controlled' }}
+                                    />} label="Privacy" />
+
+
+                                    <FormControlLabel control={<Checkbox
+                                        checked={isCompliance}
+                                        onChange={handleIsCompliance}
+                                        inputProps={{ 'aria-label': 'controlled' }}
+                                    />} label="Compliance" />
+
+
+
+                                </div>
+                                <Button variant="outlined"
+                                    onClick={() => {
+                                        dispatch(updateCustomerAction(customerToUpdate, customerDetail?._id))
+                                    }}>Update</Button>
+                            </div>
+                        </Box> </>
+                    :
                     <div className='container-fluid mainDetails'>
                         <h2 className='ml-md-2 my-md-4'>CUSTOMER DETAIL</h2>
                         <div className='detailBody'>
