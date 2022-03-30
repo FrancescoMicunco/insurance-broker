@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App.jsx";
 import reportWebVitals from "./reportWebVitals";
-import { configStore } from "../src/redux/Store";
+import configStore from "../src/redux/Store/index";
 import { Provider } from "react-redux";
 
 ReactDOM.render( <
@@ -13,7 +13,7 @@ ReactDOM.render( <
     <
     App / >
     <
-    /Provider> <
+    /Provider>{" "} <
     /React.StrictMode>,
     document.getElementById("root")
 );

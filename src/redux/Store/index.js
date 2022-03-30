@@ -1,9 +1,11 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
+import thunkMiddleware from "redux-thunk";
 import customersReducer from "../reducer/customer";
 import companiesReducer from "../reducer/companies";
 import productsReducer from "../reducer/products";
 import sellersReducer from "../reducer/seller";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 export const initialState = {
     customers: { customers: [] },
@@ -25,10 +27,10 @@ const bigReducer = combineReducers({
     sellers: sellersReducer,
 });
 
-export let configStore = createStore(
-    bigReducer,
-    initialState,
-    (window.__REDUX__DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__) ||
-    compose(applyMiddleware(thunk))
-);
+const middlewares = [thunkMiddleware];
+const middlenhancer = applyMiddleware(...middlewares);
+const composeEnhancer = composeWithDevTools(middlenhancer);
+
+let configStore = createStore(bigReducer, initialState, composeEnhancer);
+
+export default configStore;

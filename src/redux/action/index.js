@@ -90,7 +90,7 @@ export const addNewProductAction = (newProduct) => {
                 dispatch({ type: ADD_NEW_PRODUCT, payload: newProduct });
                 alert("successful created!");
             } else {
-                alert("Failed creating new company");
+                alert("Failed creating new product");
             }
         } catch (error) {
             console.log("server error");

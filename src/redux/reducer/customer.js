@@ -21,7 +21,7 @@ const customersReducer = (state = initialState.customers, action) => {
         case ADD_NEW_CUSTOMER:
             return {
                 ...state,
-                customers: [...state.customers, payload],
+                customers: [...state.customers.customer, payload],
             };
         case UPDATE_CUSTOMER:
             let customerToUpdateIndex = state.customers.findIndex(

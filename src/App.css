@@ -106,8 +106,9 @@ h2 {
 .spanDash {
     color: rgba(3, 191, 137, 1);
     font-family: acumin-pro-wide, sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 2rem;
+    font-style: normal;
 }
 
 .tDashboard {
