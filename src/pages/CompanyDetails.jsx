@@ -119,8 +119,8 @@ function CompanyDetails() {
                         </div>
                     </Box> :
                     <div className='container-fluid mainDetails'>
-                        <h2 className='pageTitle'>COMPANY DETAIL</h2>
-                        <div className='detailBody'>
+                        <h2 className='my-md-4'>COMPANY DETAIL</h2>
+                        <div className='detailBody '>
                             <p>Company name:   <span style={{ color: 'black' }}>{companyDetail?.name} </span></p>
                             <p>Email:  <span style={{ color: 'black' }}>{companyDetail?.email}</span></p>
 
