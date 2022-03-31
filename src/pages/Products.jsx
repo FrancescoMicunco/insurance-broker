@@ -270,14 +270,7 @@ const Products = () => {
                     </div>
                 </div>
             </div>
-            {products?.total !== 1 ?
-                <>
-                    <FirstPageIcon onClick={() => setPages(products?.links.first)} />
-                    <ChevronLeftIcon onClick={() => setPages(products?.links.prev)} />
-                    <ChevronRightIcon onClick={() => setPages(products?.links.next)} />
-                    <LastPageIcon onClick={() => setPages(products?.links.last)} />
-                </> : ''
-            }
+
 
 
 
@@ -310,6 +303,14 @@ const Products = () => {
                     }
                 </tbody>
             </Table>
+            {products?.total !== 1 ?
+                <>
+                    <FirstPageIcon onClick={() => setPages(products?.links.first)} />
+                    <ChevronLeftIcon onClick={() => setPages(products?.links.prev)} />
+                    <ChevronRightIcon onClick={() => setPages(products?.links.next)} />
+                    <LastPageIcon onClick={() => setPages(products?.links.last)} />
+                </> : ''
+            }
 
         </div >
     )

@@ -61,7 +61,7 @@ const SingleCustomer = ({ customer }) => {
         }
 
 
-        <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
+        <td className='tabItem' onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
 
         <Modal
             open={open}
