@@ -9,7 +9,7 @@ import { deleteCustomerAction, getCustomersAction } from '../redux/action/index'
 import { useState, useEffect } from 'react'
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-
+import Moment from "react-moment"
 
 
 const style = {
@@ -39,8 +39,9 @@ const SingleCustomer = ({ customer }) => {
 
     const navigate = useNavigate();
 
-    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, customers])
+    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, JSON.stringify(customers)])
 
+    const dateFormatted = customer.birth_date.slice(0, -14)
 
     return (<>
 
@@ -49,7 +50,9 @@ const SingleCustomer = ({ customer }) => {
         <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.last_name}</td>
         <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.gender}</td>
         <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.email}</td>
-        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>{customer.birth_date}</td>
+        <td className='tabItem' onClick={() => navigate('/customers/' + customer?._id)}>
+            <Moment fromNow ago>{dateFormatted}</Moment>
+        </td>
 
         {
             customer.isPrivacy ?

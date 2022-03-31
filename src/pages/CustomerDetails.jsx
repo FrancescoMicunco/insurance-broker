@@ -12,7 +12,8 @@ import { deleteCustomerAction, updateCustomerAction } from '../redux/action/inde
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-
+import Moment from "react-moment"
+import 'moment/locale/it';
 
 const style = {
     position: 'absolute',
@@ -196,7 +197,9 @@ function CustomerDetails() {
                             <div>
                                 <p>Full name:   <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.name} {customerDetail?.last_name}</span>       Email:<span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.email} </span></p>
                                 <p>Seller:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name} </span>  Gender:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.gender}</span></p>
-                                <p>Birth:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.birth_date}</span>     Username:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.userName}</span></p>
+                                <p>Birth:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>
+                                    <Moment local="it" format="DD/MM/YYYY">{customerDetail?.birth_date}</Moment>
+                                </span>     Username:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.userName}</span></p>
                             </div>
 
                             <div className='d-flex '>

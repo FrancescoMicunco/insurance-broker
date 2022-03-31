@@ -144,7 +144,7 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction()) }, [pages, customers])
+    useEffect(() => { dispatch(getCustomersAction()) }, [pages, JSON.stringify(customers)])
 
 
     const handleChangeSeller = (event) => {
@@ -374,7 +374,7 @@ const Customers = () => {
                         <th>Gender <i className="bi bi-arrow-down-up"></i></th>
 
                         <th>email <i className="bi bi-arrow-down-up"></i></th>
-                        <th>Birdth <i className="bi bi-arrow-down-up"></i></th>
+                        <th>Age <i className="bi bi-arrow-down-up"></i></th>
                         <th>Privacy <i className="bi bi-arrow-down-up"></i></th>
                         <th>Compliance <i className="bi bi-arrow-down-up"></i></th>
                     </tr>

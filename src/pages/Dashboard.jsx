@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-
+import lodash from 'lodash'
+import Moment from 'react-moment';
 
 const Dashboard = () => {
     const [value, setValue] = useState('')
@@ -15,8 +16,19 @@ const Dashboard = () => {
     console.log("Sellers", sellers)
 
     const products = useSelector((state) => state.products?.products?.product)
-    // console.log("amount", products?.amount.toString())
-    // console.log("Products", products.sort(function (a, b) { return a.amount - b.amount }))
+    console.log("products", products)
+
+    const totalAmount = lodash.sum(products?.map(a => a.amount))
+
+    const d = new Date()
+    const thisMonth = d.getMonth()
+
+    const bestProductLastMonth = products?.filter(d => Number(d.createdAt[6]) === thisMonth)
+
+    // .map(t => t.amount)
+    console.log("bestProduct month", bestProductLastMonth)
+
+
 
     return (
         <div style={{ color: 'gray' }}>
@@ -25,12 +37,12 @@ const Dashboard = () => {
             <div className='d-flex fluid flex-column justify-content-around mt-4 flex-wrap '>
                 <div className='detailBody' >
                     <p className='tDashboard'>Total active customers <span className='spanDash' > {customers?.length}</span></p>
-                    <p className='tDashboard'> New Customer this month</p>
-                    <p className='tDashboard'> Best three customers</p>
+                    <p className='tDashboard'> Total Revenue <span className='spanDash' >€ {totalAmount}</span></p>
+                    <p className='tDashboard'> </p>
                 </div>
                 <div className='detailBody' >
                     <p className='tDashboard'>Total active contracts <span className='spanDash' > {products?.length}</span></p>
-                    <p className='tDashboard'>Best three customers </p>
+                    <p className='tDashboard'>Last month revenue </p>
                     <p className='tDashboard'> New Customer this month</p>
                 </div>
                 <div className='detailBody' >

@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteProductAction } from '../redux/action/index'
-
+import Moment from "react-moment"
+import 'moment/locale/it';
 
 const style = {
     position: 'absolute',
@@ -35,6 +36,7 @@ const SingleProduct = ({ product }) => {
 
 
 
+
     //  DISPATCH DELETE PRODUCT
     const dispatch = useDispatch()
 
@@ -48,7 +50,8 @@ const SingleProduct = ({ product }) => {
         <td className='tabItem' onClick={() => navigate('/products/' + product?._id)}>{product?.amount}</td>
         <td className='tabItem' onClick={() => navigate('/products/' + product?._id)}>{sellerToShow?.name}  {sellerToShow?.last_name}</td>
         <td className='tabItem' onClick={() => navigate('/products/' + product?._id)}>{product?.customer[0]?.name}  {product?.customer[0]?.last_name}</td>
-        <td className='tabItem' onClick={() => navigate('/products/' + product?._id)}>{product?.endDate}</td>
+        <td className='tabItem' onClick={() => navigate('/products/' + product?._id)}>
+            <Moment local="it" format="DD/MM/YYYY">{product?.endDate}</Moment></td>
         <td className='tabItem' onClick={() => navigate('/products/' + product?._id)}>{product?.rebate}</td>
         <td className='tabItem' onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
 
