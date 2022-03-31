@@ -9,6 +9,7 @@ const Dashboard = () => {
 
     const customers = useSelector((state) => state.customers?.customers.customer)
     console.log("from dashboard", customers)
+
     const sortedUscendingByLName = customers?.sort(function (a, b) { return b.name.toUpperCase() - a.name.toUpperCase() })
     console.log("sorted", sortedUscendingByLName)
 
@@ -16,19 +17,18 @@ const Dashboard = () => {
     console.log("Sellers", sellers)
 
     const products = useSelector((state) => state.products?.products?.product)
-    console.log("products", products)
+    console.log("Products", products)
 
     const totalAmount = lodash.sum(products?.map(a => a.amount))
 
-    const d = new Date()
-    const thisMonth = d.getMonth()
+    const actualDate = new Date()
+    const thisMonth = actualDate.getMonth()
 
-    const bestProductLastMonth = products?.filter(d => Number(d.createdAt[6]) === thisMonth)
+    const lastMonthProducts = products?.filter(m => new Date(m.createdAt).getMonth() === thisMonth - 1)
+    const lastMonthTotalAmount = lodash.sum(lastMonthProducts?.map(a => a.amount))
 
-    // .map(t => t.amount)
-    console.log("bestProduct month", bestProductLastMonth)
-
-
+    const thisMonthProducts = products?.filter(m => new Date(m.createdAt).getMonth() === thisMonth)
+    const thisMonthTotalAmount = lodash.sum(thisMonthProducts?.map(a => a.amount))
 
     return (
         <div style={{ color: 'gray' }}>
@@ -38,11 +38,11 @@ const Dashboard = () => {
                 <div className='detailBody' >
                     <p className='tDashboard'>Total active customers <span className='spanDash' > {customers?.length}</span></p>
                     <p className='tDashboard'> Total Revenue <span className='spanDash' >€ {totalAmount}</span></p>
-                    <p className='tDashboard'> </p>
+                    <p className='tDashboard'> Currently month Revenue <span className='spanDash' >€ {thisMonthTotalAmount}</span></p>
                 </div>
                 <div className='detailBody' >
                     <p className='tDashboard'>Total active contracts <span className='spanDash' > {products?.length}</span></p>
-                    <p className='tDashboard'>Last month revenue </p>
+                    <p className='tDashboard'>Last month revenue <span className='spanDash' > {lastMonthTotalAmount}</span></p>
                     <p className='tDashboard'> New Customer this month</p>
                 </div>
                 <div className='detailBody' >
