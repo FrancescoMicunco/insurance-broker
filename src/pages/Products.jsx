@@ -121,13 +121,13 @@ const Products = () => {
         setCustomerId(event.target.value);
     };
 
-
+    const products = useSelector((state) => state.products?.products)
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getProductsAction(pages)) }, [pages, isNewProduct])
+    useEffect(() => { dispatch(getProductsAction(pages)) }, [pages, products])
 
-    const products = useSelector((state) => state.products?.products)
+
     console.log("products from redux", products)
 
 

@@ -237,7 +237,7 @@ export const updateCompanyAction = (c, i) => {
 };
 
 //  ========== CUSTOMER SECTION ============
-export const getCustomersAction = (pages = "/customers?limit=5") => {
+export const getCustomersAction = (pages = "/customers") => {
     return async(dispatch) => {
         let url = `http://localhost:3001${pages}`;
         console.log("this is url", url);

@@ -144,7 +144,7 @@ const Customers = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getCustomersAction(pages)) }, [pages, customers])
+    useEffect(() => { dispatch(getCustomersAction()) }, [pages, customers])
 
 
     const handleChangeSeller = (event) => {
