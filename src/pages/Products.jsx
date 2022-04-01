@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleProduct from '../Components/ItemProduct'
 import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
@@ -39,6 +39,24 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+    },
+    palette: {
+        primary: {
+            main: '#0971f1',
+            darker: '#053e85',
+
+        },
+        neutral: {
+            main: '#ac319d',
+            contrastText: '#fff',
+        },
+    },
+});
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -164,11 +182,12 @@ const Products = () => {
                         </Search>
                     </div>
 
-                    {/* =========== add customer section */}
+                    {/* =========== add product section */}
                     <div>
 
-
-                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>Add New Contract</Button>
+                        <ThemeProvider theme={theme}>
+                            <Button color="neutral" variant="contained" size="large" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>Add New Contract</Button>
+                        </ThemeProvider>
 
                         <Modal
                             open={open}
@@ -274,7 +293,7 @@ const Products = () => {
 
 
 
-            <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
+            <Table responsive striped bordered hover variant="light" className='mt-md-4'>
                 <thead style={{ fontSize: '1rem' }}>
                     <tr>
                         <th>Number <i className="bi bi-arrow-down-up"></i>

@@ -302,7 +302,7 @@ export const updateCustomerAction = (c, i) => {
         try {
             const res = await fetch(`http://localhost:3001/customers/${i}`, {
                 method: "PUT",
-                body: JSON.stringify({ name: "Davies", last_name: "Barbot" }),
+                body: JSON.stringify({ cToUpdate }),
                 headers: { "Content-Type": "application/json" },
             });
             console.log("res", res);
@@ -311,12 +311,12 @@ export const updateCustomerAction = (c, i) => {
 
                 dispatch({
                     type: UPDATE_CUSTOMER,
-                    payload: { name: "Davies", last_name: "Barbot" },
+                    payload: { cToUpdate },
                 });
 
                 alert("successful updated!");
             } else {
-                alert("Failed creating new customer");
+                alert("Failed updating new customer");
             }
         } catch (error) {
             console.log("server error");

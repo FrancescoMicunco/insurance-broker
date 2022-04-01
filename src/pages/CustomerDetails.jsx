@@ -73,6 +73,8 @@ function CustomerDetails() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+
+
     const handleIsPrivacy = (event) => {
         setIsPrivacy(event.target.checked);
     };
@@ -87,7 +89,6 @@ function CustomerDetails() {
 
     const customer = useSelector((state) => state.customers?.customers.customer)
 
-
     const products = useSelector((state) => state.products?.products)
 
 
@@ -101,7 +102,7 @@ function CustomerDetails() {
 
         console.log("customer to show", customerDetail)
 
-    }, [customerDetail])
+    }, [isUpdate])
 
 
 
@@ -157,13 +158,6 @@ function CustomerDetails() {
                                         onChange={(e) => setMarital(e.target.value)}
                                     />
 
-                                    <TextField
-                                        required
-                                        id="outlined-disabled"
-                                        label="privacy"
-                                        defaultValue={customerDetail?.isPrivacy}
-                                        onChange={(e) => setIsPrivacy(e.target.value)}
-                                    />
                                     <FormControlLabel control={<Checkbox
                                         checked={isPrivacy}
                                         onChange={handleIsPrivacy}
@@ -177,12 +171,11 @@ function CustomerDetails() {
                                         inputProps={{ 'aria-label': 'controlled' }}
                                     />} label="Compliance" />
 
-
-
                                 </div>
                                 <Button variant="outlined"
                                     onClick={() => {
-                                        dispatch(updateCustomerAction(customerToUpdate, customerDetail?._id))
+                                        dispatch(updateCustomerAction(customerToUpdate, customerDetail?._id));
+                                        setIsUpdate(false)
                                     }}>Update</Button>
                             </div>
                         </Box> </>
@@ -191,26 +184,27 @@ function CustomerDetails() {
                         <h2 className='ml-md-2 my-md-4'>CUSTOMER DETAIL</h2>
                         <div className='detailBody'>
                             <div className='d-flex justify-content-start'>
-                                <p>Role:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.role}</span></p>
+                                <p>Role:  <span>{customerDetail?.role}</span></p>
 
                             </div>
                             <div>
-                                <p>Full name:   <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.name} {customerDetail?.last_name}</span>       Email:<span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.email} </span></p>
-                                <p>Seller:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name} </span>  Gender:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.gender}</span></p>
-                                <p>Birth:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>
+                                <p>Full name:   <span >{customerDetail?.name} {customerDetail?.last_name}</span>       Email:<span >{customerDetail?.email} </span></p>
+                                <p>Seller:  <span >{customerDetail?.seller[0]?.name} {customerDetail?.seller[0].last_name} </span>  Gender:  <span >{customerDetail?.gender}</span></p>
+                                <p>Birth:  <span >
                                     <Moment local="it" format="DD/MM/YYYY">{customerDetail?.birth_date}</Moment>
-                                </span>     Username:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{customerDetail?.userName}</span></p>
+                                </span>     Username:  <span >{customerDetail?.userName}</span></p>
                             </div>
 
                             <div className='d-flex '>
-                                <p>Marital:  <span style={{ color: '#1976d2', fontWeight: 'bold', paddingRight: '1rem' }}>{customerDetail?.marital}  </span> </p>
+                                <p>Marital:  <span style={{ paddingRight: '1rem' }}>{customerDetail?.marital}  </span> </p>
 
-                                {customerDetail?.healt?.surgery ? <p>Healt:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>
+                                {customerDetail?.healt?.surgery ? <p>Healt:  <span >
                                     Surgery: Yes </span></p>
-                                    : <p>Healt:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>
+                                    :
+                                    <p>Healt:  <span>
                                         Surgery: NO </span></p>
                                 }
-                                {customerDetail?.isPrivacy ? <p className='ml-4'>Privacy:  OK</p> : <p></p>}
+                                {customerDetail?.isPrivacy ? <p className='ml-4' style={{ fontWeight: 'bold' }}>Privacy:  OK</p> : <p></p>}
                             </div>
                         </div>
                     </div >
@@ -220,7 +214,8 @@ function CustomerDetails() {
             <div>
                 <Stack spacing={2} direction="row">
                     {
-                        isUpdate ? '' :
+                        isUpdate ? ''
+                            :
                             <div className="container-fluid">
                                 <Button variant="outlined" onClick={handleToUpdate}>Update</Button>
                                 <Button variant="contained" onClick={handleOpen}>Delete</Button>

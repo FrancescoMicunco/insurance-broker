@@ -48,13 +48,9 @@ h5 {
 
 h2 {
     font-family: acumin-pro-wide, sans-serif;
-    font-weight: 700;
+    font-weight: 200;
     font-style: normal;
     color: #3D3F46;
-}
-
-.button {
-    background-color: rgba(3, 165, 73, 1)
 }
 
 .mainDetails {
@@ -82,8 +78,8 @@ h2 {
     align-items: left;
     justify-content: left;
     flex-wrap: nowrap;
-    -webkit-box-shadow: 5px 5px 15px 5px #000000;
-    box-shadow: 5px 5px 15px 5px #000000;
+    border: 1px solid rgb(230, 230, 230);
+    box-shadow: 0 5px 15px -6px #00000063;
 }
 
 .tdGreen {
@@ -98,7 +94,7 @@ h2 {
 
 .tabItem {
     text-align: left;
-    color: #00ffb7;
+    color: #212529;
     font-family: acumin-pro-wide, sans-serif;
     font-weight: 400;
 }
@@ -119,6 +115,27 @@ h2 {
 
 .updatemodal {
     padding: 2rem;
-    -webkit-box-shadow: 5px 5px 15px 5px #000000;
-    box-shadow: 5px 5px 15px 5px #000000;
+    border: 1px solid rgb(230, 230, 230);
+    box-shadow: 0 5px 15px -6px #00000063;
+}
+
+p span {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+InputGroup .search {
+    background-color: red;
+}
+
+.search {
+    height: calc(1.5em + .75rem + 20px)!important;
+}
+
+
+/* In linea #75 | http://localhost:3000/customers */
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    /* background-color: #1976d2; */
+    background-color: #ac319d;
 }

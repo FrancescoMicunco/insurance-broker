@@ -20,8 +20,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
-    const allcustomers = '/customers?limit=5'
-    const allProducts = '/products?limit=5'
+    const allcustomers = '/customers'
+    const allProducts = '/products'
 
 
     const dispatch = useDispatch()

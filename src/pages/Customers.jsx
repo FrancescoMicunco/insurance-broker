@@ -5,7 +5,7 @@ import SingleCustomer from '../Components/itemCustomer'
 import { getCustomersAction } from '../redux/action'
 import { InputGroup, Form } from 'react-bootstrap'
 import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -43,6 +43,23 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+    },
+    palette: {
+        primary: {
+            main: '#0971f1',
+            darker: '#053e85',
+
+        },
+        neutral: {
+            main: '#ac319d',
+            contrastText: '#fff',
+        },
+    },
+});
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -179,17 +196,19 @@ const Customers = () => {
                     <div className='d-flex'>
 
                         {/* ================= search section */}
-                        <InputGroup className="mb-3">
+                        <InputGroup className="mb-3 search">
                             <Form.Group >
-                                <Form.Control type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
+                                <Form.Control className="search" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search" />
                             </Form.Group>
                         </InputGroup>
                     </div>
 
                     <div>
                         {/* =========== add customer section */}
-                        <Button className='mr-md-3 button' variant="contained" size="medium" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Customer</Button>
-
+                        <ThemeProvider theme={theme}>
+                            <Button className='mr-md-3' color="neutral" variant="contained" size="large" endIcon={<AddCircleOutlineIcon />}
+                                onClick={handleOpen}>New Customer</Button>
+                        </ThemeProvider>
                         <Modal
                             open={open}
                             onClose={handleClose}
@@ -355,7 +374,7 @@ const Customers = () => {
                                     You are adding a new customer.
                                 </Typography>
 
-                                <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>SEND</Button>
+                                <Button variant="contained" size="big" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>SEND</Button>
                             </Box>
                         </Modal>
                     </div>
@@ -363,7 +382,7 @@ const Customers = () => {
             </div >
 
 
-            <Table responsive striped bordered hover variant="dark" className='mt-md-4'>
+            <Table responsive striped bordered hover variant="light" className='mt-md-4'>
                 <thead style={{ fontSize: '1rem' }}>
                     <tr>
                         <th>Seller <i className="bi bi-arrow-down-up"></i></th>

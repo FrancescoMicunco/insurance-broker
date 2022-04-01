@@ -32,10 +32,10 @@ const Dashboard = () => {
     const thisMonthTotalAmount = lodash.sum(thisMonthProducts?.map(a => a.amount))
 
     const lastMonthCustomers = customers?.filter(m => new Date(m.createdAt).getMonth() === thisMonth - 1)
-    const totalLastMonthCustomers = lastMonthCustomers.length
+    const totalLastMonthCustomers = lastMonthCustomers?.length
 
     const thisMonthCustomers = customers?.filter(m => new Date(m.createdAt).getMonth() === thisMonth)
-    const totalThisMonthCustomers = thisMonthCustomers.length
+    const totalThisMonthCustomers = thisMonthCustomers?.length
 
     return (
         <div style={{ color: 'gray' }}>
