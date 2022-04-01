@@ -125,7 +125,7 @@ const Products = () => {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { dispatch(getProductsAction(pages)) }, [pages, products])
+    useEffect(() => { dispatch(getProductsAction(pages)) }, [pages, JSON.stringify(products)])
 
 
     console.log("products from redux", products)
