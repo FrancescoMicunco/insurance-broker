@@ -34,11 +34,10 @@ const SingleSeller = ({ seller }) => {
 
     return (<>
 
-        <td ></td>
         <td onClick={() => navigate('/salesforce/' + seller._id)}>{seller.name}</td>
         <td onClick={() => navigate('/salesforce/' + seller._id)}>{seller.last_name}</td>
-
         <td onClick={handleOpen}><i className="bi bi-person-x"> </i></td>
+
         <Modal
             open={open}
             onClose={handleClose}

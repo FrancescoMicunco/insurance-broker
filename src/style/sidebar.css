@@ -6,22 +6,23 @@
         position: fixed;
         background-color: rgba(36, 39, 54);
         width: 13vw;
+        min-width: 10vw;
         height: 100vh;
         padding-top: 1rem;
         margin: 0;
-        font-size: 1.2em;
+        font-size: 1.2rem;
         font-family: neue-haas-unica, sans-serif;
     }
     
     .Row {
         height: auto;
         width: 100%;
-        padding: 0;
-        margin-top: 10%;
+        padding: 2%;
+        margin-top: 13%;
+        margin-left: 3%;
         display: flex;
         flex-direction: row;
         color: white;
-        justify-content: space-around;
     }
     
     .sidebarList .row:hover {
@@ -38,10 +39,12 @@
         flex: 20%;
         display: grid;
         align-items: left;
+        padding-left: 5px;
     }
     
     .row #name {
-        flex: 80%;
+        flex: 75%;
+        padding-left: 1%;
     }
     
     .Sidebar-close {

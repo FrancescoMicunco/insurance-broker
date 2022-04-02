@@ -65,9 +65,6 @@ function ProductDetails() {
 
     console.log("pToShow", pToShow)
 
-    console.log("customer buyer", pToShow?.customer[0].name)
-
-
 
 
 

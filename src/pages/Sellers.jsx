@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleSeller from '../Components/ItemSeller'
 import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
@@ -67,7 +67,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+    },
+    palette: {
+        primary: {
+            main: '#0971f1',
+            darker: '#053e85',
 
+        },
+        neutral: {
+            main: '#ac319d',
+            contrastText: '#fff',
+        },
+    },
+});
 
 const Sellers = () => {
 
@@ -129,8 +144,9 @@ const Sellers = () => {
 
                     <div>
                         {/* =========== add customer section */}
-                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Agent</Button>
-
+                        <ThemeProvider theme={theme}>
+                            <Button className='mr-md-3' color="neutral" variant="contained" size="large" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Agent</Button>
+                        </ThemeProvider>
                         <Modal
                             open={open}
                             onClose={handleClose}
@@ -176,8 +192,9 @@ const Sellers = () => {
                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                     You are adding a new contract.
                                 </Typography>
-
-                                <Button variant="outlined" onClick={() => { addnewSeller(newSeller) }}>Add</Button>
+                                <ThemeProvider theme={theme}>
+                                    <Button className='mr-md-3' color="neutral" variant="contained" size="large" onClick={() => { addnewSeller(newSeller) }}>Add</Button>
+                                </ThemeProvider>
                             </Box>
                         </Modal>
                     </div>
@@ -185,10 +202,10 @@ const Sellers = () => {
             </div>
 
 
-            <Table responsive striped bordered hover variant="dark">
+            <Table responsive striped bordered hover variant="light">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>

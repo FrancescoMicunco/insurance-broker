@@ -9,6 +9,7 @@ import Sellers from "./pages/Sellers"
 import CustomerDetails from './pages/CustomerDetails'
 import ProductDetails from './pages/ProductDetail'
 import CompanyDetails from './pages/CompanyDetails'
+import SellerDetails from './pages/SellerDetails'
 import Companies from "./pages/Companies"
 import MyNavBar from './Components/MyNavBar'
 import NotFound from "../src/pages/NotFound"
@@ -51,6 +52,7 @@ function App() {
                             <Route exact path='/products' element={<Products />} />
                             <Route exact path='/customers/:customerId' element={<CustomerDetails />} />
                             <Route exact path='/products/:productId' element={<ProductDetails />} />
+                            <Route exact path='/salesforce/:sellerId' element={<SellerDetails />} />
                             <Route exact path='/companies/:companyId' element={<CompanyDetails />} />
                             <Route exact path='*' element={<NotFound />} />
                         </Routes>
