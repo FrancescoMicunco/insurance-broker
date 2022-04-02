@@ -9,7 +9,7 @@ const Sidebar = () => {
     console.log("data", SidebarData)
     return (
         <div className="Sidebar">
-            <div className='logo'><img src="logoInsurance.png" alt="logo" style={{ width: "80px" }} /></div>
+            <div className='logo'><img src="logoInsBrok.png" alt="logo" style={{ width: "80px", marginLeft: '10%', marginTop: '10%' }} /></div>
             {SidebarData.map((item, index) =>
                 <Link to={item.link} key={index}>
                     <div className='Row'>
