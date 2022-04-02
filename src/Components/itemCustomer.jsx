@@ -83,9 +83,7 @@ const SingleCustomer = ({ customer }) => {
                     onClick={() => {
                         dispatch(deleteCustomerAction(customer?._id));
                         setOpen(false);
-                        setDeleteCustomer(customer?._id)
                     }
-
                     }>DELETE</Button>
             </Box>
         </Modal>

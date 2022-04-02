@@ -85,12 +85,18 @@ function CustomerDetails() {
     };
 
 
+
     const dispatch = useDispatch()
 
     const customer = useSelector((state) => state.customers?.customers.customer)
 
     const products = useSelector((state) => state.products?.products)
 
+    const deleteCustomer = () => {
+        dispatch(deleteCustomerAction(customerDetail?._id));
+        alert("Customer deleted!")
+        handleClose()
+    }
 
     useEffect(() => {
 
@@ -100,9 +106,8 @@ function CustomerDetails() {
 
         if (cToShow) setCustomerDetail(cToShow)
 
-        console.log("customer to show", customerDetail)
 
-    }, [isUpdate])
+    }, [JSON.stringify(customer)])
 
 
 
@@ -234,8 +239,10 @@ function CustomerDetails() {
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 You are deleting a customer. If you confirm, press the button.
                             </Typography>
-                            <Button variant="outlined" onClick={() =>
-                                dispatch(deleteCustomerAction(customerDetail?._id))
+                            <Button variant="outlined" onClick={deleteCustomer
+                                // () =>
+                                // dispatch(deleteCustomerAction(customerDetail?._id)
+                                // )
                             }
 
                             > DELETE</Button>
