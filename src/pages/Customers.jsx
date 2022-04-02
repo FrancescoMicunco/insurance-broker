@@ -372,9 +372,11 @@ const Customers = () => {
 
                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                     You are adding a new customer.
+                                    <ThemeProvider theme={theme}>
+                                        <Button className='ml-4 px-5' color="neutral" variant="contained" size="large" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>SEND</Button>
+                                    </ThemeProvider>
                                 </Typography>
 
-                                <Button variant="contained" size="big" endIcon={<AddCircleOutlineIcon />} onClick={() => { addNewCustomer(newCustomer) }}>SEND</Button>
                             </Box>
                         </Modal>
                     </div>

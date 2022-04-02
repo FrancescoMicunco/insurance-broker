@@ -48,7 +48,7 @@ h5 {
 
 h2 {
     font-family: acumin-pro-wide, sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-style: normal;
     color: #3D3F46;
 }
@@ -121,7 +121,9 @@ h2 {
 
 p span {
     font-weight: bold;
+    color: black;
     text-transform: uppercase;
+    font-family: acumin-pro-wide, sans-serif;
 }
 
 InputGroup .search {
@@ -130,12 +132,4 @@ InputGroup .search {
 
 .search {
     height: calc(1.5em + .75rem + 20px)!important;
-}
-
-
-/* In linea #75 | http://localhost:3000/customers */
-
-.css-sghohy-MuiButtonBase-root-MuiButton-root {
-    /* background-color: #1976d2; */
-    background-color: #ac319d;
 }

@@ -114,11 +114,11 @@ function ProductDetails() {
                         </div>
                     </Box> :
                     <div className='container-fluid mainDetails'>
-                        <h2 className='pageTitle'>PRODUCT DETAIL</h2>
+                        <h2 className='my-md-5'>CONTRACT DETAIL</h2>
                         <div className='detailBody'>
-                            <p>Product name:   <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{productDetails?.productName} </span></p>
-                            <p>Customer:  <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{productDetails?.customer[0].name}  {productDetails?.customer[0]?.last_name}</span></p>
-                            <p>Amount: <span style={{ color: '#1976d2', fontWeight: 'bold' }}>{productDetails?.amount} </span></p>
+                            <p>Product name:   <span >{productDetails?.productName} </span></p>
+                            <p>Customer:  <span >{productDetails?.customer[0].name}  {productDetails?.customer[0]?.last_name}</span></p>
+                            <p>Amount: <span >€ {productDetails?.amount} </span></p>
                         </div>
 
 

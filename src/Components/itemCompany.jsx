@@ -35,7 +35,7 @@ const SingleCompany = ({ company }) => {
 
     return (<>
 
-        <td ></td>
+
         <td onClick={() => navigate('/companies/' + company._id)}>{company.name}</td>
         <td onClick={() => navigate('/companies/' + company._id)}>Alan</td>
         <td onClick={() => navigate('/companies/' + company._id)}>{company.email}</td>

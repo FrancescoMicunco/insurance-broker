@@ -37,6 +37,7 @@
     .row #icon {
         flex: 20%;
         display: grid;
+        align-items: left;
     }
     
     .row #name {

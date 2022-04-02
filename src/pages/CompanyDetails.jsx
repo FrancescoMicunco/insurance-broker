@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import '../style/customerdetails.css'
@@ -24,6 +25,23 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+    },
+    palette: {
+        primary: {
+            main: '#0971f1',
+            darker: '#053e85',
+
+        },
+        neutral: {
+            main: '#ac319d',
+            contrastText: '#fff',
+        },
+    },
+});
 
 
 function CompanyDetails() {
@@ -100,7 +118,6 @@ function CompanyDetails() {
                                 id="outlined-required"
                                 label="Name"
                                 defaultValue={companyDetail?.name}
-                                // value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
 
@@ -121,8 +138,8 @@ function CompanyDetails() {
                     <div className='container-fluid mainDetails'>
                         <h2 className='my-md-4'>COMPANY DETAIL</h2>
                         <div className='detailBody '>
-                            <p>Company name:   <span style={{ color: 'black' }}>{companyDetail?.name} </span></p>
-                            <p>Email:  <span style={{ color: 'black' }}>{companyDetail?.email}</span></p>
+                            <p>Company name:   <span >{companyDetail?.name} </span></p>
+                            <p>Email:  <span >{companyDetail?.email}</span></p>
 
                         </div>
                     </div>
@@ -137,10 +154,10 @@ function CompanyDetails() {
                     {
                         isUpdate ? '' :
                             <div className="container-fluid" >
-
-                                <Button variant="outlined" onClick={() => handleToUpdate()}>Update</Button>
-                                <Button variant="contained" onClick={handleOpen}>Delete</Button>
-
+                                <ThemeProvider theme={theme}>
+                                    <Button onClick={() => handleToUpdate()}>Update</Button>
+                                    <Button variant="contained" onClick={handleOpen}>Delete</Button>
+                                </ThemeProvider>
                             </div>
 
                     }

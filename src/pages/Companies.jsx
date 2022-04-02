@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SingleCompany from '../Components/itemCompany'
 import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import { Table } from 'react-bootstrap'
 import Button from '@mui/material/Button';
@@ -26,6 +26,24 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+
+const theme = createTheme({
+    status: {
+        danger: '#e53e3e',
+    },
+    palette: {
+        primary: {
+            main: '#0971f1',
+            darker: '#053e85',
+
+        },
+        neutral: {
+            main: '#ac319d',
+            contrastText: '#fff',
+        },
+    },
+});
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -111,18 +129,7 @@ const Companies = () => {
             <div style={{ color: 'gray' }} >
                 <div className='d-flex justify-content-around m-md-3'>
                     <h2>COMPANIES LIST</h2>
-                    {/* ================= search section */}
 
-                    {/* <FormControl component="fieldset">
-                        <FormGroup aria-label="position" row>
-                            <FormControlLabel
-                                value="list"
-                                control={<Switch color="primary" />}
-                                label="list"
-                                labelPlacement="start"
-                            />
-                        </FormGroup>
-                    </FormControl> */}
                     <div className='d-flex'>
                         <Search >
                             <SearchIconWrapper>
@@ -140,10 +147,12 @@ const Companies = () => {
 
                     <div>
 
-                        <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={handleOpen}>New Company</Button>
 
-                        {/* =========== add customer section */}
-
+                        {/* =========== add company section */}
+                        <ThemeProvider theme={theme}>
+                            <Button className='mr-md-3' color="neutral" variant="contained" size="large" endIcon={<AddCircleOutlineIcon />}
+                                onClick={handleOpen}>New Company</Button>
+                        </ThemeProvider>
 
                         <Modal
                             open={open}
@@ -189,9 +198,11 @@ const Companies = () => {
                                 </div>
                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                     You are adding a new customer.
+                                    <ThemeProvider theme={theme}>
+                                        <Button className='ml-4 px-5' color="neutral" variant="contained" size="large" onClick={() => { addNewCompany(newCompany) }}>Add</Button>
+                                    </ThemeProvider>
                                 </Typography>
 
-                                <Button variant="outlined" onClick={() => { addNewCompany(newCompany) }}>Add</Button>
                             </Box>
                         </Modal>
                     </div>
@@ -200,10 +211,10 @@ const Companies = () => {
             </div>
 
 
-            <Table responsive striped bordered hover variant="dark">
+            <Table responsive striped bordered hover variant="light">
                 <thead>
                     <tr>
-                        <th>#</th>
+
                         <th>NAME <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>OWNER <i className="bi bi-arrow-down-up"></i></th>
