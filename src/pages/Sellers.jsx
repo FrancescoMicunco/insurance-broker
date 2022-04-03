@@ -124,7 +124,7 @@ const Sellers = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
-                <div className='d-flex justify-content-around m-md-3'>
+                <div className='d-flex justify-content-between my-md-5'>
                     <h2>SELLERS LIST</h2>
                     {/* ================= search section */}
 
@@ -205,7 +205,7 @@ const Sellers = () => {
             <Table responsive striped bordered hover variant="light">
                 <thead>
                     <tr>
-                        
+
                         <th>Name <i className="bi bi-arrow-down-up"></i>
                         </th>
                         <th>Last Name <i className="bi bi-arrow-down-up"></i></th>

@@ -127,7 +127,7 @@ const Companies = () => {
     return (
         <div>
             <div style={{ color: 'gray' }} >
-                <div className='d-flex justify-content-around m-md-3'>
+                <div className='d-flex justify-content-between my-md-5'>
                     <h2>COMPANIES LIST</h2>
 
                     <div className='d-flex'>
