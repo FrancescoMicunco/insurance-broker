@@ -17,7 +17,7 @@ export function handleDelete() {
 export const handleAddCustomer = async() => {
     const customer = { name: "allio", email: "allio@gmail.com" };
     try {
-        const res = fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers", {
+        const res = fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -31,19 +31,18 @@ export const handleAddCustomer = async() => {
 
 export const deleteCustomer = async(_id) => {
     try {
-        const res = await fetch(`
-            $ { process.env.REACT_APP_BE_DOMAIN }
-            /customers/
-            " + _id, {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-        });
-    if (res.ok) {
-        alert("Customer correctly deleted");
-    } else {
-        alert("this customer doesn't exist!");
+        const res = await fetch(
+            `${process.env.REACT_APP_BE_DOMAIN}/customers/` + _id, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+            }
+        );
+        if (res.ok) {
+            alert("Customer correctly deleted");
+        } else {
+            alert("this customer doesn't exist!");
+        }
+    } catch (error) {
+        alert(error.message);
     }
-} catch (error) {
-    alert(error.message);
-}
 };
