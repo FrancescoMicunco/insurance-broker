@@ -44,9 +44,7 @@ export const addNewSellersAction = (newSeller) => {
 export const getSellersAction = () => {
     return async(dispatch) => {
         try {
-            const res = await fetch(`
-                ${process.env.REACT_APP_BE_DOMAIN}
-                /salesforce`);
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/salesforce`);
             if (res.ok) {
                 const sellers = await res.json();
                 console.log("sellers", sellers);
