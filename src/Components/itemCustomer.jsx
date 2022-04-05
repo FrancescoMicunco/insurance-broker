@@ -30,7 +30,6 @@ const SingleCustomer = ({ customer }) => {
     // MODAL
     const [open, setOpen] = React.useState(false);
     const [pages, setPages] = useState('customers?limit=5&offset=5')
-    const [deleteCustomer, setDeleteCustomer] = useState('')
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
