@@ -61,6 +61,11 @@ const Dashboard = () => {
         },
 
     ]
+    data[0]['Last Month'] = totalLastMonthCustomers
+    data[0]['This Month'] = totalThisMonthCustomers
+    data[1]['Last Month'] = lastMonthTotalAmount / 1000
+    data[1]['This Month'] = thisMonthTotalAmount / 1000
+    console.log("last month customers", data[0]['Last Month'])
 
     return (
         <>
