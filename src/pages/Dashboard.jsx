@@ -88,7 +88,7 @@ const Dashboard = () => {
                 </div>
             </div >
             <div>
-                <ResponsiveContainer width="100%" height="50%">
+                <ResponsiveContainer width="100%" height="100%" minHeight="500px">
                     <BarChart
                         width={500}
                         height={300}
