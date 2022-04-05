@@ -82,10 +82,7 @@ export const deleteSellerAction = (id) => {
 export const addNewProductAction = (newProduct) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `
-                ${process.env.REACT_APP_BE_DOMAIN}
-                /products`, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/products`, {
                     method: "POST",
                     body: JSON.stringify(newProduct),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -124,8 +121,7 @@ export const getProductsAction = (pages) => {
 export const deleteProductAction = (id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `${process.env.REACT_APP_BE_DOMAIN}/products/` + id, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/products/` + id, {
                     method: "DELETE",
                 }
             );
@@ -144,11 +140,7 @@ export const deleteProductAction = (id) => {
 export const updateProductAction = (p, i) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `
-                ${process.env.REACT_APP_BE_DOMAIN}
-                /products/${i}
-                `, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/products/${i}`, {
                     method: "PUT",
                     body: JSON.stringify(p),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -173,10 +165,7 @@ export const updateProductAction = (p, i) => {
 export const addNewCompanyAction = (newCompany) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `
-                ${process.env.REACT_APP_BE_DOMAIN}
-                /companies`, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/companies`, {
                     method: "POST",
                     body: JSON.stringify(newCompany),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -215,10 +204,7 @@ export const getCompaniesAction = () => {
 export const deleteCompanyAction = (id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `
-                ${process.env.REACT_APP_BE_DOMAIN}
-                /companies/` + id, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/companies/` + id, {
                     method: "DELETE",
                 }
             );
@@ -237,8 +223,7 @@ export const deleteCompanyAction = (id) => {
 export const updateCompanyAction = (c, i) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `${process.env.REACT_APP_BE_DOMAIN}/companies/${i}`, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/companies/${i}`, {
                     method: "PUT",
                     body: JSON.stringify(c),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -283,8 +268,7 @@ export const deleteCustomerAction = (id) => {
     console.log("this id from customer", id);
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `${process.env.REACT_APP_BE_DOMAIN}/customers/` + id, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers/` + id, {
                     method: "DELETE",
                 }
             );
@@ -303,10 +287,7 @@ export const deleteCustomerAction = (id) => {
 export const addNewCustomerAction = (newCustomer) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `
-                ${process.env.REACT_APP_BE_DOMAIN}
-                /customers`, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers`, {
                     method: "POST",
                     body: JSON.stringify(newCustomer),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -329,8 +310,7 @@ export const updateCustomerAction = (c, i) => {
     let cToUpdate = console.log("I & c", c, i);
     return async(dispatch) => {
         try {
-            const res = await fetch(
-                `${process.env.REACT_APP_BE_DOMAIN}/customers/${i}`, {
+            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers/${i}`, {
                     method: "PUT",
                     body: JSON.stringify({ cToUpdate }),
                     headers: { "Content-Type": "application/json" },
