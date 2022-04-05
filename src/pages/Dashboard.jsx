@@ -49,17 +49,16 @@ const Dashboard = () => {
     const data = [
         {
             "name": "Customers",
-            "Last Month": 4000,
-            "This Month": 2400,
+            "Last Month": 5,
+            "This Month": 5,
             "amt": 2400
         },
         {
-            "name": "Revenue",
-            "Last Month": 3000,
-            "This Month": 1398,
+            "name": "Revenue €/1000",
+            "Last Month": 7.032,
+            "This Month": 2.442,
             "amt": 2210
         },
-
 
     ]
 
@@ -89,7 +88,7 @@ const Dashboard = () => {
                 </div>
             </div >
             <div>
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="50%">
                     <BarChart
                         width={500}
                         height={300}
