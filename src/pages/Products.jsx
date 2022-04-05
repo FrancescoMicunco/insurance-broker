@@ -280,8 +280,9 @@ const Products = () => {
                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                     You are adding a new contract.
                                 </Typography>
-
-                                <Button variant="contained" size="small" endIcon={<AddCircleOutlineIcon />} onClick={() => { addnewProduct(newProduct) }}>Add</Button>
+                                <ThemeProvider theme={theme}>
+                                    <Button color="neutral" variant="contained" size="large" endIcon={<AddCircleOutlineIcon />} onClick={() => { addnewProduct(newProduct) }}>Add</Button>
+                                </ThemeProvider>
                             </Box>
                         </Modal>
 
