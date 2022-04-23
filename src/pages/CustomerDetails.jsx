@@ -47,17 +47,17 @@ function CustomerDetails() {
     const [marital, setMarital] = useState('')
 
     const customerToUpdate = {
-        name: name,
-        last_name: lastname,
-        userName: userName,
-        password: password,
-        email: email,
-        healt: healt,
-        marital: marital,
-        isHealt: isHealt,
-        seller: sellerId,
-        isPrivacy: isPrivacy,
-        isCompliance: isCompliance
+        name: name ? name : customerDetail?.name,
+        last_name: lastname ? lastname : customerDetail?.last_name,
+        userName: userName ? userName : customerDetail?.userName,
+        // password: password ? password : customerDetail?.password,
+        email: email ? email : customerDetail?.email,
+        healt: healt ? healt : customerDetail?.healt,
+        marital: marital ? marital : customerDetail?.marital,
+        isHealt: isHealt ? isHealt : customerDetail?.isHealt,
+        // seller: sellerId ? sellerId : customerDetail?.sellerId,
+        isPrivacy: isPrivacy ? isPrivacy : customerDetail?.isPrivacy,
+        isCompliance: isCompliance ? isCompliance : customerDetail?.isCompliance,
     }
 
     console.log("to update", customerToUpdate)
@@ -90,6 +90,7 @@ function CustomerDetails() {
 
     const customer = useSelector((state) => state.customers?.customers.customer)
 
+
     const products = useSelector((state) => state.products?.products)
 
     const deleteCustomer = () => {
@@ -107,9 +108,10 @@ function CustomerDetails() {
         if (cToShow) setCustomerDetail(cToShow)
 
 
+
     }, [JSON.stringify(customer)])
 
-
+    console.log("customer detail", customerDetail)
 
 
     return (

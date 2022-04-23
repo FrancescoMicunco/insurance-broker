@@ -83,11 +83,10 @@ export const addNewProductAction = (newProduct) => {
     return async(dispatch) => {
         try {
             const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/products`, {
-                    method: "POST",
-                    body: JSON.stringify(newProduct),
-                    headers: new Headers({ "Content-Type": "application/json" }),
-                }
-            );
+                method: "POST",
+                body: JSON.stringify(newProduct),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
             if (res.ok) {
                 console.log("this is c =>", newProduct);
                 dispatch({ type: ADD_NEW_PRODUCT, payload: newProduct });
@@ -121,7 +120,8 @@ export const getProductsAction = (pages) => {
 export const deleteProductAction = (id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/products/` + id, {
+            const res = await fetch(
+                `${process.env.REACT_APP_BE_DOMAIN}/products/` + id, {
                     method: "DELETE",
                 }
             );
@@ -140,7 +140,8 @@ export const deleteProductAction = (id) => {
 export const updateProductAction = (p, i) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/products/${i}`, {
+            const res = await fetch(
+                `${process.env.REACT_APP_BE_DOMAIN}/products/${i}`, {
                     method: "PUT",
                     body: JSON.stringify(p),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -166,11 +167,10 @@ export const addNewCompanyAction = (newCompany) => {
     return async(dispatch) => {
         try {
             const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/companies`, {
-                    method: "POST",
-                    body: JSON.stringify(newCompany),
-                    headers: new Headers({ "Content-Type": "application/json" }),
-                }
-            );
+                method: "POST",
+                body: JSON.stringify(newCompany),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
             if (res.ok) {
                 console.log("this is c =>", newCompany);
                 dispatch({ type: ADD_NEW_COMPANY, payload: newCompany });
@@ -204,7 +204,8 @@ export const getCompaniesAction = () => {
 export const deleteCompanyAction = (id) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/companies/` + id, {
+            const res = await fetch(
+                `${process.env.REACT_APP_BE_DOMAIN}/companies/` + id, {
                     method: "DELETE",
                 }
             );
@@ -223,7 +224,8 @@ export const deleteCompanyAction = (id) => {
 export const updateCompanyAction = (c, i) => {
     return async(dispatch) => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/companies/${i}`, {
+            const res = await fetch(
+                `${process.env.REACT_APP_BE_DOMAIN}/companies/${i}`, {
                     method: "PUT",
                     body: JSON.stringify(c),
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -268,7 +270,8 @@ export const deleteCustomerAction = (id) => {
     console.log("this id from customer", id);
     return async(dispatch) => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers/` + id, {
+            const res = await fetch(
+                `${process.env.REACT_APP_BE_DOMAIN}/customers/` + id, {
                     method: "DELETE",
                 }
             );
@@ -288,11 +291,10 @@ export const addNewCustomerAction = (newCustomer) => {
     return async(dispatch) => {
         try {
             const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers`, {
-                    method: "POST",
-                    body: JSON.stringify(newCustomer),
-                    headers: new Headers({ "Content-Type": "application/json" }),
-                }
-            );
+                method: "POST",
+                body: JSON.stringify(newCustomer),
+                headers: new Headers({ "Content-Type": "application/json" }),
+            });
             if (res.ok) {
                 console.log("this is c =>", newCustomer);
                 dispatch({ type: ADD_NEW_CUSTOMER, payload: newCustomer });
@@ -307,23 +309,23 @@ export const addNewCustomerAction = (newCustomer) => {
 };
 
 export const updateCustomerAction = (c, i) => {
-    let cToUpdate = console.log("I & c", c, i);
     return async(dispatch) => {
         try {
-            const res = await fetch(`${process.env.REACT_APP_BE_DOMAIN}/customers/${i}`, {
+            const res = await fetch(
+                `${process.env.REACT_APP_BE_DOMAIN}/customers/${i}`, {
                     method: "PUT",
-                    body: JSON.stringify({ cToUpdate }),
+                    body: JSON.stringify(c),
                     headers: { "Content-Type": "application/json" },
                 }
             );
-            console.log("res", res);
-            if (res.ok) {
-                console.log("this is c =>", c);
 
-                dispatch({
-                    type: UPDATE_CUSTOMER,
-                    payload: { cToUpdate },
-                });
+            if (res.ok) {
+                // console.log("this is res =>", await res.json());
+
+                // dispatch({
+                //     type: UPDATE_CUSTOMER,
+                //     payload: { c },
+                // });
 
                 alert("successful updated!");
             } else {
