@@ -82,36 +82,41 @@ function ProductDetails() {
 
     return (
         <div className="customerDet" style={{ color: 'gray' }}>
-            <div className="d-flex">
+            <div className="d-flex mt-5">
                 {isUpdate ?
+                    <>
+                        <h2 className='my-md-4' style={{ textAlign: 'left' }}>CONTRACT UPDATE</h2>
+                        <Box
+                            component="form"
+                            sx={{
+                                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <div className='d-flex flex-column align-item-center updatemodal' style={{ marginLeft: '20%' }}>
+                                <div className='mb-md-4'>
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Name"
+                                        defaultValue={productDetails?.name}
+                                        // value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
 
-                    <Box
-                        component="form"
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                    >
-                        <div>
-                            <TextField
-                                required
-                                id="outlined-required"
-                                label="Name"
-                                defaultValue={productDetails?.name}
-                                // value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
 
-
-                            <Button variant="outlined"
-                                onClick={() => {
-                                    dispatch(updateProductAction(productToUpdate, productDetails?._id))
-                                }}>Update</Button>
-                        </div>
-                    </Box> :
+                                    <Button variant="outlined"
+                                        onClick={() => {
+                                            dispatch(updateProductAction(productToUpdate, productDetails?._id))
+                                        }}>Update</Button>
+                                </div>
+                            </div>
+                        </Box>
+                    </>
+                    :
                     <div className='container-fluid mainDetails'>
-                        <h2 className='my-md-5'>CONTRACT DETAIL</h2>
+                        <h2 className='ml-md-2 my-md-4' >CONTRACT DETAIL</h2>
                         <div className='detailBody'>
                             <p>Product name:   <span >{productDetails?.productName} </span></p>
                             <p>Customer:  <span >{productDetails?.customer[0].name}  {productDetails?.customer[0]?.last_name}</span></p>

@@ -185,7 +185,8 @@ function CustomerDetails() {
                                         setIsUpdate(false)
                                     }}>Update</Button>
                             </div>
-                        </Box> </>
+                        </Box>
+                    </>
                     :
                     <div className='container-fluid mainDetails'>
                         <h2 className='ml-md-2 my-md-4'>CUSTOMER DETAIL</h2>
