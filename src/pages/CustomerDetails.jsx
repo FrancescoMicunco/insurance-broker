@@ -62,29 +62,26 @@ function CustomerDetails() {
 
     console.log("to update", customerToUpdate)
 
-    const params = useParams()
+
 
     const handleToUpdate = () => {
         setIsUpdate(true)
     }
+
+    const handleIsPrivacy = (event) => {
+        setIsPrivacy(event.target.checked);
+    };
+
+    const handleIsCompliance = (event) => {
+        setIsCompliance(event.target.checked);
+    };
 
     // MODAL
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
-
-    const handleIsPrivacy = (event) => {
-        setIsPrivacy(event.target.checked);
-    };
-
-
-    const handleIsCompliance = (event) => {
-        setIsCompliance(event.target.checked);
-    };
-
-
+    const params = useParams()
 
     const dispatch = useDispatch()
 
@@ -100,18 +97,12 @@ function CustomerDetails() {
     }
 
     useEffect(() => {
-
         let customerId = params.customerId
-
         let cToShow = customer?.find(c => c._id.toString() === customerId)
-
         if (cToShow) setCustomerDetail(cToShow)
-
-
-
     }, [JSON.stringify(customer)])
 
-    console.log("customer detail", customerDetail)
+
 
 
     return (

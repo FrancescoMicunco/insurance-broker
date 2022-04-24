@@ -83,15 +83,10 @@ function CompanyDetails() {
 
 
     useEffect(() => {
-
         let companyId = params.companyId
-
         let cToShow = company?.find(c => c._id.toString() === companyId)
-
         console.log("cToShow", cToShow)
-
         if (cToShow) setCompanyDetail(cToShow)
-
         console.log("company to show", companyDetail)
 
     }, [companyDetail])

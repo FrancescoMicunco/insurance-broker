@@ -29,6 +29,7 @@ const style = {
 function ProductDetails() {
     const [number, setNumber] = useState('')
     const [name, setName] = useState('')
+    const [amount, setAmount] = useState('')
     const [seller, setSeller] = useState('')
     const [customerId, setCustomerId] = useState('')
     const [isUpdate, setIsUpdate] = useState(false)
@@ -37,13 +38,6 @@ function ProductDetails() {
     const products = useSelector((state) => state.products?.products)
     console.log("products from pro details", products)
 
-    const productToUpdate = {
-        number: number,
-        name: name,
-        seller: seller,
-        customer: customerId,
-    }
-    console.log("to update", productToUpdate)
 
     const handleToUpdate = () => {
         setIsUpdate(true)
@@ -56,26 +50,26 @@ function ProductDetails() {
 
     const dispatch = useDispatch()
 
-
     const params = useParams()
 
-    let productId = params.productId
-
-    let pToShow = products?.product?.find(c => c._id.toString() === productId)
-
-    console.log("pToShow", pToShow)
 
 
+    const productToUpdate = {
+        number: number ? number : productDetails?.number,
+        productName: name ? name : productDetails?.productName[0],
+        customer: seller ? seller : productDetails?.customer[0]._id,
+        amount: amount ? amount : productDetails?.amount
+        // customer: customerId ? customerId : productDetails?.customerId,
+    }
+    console.log("to update", productToUpdate)
 
 
     useEffect(() => {
-
-
+        let productId = params.productId
+        let pToShow = products?.product?.find(c => c._id.toString() === productId)
         if (pToShow) setProductDetails(pToShow)
-
-        console.log("customer detail", productDetails?.customer[0].name)
-
-    }, [productDetails])
+        console.log("update Useffect", productDetails?.customer[0]._id)
+    }, [products])
 
 
 
@@ -100,9 +94,18 @@ function ProductDetails() {
                                         required
                                         id="outlined-required"
                                         label="Name"
-                                        defaultValue={productDetails?.name}
+                                        defaultValue={productDetails?.productName[0]}
                                         // value={name}
                                         onChange={(e) => setName(e.target.value)}
+                                    />
+
+                                    <TextField
+                                        required
+                                        id="outlined-required"
+                                        label="Amount"
+                                        defaultValue={productDetails?.amount}
+                                        // value={name}
+                                        onChange={(e) => setAmount(e.target.value)}
                                     />
 
 
