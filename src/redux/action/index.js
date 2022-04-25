@@ -319,13 +319,14 @@ export const updateCustomerAction = (c, i) => {
 
             if (res.ok) {
                 // console.log("this is res =>", await res.json());
-
-                // dispatch({
-                //     type: UPDATE_CUSTOMER,
-                //     payload: { c },
-                // });
-
+                const updatedCustomer = await res.json();
+                console.log("updated customer:", updatedCustomer);
                 alert("successful updated!");
+                dispatch({
+                    type: UPDATE_CUSTOMER,
+                    payload: updatedCustomer,
+                });
+                alert("correctly updated to the store");
             } else {
                 alert("Failed updating new customer");
             }

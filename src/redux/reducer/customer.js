@@ -24,15 +24,21 @@ const customersReducer = (state = initialState.customers, action) => {
                 customers: [...state.customers.customer, payload],
             };
         case UPDATE_CUSTOMER:
-            let customerToUpdateIndex = state.customers.findIndex(
-                (c) => c._id === payload.id
+            console.log("payload update customer", payload);
+            let customerToUpdateIndex = state.customers.customer.findIndex(
+                (c) => c._id === payload._id
             );
-            let customersCopy = [...state.customers];
-            customersCopy[customerToUpdateIndex].name = action.payload.name;
-            customersCopy[customerToUpdateIndex].surname = action.payload.surname;
-            customersCopy[customerToUpdateIndex].email = action.payload.email;
+            console.log("customer index", customerToUpdateIndex);
+            let customerToUpdate = state.customers.customer[customerToUpdateIndex];
+            console.log("customer to update", customerToUpdate);
+            customerToUpdate = payload;
+            console.log("customer to update with payload", customerToUpdate);
+            let customersCopy = [...state.customers.customer, customerToUpdate];
+            console.log("customer copy", customersCopy);
+
             return {
                 ...state,
+
                 customers: customersCopy,
             };
 

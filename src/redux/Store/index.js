@@ -1,5 +1,4 @@
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
-import thunk from "redux-thunk";
 import thunkMiddleware from "redux-thunk";
 import customersReducer from "../reducer/customer";
 import companiesReducer from "../reducer/companies";
