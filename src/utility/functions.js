@@ -24,6 +24,11 @@ export const handleAddCustomer = async() => {
             },
             body: JSON.stringify(customer),
         });
+        if (res.ok) {
+            console.log("all is ok");
+        } else {
+            alert("customer error");
+        }
     } catch (error) {
         alert("Some error occurred form the server. Try later again!");
     }
